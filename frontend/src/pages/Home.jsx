@@ -1,8 +1,8 @@
-import React from 'react'
+
 
 function Home() {
   return (
-    <div>Home</div>
+    <div className='min-h-screen bg-[#09090b] w-full justify-center p-3 md:p-8 flex items-center ' >Home</div>
   )
 }
 
