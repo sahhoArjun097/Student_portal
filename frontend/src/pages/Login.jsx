@@ -4,15 +4,18 @@ import { Context } from "../main"
 function Login() {
     const { darkMode } = useContext(Context);
     return (
-        <div className={`  min-h-screen  w-full justify-center p-3 md:p-8 flex  ${darkMode ? "bg-[#09090b]" : "bg-white"} `} >
+<>
+        <div className={` w-full min-h-screen justify-center p-3 md:p-8 flex   `} 
+        style={{ backgroundImage: "url('/loginBg.jpg')" }}
+ >
             {/* <p className={`${darkMode?  "text-white" : "text-black"}`}></p> */}
 
             <div className="relative py-3 sm:max-w-xs sm:mx-auto">
                 <div
-                    className="min-h-106 px-8 py-3 mt-4 text-left bg-white dark:bg-gray-900 rounded-xl shadow-lg"
+                    className="min-h-106 px-8 py-3 mt-4 text-left bg-opacity-0 backdrop-blur-xl rounded-xl shadow-lg"
                 >
                     <div className="flex flex-col justify-center items-center h-full select-none">
-                        <div className="flex flex-col items-center justify-center gap-2 mb-8">
+                        <div className="flex flex-col items-center c:\Users\heony\Downloads\freepik__school-with-realistic-and-attractive-apperiance__84713.pngjustify-center gap-2 mb-8">
                             <div className="w-8 h-8 bg-gray-700" src=""></div>
                             <p className="m-0 text-[16px] font-semibold dark:text-white">
                                 Login to your Account
@@ -49,6 +52,8 @@ function Login() {
 
 
         </div>
+        <hr className={` w-full h-[1px] ${darkMode ? "text-white":"text-black"}`}/>
+        </>
     )
 }
 

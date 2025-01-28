@@ -1,55 +1,85 @@
-// import React, { useState, useEffect } from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../main";
-import '../index.css'
+import "../index.css";
 
 function Navbar() {
   const { darkMode, toggleMode } = useContext(Context);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
 
   return (
     <>
       <div
-        className={`w-full h-full flex justify-center items-center md:px-16 p-5 md:p-6 ${
-          darkMode ? "bg-[#09090b]" : "bg-gray-200"
+        className={`w-full h-auto flex items-center justify-between md:px-16 px-5 py-4 ${
+          darkMode ? "bg-gray-900" : "bg-gray-200"
         }`}
       >
-        <div className="w-full h-full">
-          <p
-            className={`text-xl font-bold ${
-              darkMode ? "text-yellow-400" : "text-black"
+        {/* Logo */}
+        <p
+          className={`text-xl font-bold ${
+            darkMode ? "text-yellow-400" : "text-black"
+          }`}
+        >
+          StudentPortal
+        </p>
+
+        {/* Hamburger Menu */}
+        <div className="md:hidden">
+          {/* <button
+            onClick={toggleMenu}
+            className={`p-2 rounded-md ${
+              darkMode ? "bg-gray-800 text-white" : "bg-gray-300 text-black"
             }`}
           >
-            StudentPortal
-          </p>
-        </div>
-        <div className="gap-7 md:flex p-1">
-          <a
-            href="/"
-            className={`hover:text-blue-300 transition text-lg ${
-              darkMode ? "text-white" : "text-black"
-            } font-semibold duration-300`}
-          >
-            Home
-          </a>
-          <a
-            href="/login"
-            className={`hover:text-blue-300 transition text-lg ${
-              darkMode ? "text-white" : "text-black"
-            } font-semibold duration-300`}
-          >
-            Login
-          </a>
-          <a
-            href="/register"
-            className={`hover:text-blue-300 transition text-lg ${
-              darkMode ? "text-white" : "text-black"
-            } font-semibold duration-300`}
-          >
-            Register
-          </a>
+            {isMenuOpen ? "✖" : "☰"}
+          </button> */}
         </div>
 
-        <label className="relative inline-flex items-center cursor-pointer ml-4">
+        {/* Navigation Links */}
+        <div
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } absolute top-full left-0 w-full bg-opacity-95 md:static md:flex md:items-center md:gap-7 md:w-auto md:bg-transparent ${
+            darkMode ? "bg-[#09090b]" : "bg-gray-200"
+          }`}
+        >
+          <nav
+            className={`flex flex-col items-center gap-6 md:flex-row md:gap-7 p-5 md:p-0 ${
+              darkMode ? "text-white" : "text-black"
+            }`}
+          >
+            <a
+              href="/"
+              className={`hover:text-blue-300 transition text-lg ${
+                darkMode ? "text-white" : "text-black"
+              } font-semibold duration-300`}
+            >
+              Home
+            </a>
+            <a
+              href="/profile"
+              className={`hover:text-blue-300 transition text-lg ${
+                darkMode ? "text-white" : "text-black"
+              } font-semibold duration-300`}
+            >
+              Profile
+            </a>
+            <a
+              href="/login"
+              className={`hover:text-blue-300 transition text-lg ${
+                darkMode ? "text-white" : "text-black"
+              } font-semibold duration-300`}
+            >
+              Login
+            </a>
+          </nav>
+        </div>
+
+        {/* Dark Mode Toggle */}
+        <label className="relative inline-flex items-center cursor-pointer ml-4 md:ml-0">
           <input
             type="checkbox"
             className="sr-only peer"
@@ -75,7 +105,7 @@ function Navbar() {
           </div>
         </label>
       </div>
-      <hr className="text-white h-[1px] w-full" />
+      <hr className={`h-[1px] w-full ${darkMode ? "bg-white" : "bg-black"}`} />
     </>
   );
 }
