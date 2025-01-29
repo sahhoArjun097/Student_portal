@@ -105,7 +105,7 @@ function Navbar() {
           </div>
         </label>
       </div>
-      <hr className={`h-[1px] w-full ${darkMode ? "bg-white" : "bg-black"}`} />
+      <hr className={`h-[1px] w-full ${darkMode ? "text-white" : "text-black"}`} />
     </>
   );
 }
