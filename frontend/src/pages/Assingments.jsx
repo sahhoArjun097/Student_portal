@@ -53,10 +53,12 @@
 
 // export default Assignments;
 
-
+import { useContext } from "react"
+import { Context } from "../main"
 import React from "react";
 
 const Assignments = () => {
+     const { darkMode } = useContext(Context)
   const assignments = [
     {
       subject: "Mathematics",
@@ -82,6 +84,7 @@ const Assignments = () => {
   ];
 
   return (
+      <>
     <div className="w-full min-h-screen bg-gray-900 text-white px-6 py-12">
       <h1 className="text-3xl font-bold text-center mb-8 text-teal-400">📚 Assignments</h1>
 
@@ -107,6 +110,8 @@ const Assignments = () => {
         )}
       </div>
     </div>
+    <hr className={` w-full h-[1px] ${darkMode ? "text-white" : "text-black"}`} />
+    </>
   );
 };
 
