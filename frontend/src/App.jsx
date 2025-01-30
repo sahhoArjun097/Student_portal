@@ -1,10 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home"
-import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
+import Announcements from "./pages/Announcements";
+import Contest from "./pages/Contest";
+import Assingments from "./pages/Assingments";
+import Timetable from "./pages/Timetable";
+import Fee from "./pages/Fee";
 
 function App() {
   return (
@@ -14,9 +18,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
         <Route path="/profile" element={<Profile/>}/>
-        {/* <Route path="" element={}/> */}
+        <Route path="/announcements" element={<Announcements/>}/>
+        <Route path="/contest" element={<Contest/>}/>
+        <Route path="/assingments" element={<Assingments/>}/>
+        <Route path="/timetable" element={<Timetable/>}/>
+        <Route path="/fee" element={<Fee/>}/>
       </Routes>
       <Footer/>
     </Router>

@@ -6,7 +6,7 @@ function Footer() {
 
     return (
         <div className={`w-full h-full p-2 md:p-10 flex flex-col items-center gap-8 ${darkMode ? "bg-gray-900" : "bg-white"}`}>
-            <div className="flex flex-col md:flex-row justify-between w-full max-w-6xl">
+            <div className="flex flex-col md:flex-row justify-center   md:justify-between w-full max-w-6xl">
                 {/* Branding */}
                 <div>
                     <p className="font-bold text-xl text-yellow-500">StudentPortal</p>
@@ -26,7 +26,8 @@ function Footer() {
                 </div>
 
                 {/* Social Media */}
-                <div className="mt-4 md:mt-0">
+                <div className='items-center'>
+                <div className="mt-4 md:mt-0 ">
                     <h3 className={`text-lg font-semibold  ${darkMode ?"text-white":"text-gray-700"} `}>Connect With Us</h3>
                     <ul className="flex space-x-5 mt-3">
                         <li>
@@ -52,9 +53,12 @@ function Footer() {
                         </li>
                     </ul>
                 </div>
+
+                </div>
+                
             </div>
             <div className="text-center text-sm text-gray-500 mt-4">
-        © 2025 TypeArena. All rights reserved.
+        © 2025 StudentPortal. All rights reserved.
         <br />
         Designed and Developed with <span className="text-red-500">❤️</span> by <span className="text-yellow-600 font-semibold">Arjun Agarwal</span>
       </div>

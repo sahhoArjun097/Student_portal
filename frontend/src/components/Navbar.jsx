@@ -6,9 +6,9 @@ function Navbar() {
   const { darkMode, toggleMode } = useContext(Context);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
+//   const toggleMdode = () => {
+//     setIsMenuOpen((prev) => !prev);
+//   };
 
   return (
     <>
