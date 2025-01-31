@@ -1,21 +1,24 @@
 import { useContext } from "react"
 import { Context } from "../main"
 const Timetable = () => {
-      const { darkMode } = useContext(Context)
-    const timetable = [
-      { time: "9:00 AM - 10:00 AM", lecture: "Mathematics", teacher: "Dr. Sharma" },
-      { time: "10:15 AM - 11:15 AM", lecture: "Physics", teacher: "Prof. Verma" },
-      {  time: "11:15 AM - 12:15 PM", lecture: "Computer Science", teacher: "Mr. Rakesh" },
-      { time: "12:15 AM - 1:15 AM", lecture: "Chemistry", teacher: "Dr. Rao" },
-      {  time: "1:30 AM - 2:30 PM", lecture: "English", teacher: "Ms. Kavita" },
+  const { darkMode } = useContext(Context)
+  const timetable = [
+    { time: "9:00 AM - 10:00 AM", lecture: "Mathematics", teacher: "Dr. Sharma" },
+    { time: "10:15 AM - 11:15 AM", lecture: "Physics", teacher: "Prof. Verma" },
+    { time: "11:15 AM - 12:15 PM", lecture: "Computer Science", teacher: "Mr. Rakesh" },
+    { time: "12:15 AM - 1:15 AM", lecture: "Chemistry", teacher: "Dr. Rao" },
+    { time: "1:30 AM - 2:30 PM", lecture: "English", teacher: "Ms. Kavita" },
     //   { time: "12:45 PM - 1:45 PM", lecture: "Biology", teacher: "Dr. Gupta" },
-    ];
-  
-    return (
-        <>
-      <div className={`w-full min-h-screen ${darkMode ? "bg-gray-900":"bg-white"} text-white px-6 py-12 flex flex-col items-center`}>
-        <h1 className="text-3xl font-bold text-center mb-8 text-teal-400">📅 Todays Timetable</h1>
-  
+  ];
+
+  return (
+    <>
+      <div className={`w-full min-h-screen ${darkMode ? "bg-gray-900" : "bg-white"} bg-blend-soft-light bg-cover bg-center bg-no-repeat text-white px-6 py-12 flex flex-col items-center`}
+        style={{ backgroundImage: "url('/timetabil.png')" }}>
+        <h1 className=" text-4xl md:text-7xl font-bold text-center p-9 text-black" style={{
+          textShadow: "0px 0px 17px rgba(255, 255, 0, 0.9)",
+        }}>Time Tabile</h1>
+
         <div className="w-full max-w-5xl overflow-x-auto">
           <table className="w-full border border-gray-700 shadow-lg">
             <thead>
@@ -30,12 +33,12 @@ const Timetable = () => {
               {timetable.map((entry, index) => (
                 <tr
                   key={index}
-                  className="border-b border-gray-700 hover:bg-gray-800  transition-all"
+                  className="border-b border-gray-700 bg-gray-600 hover:bg-gray-800  transition-all"
                 >
                   {/* <td className={`${darkMode?"text-white":"text-gray-600"} p-4`}>{entry.day}</td> */}
-                  <td className={`${darkMode?"text-white":"text-gray-600"} p-4`}>{entry.time}</td>
+                  <td className={`${darkMode ? "text-white" : "text-gray-600"} p-4`}>{entry.time}</td>
                   <td className="p-4 text-teal-300">{entry.lecture}</td>
-                  <td className={`${darkMode?"text-white":"text-gray-600"} p-4`}>{entry.teacher}</td>
+                  <td className={`${darkMode ? "text-white" : "text-gray-600"} p-4`}>{entry.teacher}</td>
                 </tr>
               ))}
             </tbody>
@@ -43,12 +46,12 @@ const Timetable = () => {
         </div>
       </div>
       <hr className={` w-full h-[1px] ${darkMode ? "text-white" : "text-black"}`} />
-      </>
-    );
-  };
-  
-  export default Timetable;
-  
+    </>
+  );
+};
+
+export default Timetable;
+
 
 
 //   import { useState, useEffect } from "react";
@@ -62,7 +65,7 @@ const Timetable = () => {
 //   useEffect(() => {
 //     // Replace with your backend endpoint
 //     axios
-//       .get("https://your-backend-api.com/timetable") 
+//       .get("https://your-backend-api.com/timetable")
 //       .then((response) => {
 //         setTimetable(response.data); // Assume response.data contains the timetable
 //         setLoading(false);

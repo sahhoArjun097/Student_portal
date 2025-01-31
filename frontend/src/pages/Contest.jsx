@@ -1,45 +1,41 @@
-import { useContext } from "react"
-import { Context } from "../main"
+import { useContext } from "react";
+import { Context } from "../main";
 
 function Contest() {
   const { darkMode } = useContext(Context);
 
   return (
-    <>
-      <div className={`w-full min-h-screen ${darkMode ? "bg-gray-900" : "bg-white"} text-white p-6`}>
-        <h1 className={`text-3xl font-bold text-center ${darkMode ? "text-teal-400" : "text-teal-600"}`}>Contest Information</h1>
-        
-        <div className="mt-8">
-          <div className={`p-4 ${darkMode ? "bg-gray-800" : "bg-gray-100"} rounded-md shadow-md`}>
-            <h2 className="text-xl font-semibold">Upcoming Contest</h2>
-            <p className="mt-2">Date: 25th February 2025</p>
-            <p>Duration: 2 hours</p>
-            <p className="mt-4">Description: This contest will test your problem-solving and coding skills across various domains.</p>
-          </div>
-        </div>
-        
-        <hr className={`w-full h-[1px] ${darkMode ? "text-white" : "text-black"} my-8`} />
+    <div className={`w-full min-h-screen ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"} p-6 flex flex-col items-center`}>
+      <h1
+        style={{ textShadow: "0px 0px 12px rgba(255, 255, 0, 0.8)" }}
+        className="text-5xl font-bold text-center"
+      >
+        Contest Information
+      </h1>
 
-        {/* Previous Contests */}
-        <div className={`p-4 ${darkMode ? "bg-gray-800" : "bg-gray-100"} rounded-md shadow-md`}>
-          <h2 className="text-xl font-semibold">Previous Contests</h2>
-          <ul className="mt-4 space-y-2">
-            <li className="flex justify-between">
-              <span>Contest 1</span>
-              <span>Completed</span>
-            </li>
-            <li className="flex justify-between">
-              <span>Contest 2</span>
-              <span>Completed</span>
-            </li>
-            <li className="flex justify-between">
-              <span>Contest 3</span>
-              <span>Completed</span>
-            </li>
-          </ul>
+      {/* Upcoming Contest */}
+      <div className="mt-8 w-full max-w-3xl grid gap-6">
+        <div className={`p-6 rounded-lg shadow-lg border-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"}`}>
+          <h2 className="text-2xl font-semibold">Upcoming Contest</h2>
+          <p className="mt-2 text-lg"><strong>Date:</strong> 25th February 2025</p>
+          <p className="text-lg"><strong>Duration:</strong> 2 hours</p>
+          <p className="mt-4">This contest will test your problem-solving and coding skills across various domains.</p>
         </div>
       </div>
-    </>
+
+      {/* Previous Contests */}
+      <div className="mt-8 w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-6">
+        {["Contest 1", "Contest 2", "Contest 3"].map((contest, index) => (
+          <div
+            key={index}
+            className={`p-5 rounded-lg shadow-lg border-2 flex flex-col items-center ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"}`}
+          >
+            <h3 className="text-xl font-semibold">{contest}</h3>
+            <span className="mt-2 text-green-500 font-medium">Completed</span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

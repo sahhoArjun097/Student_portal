@@ -6,7 +6,6 @@ import { Link } from "react-router-dom"
 
 
 function Home() {
-    // const { darkMode, toggleMode } = useContext(Context);
 
     const { darkMode } = useContext(Context)
     return (
@@ -76,7 +75,7 @@ function Home() {
                 style={{ backgroundImage: "url('/homep2.png')" }}
                 className="bg-cover flex justify-center items-center bg-center p-5 bg-no-repeat w-full min-h-screen"
             >
-                <div className="hidden md:flex w-[80vw] h-[80vh] absolute justify-center items-center overflow-hidden">
+                <div className="hidden md:flex w-[80vw] h-[80vh] absolute justify-center items-center ">
                     <div className="grid grid-cols-5 grid-rows-5 gap-0 w-full h-full relative animate-rotate-cycle">
                         <div className="w-full h-full col-start-3 row-start-1 col-end-4 row-end-2 flex justify-center ">
                             <p className="text-7xl font-bold" style={{

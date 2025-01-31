@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Context } from "../main"
-import React from "react";
+
 
 const Fee = () => {
     const { darkMode } = useContext(Context)
@@ -25,7 +25,7 @@ const Fee = () => {
 
   return (
     <>
-    <div className="w-full min-h-screen bg-gray-900 text-white px-6 py-12">
+    <div className={`w-full min-h-screen ${darkMode ? "bg-gray-900":"bg-white"} text-white px-6 py-12`}>
       <h1 className="text-3xl font-bold text-center mb-8 text-teal-400">💰 Fee Details</h1>
 
       <div className="w-full max-w-5xl mx-auto">

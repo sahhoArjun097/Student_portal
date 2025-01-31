@@ -4,15 +4,15 @@ import { useState } from "react";
 
 function Profile() {
     const { darkMode } = useContext(Context);
-    const [name, setName] = useState("Arjun Agarwal ")
+    const [name, setName] = useState("Arjun Agarwal")
 
-    // Function to get initials
     const getInitials = (fullName) => {
-        return fullName
+        const initials = fullName
             .split(" ")
             .map((n) => n[0])
             .join("")
             .toUpperCase();
+        return initials.length >= 2 ? initials[0] + initials[1] : initials[0];
     };
 
     return (
@@ -39,13 +39,13 @@ function Profile() {
 
                         <div className="text-center md:text-left">
                             <h1 className={` ${darkMode ? " text-gray-100" : " text-gray-800"} text-2xl md:text-3xl font-bold`}>Arjun Agarwal</h1>
-                            <p className={`text-sm md:text-base ${darkMode ? "text-gray-100":"text-gray-800"}`}>
+                            <p className={`text-sm md:text-base ${darkMode ? "text-gray-100" : "text-gray-800"}`}>
                                 Roll No: 2100820100044
                             </p>
-                            <p className={`text-sm md:text-base ${darkMode ? "text-gray-100":"text-gray-800"}`}>
+                            <p className={`text-sm md:text-base ${darkMode ? "text-gray-100" : "text-gray-800"}`}>
                                 Course: B.Tech (Computer Science)
                             </p>
-                            <p className={`text-sm md:text-base ${darkMode ? "text-gray-100":"text-gray-800"}`} >
+                            <p className={`text-sm md:text-base ${darkMode ? "text-gray-100" : "text-gray-800"}`} >
                                 Email: arjun@example.com
                             </p>
                         </div>
@@ -83,16 +83,16 @@ function Profile() {
                     <div className="mt-6 flex justify-center md:justify-end gap-4">
                         <button
                             className={`px-4 py-2 rounded-md font-medium ${darkMode
-                                    ? "bg-indigo-600 hover:bg-indigo-500"
-                                    : "bg-blue-600 text-white hover:bg-blue-500"
+                                ? "bg-indigo-600 hover:bg-indigo-500"
+                                : "bg-blue-600 text-white hover:bg-blue-500"
                                 }`}
                         >
                             Edit Profile
                         </button>
                         <button
                             className={`px-4 py-2 rounded-md font-medium ${darkMode
-                                    ? "bg-gray-700 hover:bg-gray-600"
-                                    : "bg-gray-300 text-black hover:bg-gray-200"
+                                ? "bg-gray-700 hover:bg-gray-600"
+                                : "bg-gray-300 text-black hover:bg-gray-200"
                                 }`}
                         >
                             View Academics

@@ -52,68 +52,71 @@
 // };
 
 // export default Assignments;
-
-import { useContext } from "react"
-import { Context } from "../main"
+import { useContext } from "react";
+import { Context } from "../main";
 import React from "react";
 
 const Assignments = () => {
-     const { darkMode } = useContext(Context)
+  const { darkMode } = useContext(Context);
   const assignments = [
     {
       subject: "Mathematics",
-      teacher: "Dr. John Doe",
-      description: "Solve the problems on derivatives from Chapter 5.",
       deadline: "2025-02-15T23:59:59",
       fileUrl: "https://example.com/assignment1.pdf",
     },
     {
       subject: "Physics",
-      teacher: "Prof. Jane Smith",
-      description: "Complete the lab report on Newton's Laws of Motion.",
       deadline: "2025-02-20T23:59:59",
       fileUrl: "https://example.com/assignment2.pdf",
     },
     {
       subject: "Computer Science",
-      teacher: "Dr. Alan Turing",
-      description: "Implement a basic algorithm in your preferred language.",
       deadline: "2025-02-18T23:59:59",
       fileUrl: "https://example.com/assignment3.pdf",
     },
   ];
 
   return (
-      <>
-    <div className="w-full min-h-screen bg-gray-900 text-white px-6 py-12">
-      <h1 className="text-3xl font-bold text-center mb-8 text-teal-400">📚 Assignments</h1>
+    <div
+      style={{ backgroundImage: "url('/assingments.jpg')" }}
+      className="w-full bg-cover bg-center bg-no-repeat min-h-screen px-6 py-12"
+    >
+      <h1
+        style={{ textShadow: "0px 0px 12px rgba(255, 255, 0, 0.8)" }}
+        className={`${
+          darkMode ? "text-black" : "text-white"
+        } text-5xl font-bold text-center mb-8`}
+      >
+        📚 Assignments
+      </h1>
 
-      <div className="w-full max-w-5xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         {assignments.length === 0 ? (
           <div className="text-center text-red-400">No assignments available.</div>
         ) : (
-          <div className="space-y-6">
-            {assignments.map((assignment, index) => (
-              <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-lg">
-                <h2 className="text-xl font-semibold">{assignment.subject}</h2>
-                <p className="text-sm">Teacher: {assignment.teacher}</p>
-                <p className="mt-2">{assignment.description}</p>
-                <p className="mt-2">Deadline: {new Date(assignment.deadline).toLocaleString()}</p>
-                {assignment.fileUrl && (
-                  <a href={assignment.fileUrl} className="text-teal-400 mt-4 block">
-                    Download Assignment
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
+          assignments.map((assignment, index) => (
+            <div
+              key={index}
+              className="bg-gray-800 p-6 rounded-xl shadow-xl flex flex-col items-start justify-between h-40"
+            >
+              <h2 className="text-2xl font-semibold text-white">
+                {assignment.subject}
+              </h2>
+              <p className="mt-2 text-gray-300">Deadline: {new Date(assignment.deadline).toLocaleString()}</p>
+              {assignment.fileUrl && (
+                <a
+                  href={assignment.fileUrl}
+                  className="text-teal-400 font-medium mt-4 hover:underline"
+                >
+                  📥 Download Assignment
+                </a>
+              )}
+            </div>
+          ))
         )}
       </div>
     </div>
-    <hr className={` w-full h-[1px] ${darkMode ? "text-white" : "text-black"}`} />
-    </>
   );
 };
 
 export default Assignments;
-
