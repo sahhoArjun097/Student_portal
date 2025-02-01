@@ -9,6 +9,7 @@ import Contest from "./pages/Contest";
 import Assingments from "./pages/Assingments";
 import Timetable from "./pages/Timetable";
 import Fee from "./pages/Fee";
+import DataBoxes from "./pages/text";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/assingments" element={<Assingments/>}/>
         <Route path="/timetable" element={<Timetable/>}/>
         <Route path="/fee" element={<Fee/>}/>
+        <Route path="/test" element={<DataBoxes/>}/>
       </Routes>
       <Footer/>
     </Router>

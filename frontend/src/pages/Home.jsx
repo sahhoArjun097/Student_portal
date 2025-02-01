@@ -84,59 +84,59 @@ function Home() {
                         </div>
 
                         <div className="w-full h-full col-start-1 row-start-2 col-end-2 row-end-3 flex justify-center items-center">
-                        <Link to="/lecters">
-                            <button
-                                className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
-                            >
-                                Lectures
-                            </button>
+                            <Link to="/lecters">
+                                <button
+                                    className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
+                                >
+                                    Lectures
+                                </button>
                             </Link>
 
                         </div>
                         <div className="w-full h-full col-start-1 row-start-3 col-end-2 row-end-4 flex justify-center items-center">
                             <Link to="/contest">
-                            <button
-                                className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
+                                <button
+                                    className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
                                 >
-                                Contests
-                            </button>
-                                </Link>
+                                    Contests
+                                </button>
+                            </Link>
                         </div>
                         <div className="w-full h-full col-start-1 row-start-4 col-end-2 row-end-5 flex justify-center items-center">
                             <Link to="/assingments">
-                            <button
-                                className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
+                                <button
+                                    className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
                                 >
-                                Assingments
-                            </button>
+                                    Assingments
+                                </button>
                             </Link>
                         </div>
                         <div className="w-full h-full col-start-5 row-start-2 col-end-6 row-end-3 flex justify-center items-center">
                             <Link to="/timetable">
-                            <button
-                                className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
+                                <button
+                                    className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
                                 >
-                                TimeTable
-                            </button>
+                                    TimeTable
+                                </button>
                             </Link>
                         </div>
                         <div className="w-full h-full col-start-5 row-start-3 col-end-6 row-end-4 flex justify-center items-center">
                             <Link to="/notice">
-                            <button
-                                className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
+                                <button
+                                    className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
                                 >
-                                Notices
-                            </button>
-                                </Link>
+                                    Notices
+                                </button>
+                            </Link>
                         </div>
                         <div className="w-full h-full col-start-5 row-start-4 col-end-6 row-end-5 flex justify-center items-center">
-                           <Link to="/fee">
-                            <button
-                                className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
+                            <Link to="/fee">
+                                <button
+                                    className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
                                 >
-                                FEE
-                            </button>
-                                </Link>
+                                    FEE
+                                </button>
+                            </Link>
                         </div>
 
                     </div>
