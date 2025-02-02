@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Context } from "../main";
 import "../index.css";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { darkMode, toggleMode } = useContext(Context);
@@ -17,7 +18,7 @@ function Navbar() {
           darkMode ? "bg-gray-900" : "bg-gray-200"
         }`}
       >
-        {/* Logo */}
+        <Link to="/">
         <p
           className={`text-xl font-bold ${
             darkMode ? "text-yellow-400" : "text-black"
@@ -25,6 +26,8 @@ function Navbar() {
         >
           StudentPortal
         </p>
+        </Link>
+        
 
         {/* Hamburger Menu */}
         <div className="md:hidden">
