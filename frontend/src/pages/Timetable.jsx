@@ -15,9 +15,10 @@ const Timetable = () => {
     <>
       <div className={`w-full min-h-screen ${darkMode ? "bg-gray-900" : "bg-white"} bg-blend-soft-light bg-cover bg-center bg-no-repeat text-white px-6 py-12 flex flex-col items-center`}
         style={{ backgroundImage: "url('/timetabil.png')" }}>
-        <h1 className=" text-4xl md:text-7xl font-bold text-center p-9 text-black" style={{
-          textShadow: "0px 0px 17px rgba(255, 255, 0, 0.9)",
-        }}>Time Tabile</h1>
+        <h1 className=" text-4xl md:text-7xl font-bold text-center p-9 text-black"
+          style={{ textShadow: "0px 0px 17px rgba(255, 255, 0, 0.9)", }}>
+          Time Tabile
+        </h1>
 
         <div className="w-full max-w-5xl overflow-x-auto">
           <table className="w-full border border-gray-700 shadow-lg">
