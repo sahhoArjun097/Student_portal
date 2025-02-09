@@ -40,3 +40,29 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
         // return next(new ErrorHandler("Internal Server Error", 500));
     }
 });
+
+
+export const TeacherRegister = catchAsyncError (async(req , res , next)=>{
+    try {
+      const {name,email,password,department,phone,role}=req.body;
+      if(!name|| !email|| !password||!department||!phone||!role){
+        return next(new ErrorHandler("please fill full form",400))
+      }
+      let  user = await User.findOne({ email});
+      if(user){
+        return next(new ErrorHandler("Teacher already exists", 400));
+      }
+      const newteacher = await User.create({
+        name,email,password,department,phone,role
+      })
+      res.status(201).json({
+        success: true,
+        message: "Student registered successfully",
+        user: newteacher
+    });
+
+    } catch (error) {
+        console.error("Error registering user:", error);
+        
+    }
+})

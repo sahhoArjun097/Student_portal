@@ -3,7 +3,7 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
+    gender: { type: String, enum: ["Male", "Female", "Other"],  },
     dateOfBirth: { type: Date },
     StudentClass: { type: String  },
     section: { type: String },
