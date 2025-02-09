@@ -1,53 +1,83 @@
 import mongoose from "mongoose";
-import validator from "validator";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true,
-        minLenght: [3, "Name must contain at least 3 characters"]
-    },
-    lastName: {
-        type: String,
-        required: true,
-        minLength: [3, "lastname must contain at least 3 characters"]
-    },
-    password: {
-        type: String,
-        required: true,
-        minLength: [8, "password must contain atleast 8character"]
-    },
-    email: {
-        type: String,
-        required: true,
-        validate: [validator.isEmail, "please enter a valid email addresss"]
-    },
-    dob: {
-        type: Date,
-        required: [true, "DOB is required"],
-    },
-    gender: {
-        type: String,
-        required: true,
-        enum: ["Male", "Female", "Other"],
-    },
-    address: {
-        type: String,
-        required: true,
-    },
-    course: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true,
-        maxLenght: [9, "phone no. must contain at least 9 digits "]
-    },
-    class:{
-        type:String,
-        required:true,
-    }
-})
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
+    dateOfBirth: { type: Date },
+    StudentClass: { type: String  },
+    section: { type: String },
+    rollNumber: { type: String, unique: true,  },
+    address: { type: String },
+    phone: { type: String },
+    department: { type: String },
+    role: { type: String, enum: ["student", "teacher", "admin"], required: true },
+}, { timestamps: true });
+// const User = mongoose.model("User", userSchema);
+
+export const User = mongoose.model("user", userSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const studentSchema = new mongoose.Schema({
+//     // userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+//     gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
+//     dateOfBirth: { type: Date, required: true },
+//     StudentClass: { type: String, required: true },
+//     section: { type: String },
+//     rollNumber: { type: String, unique: true, required: true },
+//     address: { type: String },
+//     phone: { type: String },
+// }, { timestamps: true });
+
+// const Student = mongoose.model("Student", studentSchema);
+
+
+// const teacherSchema = new mongoose.Schema({
+//     // userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+//     subjects: [{ type: String, required: true }],
+//     department: { type: String, required: true },
+//     phone: { type: String },
+// }, { timestamps: true });
+
+// const Teacher = mongoose.model("Teacher", teacherSchema);
+
+
+// const adminSchema = new mongoose.Schema({
+//     // userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+//     permissions: [{ type: String }],
+// }, { timestamps: true });
+
+// const Admin = mongoose.model("Admin", adminSchema);
+
+
+
