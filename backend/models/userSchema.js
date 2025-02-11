@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 // import validator from "validator";
 import bcrypt from "bcrypt";
 
+
 const userSchema = new mongoose.Schema({
     name: { type: String, },
     email: { type: String, required: true, unique: true },
@@ -29,7 +30,7 @@ userSchema.pre("save", async function (next) {
   };
   
   userSchema.methods.generateJsonWebToken = function () {
-    return jwt.sign({ id: this.id }, process.env.JWT_SECRET_KEY, {
+    return jwt.sign({ id: this.id , role: this.role  }, process.env.JWT_SECRET_KEY, {
       expiresIn: process.env.JWT_EXPIRES,
     });
   };
