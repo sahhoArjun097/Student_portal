@@ -9,6 +9,7 @@ const config = {
     COOKIE_EXPIRES:process.env.COOKIE_EXPIRES,
     FRONTEND_URL:process.env.FRONTEND_URL,
     JWT_SECRET_KEY:process.env.JWT_SECRET_KEY,
-    JWT_EXPIRES:process.env.COOKIE_EXPIRES
+    JWT_EXPIRES:process.env.COOKIE_EXPIRES,
+    NODE_ENV:process.env.NODE_ENV
 }
 export default config;
