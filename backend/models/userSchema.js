@@ -5,35 +5,47 @@ import bcrypt from "bcrypt";
 
 
 const userSchema = new mongoose.Schema({
-    name: { type: String, },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true  },
-    gender: { type: String, enum: ["Male", "Female", "Other"],  },
-    dateOfBirth: { type: Date },
-    StudentClass: { type: String  },
-    section: { type: String },
-    rollNumber: { type: String, unique: true, sparse: true },
-    address: { type: String },
-    phone: { type: String },
-    department: { type: String },
-    role: { type: String, enum: ["student", "teacher", "admin"], required: true , default : "student" },
+  name: { type: String, },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  gender: { type: String, enum: ["Male", "Female", "Other"], },
+  dateOfBirth: { type: Date },
+  // StudentClass: { type: String },
+  // section: { type: String },
+  rollNumber: { type: String, unique: true, sparse: true },
+  address: { type: String },
+  phone: { type: String },
+  department: { type: String },
+  role: { type: String, enum: ["student", "teacher", "admin"], required: true, default: "student" },
+  classSectionDetails: [{
+    section: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Section",
+      required: true
+    },
+    class: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Class",
+      required: true
+    }
+  }]
 }, { timestamps: true });
 
 userSchema.pre("save", async function (next) {
-    if (!this.isModified("password")) {
-      next();
-    }
-    this.password = await bcrypt.hash(this.password, 10);
+  if (!this.isModified("password")) {
+    next();
+  }
+  this.password = await bcrypt.hash(this.password, 10);
+});
+userSchema.methods.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
+userSchema.methods.generateJsonWebToken = function () {
+  return jwt.sign({ id: this.id, role: this.role }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRES,
   });
-  userSchema.methods.comparePassword = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password);
-  };
-  
-  userSchema.methods.generateJsonWebToken = function () {
-    return jwt.sign({ id: this.id , role: this.role  }, process.env.JWT_SECRET_KEY, {
-      expiresIn: process.env.JWT_EXPIRES,
-    });
-  };
+};
 
 export const User = mongoose.model("user", userSchema);
 

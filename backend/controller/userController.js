@@ -1,56 +1,101 @@
 import config from "../config/index.js";
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/ErrorHandler.js";
+
+import { Class } from "../models/classSchema.js";
 import { User } from "../models/userSchema.js"
 import { generateToken } from "../utils/jwtToken.js";
 import jwt from "jsonwebtoken";
+
+
 export const StudentRegister = catchAsyncError(async (req, res, next) => {
     try {
-        const { name, password, email, gender, dateOfBirth, StudentClass, section, rollNumber, address, phone, role } = req.body;
+        // const { name, password, email, gender, dateOfBirth, StudentClass, section, rollNumber, address, phone, role } = req.body;
+        const { name, password, email, gender, dateOfBirth, classId, sectionId, rollNumber, address, phone, role } = req.body;
 
-        if (!name || !email || !password || !gender || !dateOfBirth || !StudentClass || !section || !rollNumber || !address || !phone || !role) {
+        // class , section -> ObjectId
+
+        const getClass = await Class.findById(classId);
+
+        if (!getClass.sections.includes(sectionId)) {
+            return next(new ErrorHandler("Enter Valid section", 400))
+        }
+
+        if (!name || !email || !password || !gender || !dateOfBirth || !sectionId || !classId || !rollNumber || !address || !phone || !role) {
             return next(new ErrorHandler("Please fill out the entire form", 400));
         }
         const existingUser = await User.findOne({ $or: [{ email }, { rollNumber }] });
         if (existingUser) {
             return next(new ErrorHandler("Student already exists", 400));
+        } 
+            const newStudent = await User.create({
+                name, email, gender, password, dateOfBirth: new Date(dateOfBirth), rollNumber, address, phone, role, classSectionDetails: [{ section: sectionId, class: classId }]
+            });
+            res.status(200).json({
+                success: true,
+                message: "student register successfully",
+                user: newStudent
+            })}
+        catch (error) {
+            console.error("Error registering user:", error);
+            return next(new ErrorHandler("Internal Server Error", 500));
         }
-        const newStudent = await User.create({
-            name,email,gender, password,dateOfBirth: new Date(dateOfBirth), StudentClass,section,rollNumber,address,phone,role
-        });
-        // generateToken(newStudent, "Student registered successfully", 200, res);
-        res.status(200).json({
-        success: true,
-        message: "student register successfully",
-        user : newStudent
-    })
+    });
+
+export const getAllStudents = catchAsyncError(async (req, res, next) => {
+    try {
+        const students = await User.find({ role: "student" });
+        res.status(200).json(students);
     } catch (error) {
-        console.error("Error registering user:", error);
-        return next(new ErrorHandler("Internal Server Error", 500)); 
+        return next(new ErrorHandler(error.message, 500))
+        //   res.status(500).json({ message: error.message });
     }
 });
 
-export const TeacherRegister = catchAsyncError(async (req, res , next) => {
+export const getAllTeachers = catchAsyncError(async (req, res, next) => {
     try {
-      const { name , email, department, phone,password,role } = req.body;
-      const user = await User.findOne({ email });
+        const teacher = await User.find({ role: "teacher" })
+        res.status(200).json(teacher)
+        // console.log(teacher)
+    } catch (error) {
+        return next(new ErrorHandler(error.message, 500))
+
+    }
+})
+export const getStudentById = async (req, res) => {
+    try {
+        const student = await User.findById(req.params.id)
+            .select("name email gender dateOfBirth StudentClass section rollNumber address phone");
+
+        if (!student) return res.status(404).json({ message: "Student not found" });
+
+        res.status(200).json(student);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+export const TeacherRegister = catchAsyncError(async (req, res, next) => {
+    try {
+        const { name, email, department, phone, password, role } = req.body;
+        const user = await User.findOne({ email });
         if (user) {
             return next(new ErrorHandler("Teacher already exists", 400));
         }
-        const newteacher = await User.create({ 
+        const newteacher = await User.create({
             name, email, password, department, phone, role
         });
         // generateToken(newteacher, "Teacher Register successfully", 200, res)
         res.status(200).json({
             success: true,
             message: "Teacher register successfully",
-            user : newteacher
+            user: newteacher
         })
     } catch (error) {
         console.error("Error registering user:", error);
         return next(new ErrorHandler("Internal Server Error", 500)); // Ensure response is sent
     }
-  });
+});
 
 export const Admin = catchAsyncError(async (req, res, next) => {
     try {
@@ -59,8 +104,8 @@ export const Admin = catchAsyncError(async (req, res, next) => {
             return next(new ErrorHandler("Please fill full form", 400));
         }
         const user = await User.findOne({ email })
-        if(user){
-            return next(new ErrorHandler("Admin already exist ",400))
+        if (user) {
+            return next(new ErrorHandler("Admin already exist ", 400))
         }
         const existingAdmin = await User.findOne({ role: "admin" });
         if (existingAdmin) {
@@ -75,7 +120,7 @@ export const Admin = catchAsyncError(async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Teacher register successfully",
-            user : newAdmin
+            user: newAdmin
         })
 
 
@@ -99,7 +144,7 @@ export const Login = catchAsyncError(async (req, res, next) => {
         if (!isPasswordMatch) {
             return next(new ErrorHandler("password is incorrect", 400));
         }
-        generateToken(user,`${user.role} Login successfully`,200,res)
+        generateToken(user, `${user.role} Login successfully`, 200, res)
         // res.status(200).json({
         //     success: true,
         //     message: "User Register successfully",
@@ -111,8 +156,8 @@ export const Login = catchAsyncError(async (req, res, next) => {
     }
 })
 
-export const Logout  = catchAsyncError(async (req, res, next) => {
-    const token = ["adminToken","studentToken" , "teacherToken"];
+export const Logout = catchAsyncError(async (req, res, next) => {
+    const token = ["token", "studentToken", "teacherToken"];
     let response = res.status(200);
     const tow = req.cookies.token;
     // if (!token) {
@@ -121,11 +166,11 @@ export const Logout  = catchAsyncError(async (req, res, next) => {
     //     message: "Unauthorized access",
     //   });
     // }
-    console.log(tow)
-    const decoded = jwt.verify(tow,config.JWT_SECRET_KEY);
-    console.log(decoded)
-    token.forEach(token=>{
-        response = response.cookie(token, " ",{
+    // console.log(tow)
+    const decoded = jwt.verify(tow, config.JWT_SECRET_KEY);
+    // console.log(decoded)
+    token.forEach(token => {
+        response = response.cookie(token, " ", {
             httpOnly: true,
             expires: new Date(Date.now())
         });

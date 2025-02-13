@@ -7,6 +7,10 @@ import { dbConnection } from "./database/dbConnections.js";
 import messageRouter from "./routes/messageRoutes.js";
 import { errorMiddlerware } from "./middlewares/ErrorHandler.js";
 import userRouter  from "./routes/userRoutes.js"
+import contestRouter from "./routes/contestRoutes.js" 
+import noticeRouter from "./routes/noticeRoutes.js" 
+import classRouter from "./routes/classRoutes.js" 
+import sectionRouter from "./routes/sectionRoutes.js" 
 const app = express();
 app.use(cors({
     origin:'*',credentials:true
@@ -20,6 +24,11 @@ app.use(fileUpload({
 }));
 app.use("/api/v1/message",messageRouter)
 app.use("/api/v1/user",userRouter)
+app.use("/api/v1/contest",contestRouter)
+app.use("/api/v1/notice",noticeRouter)
+app.use("/api/v1/fee",noticeRouter)
+app.use("/api/v1/class",classRouter)
+app.use("/api/v1/section",sectionRouter)
 dbConnection();
 app.use(errorMiddlerware)
 export default app;

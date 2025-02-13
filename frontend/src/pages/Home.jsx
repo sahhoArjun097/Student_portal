@@ -31,15 +31,50 @@ function Home() {
                         </div>
 
                     </div>
-                    <div className="w-full py-40 md:py-30">
-                    </div>
+
                 </div>
             </div>
 
-            <div className="w-full  relative ">
-                <div className="absolute top-[-150px] left-0 w-full gap-8 flex flex-col justify-center h-full">
-                    <div className="flex flex-wrap md:px-27 justify-center md:justify-between w-full gap-6">
-                        <Link to="/assingments" className="w-[280px] md:w-[320px]">
+            {/* <div className="w-[80vw] ">
+  <div className="relative bg-amber-500">
+    <div className="absolute top-[-300px] md:top-[-150px] left-0 w-full gap-8 flex md:flex-col justify-center h-full">
+      <div className="flex bg-amber-200 md:flex-wrap md:px-27 justify-center md:justify-between w-full gap-6">
+        <Link to="/assignments" className="w-[280px] md:w-[320px]">
+          <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
+            <img src="/assignment-icon.png" alt="Assignments" className="w-12 h-12 mb-3" />
+            <p className="font-bold text-xl text-gray-700">ASSIGNMENTS</p>
+            <p className="text-sm text-gray-900 text-center">
+              Access your courses, submit assignments on time, and track your progress effortlessly.
+            </p>
+          </div>
+        </Link>
+        <Link to="/announcements" className="w-[280px] md:w-[320px]">
+          <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
+            <img src="/announcements-icon.png" alt="Announcements" className="w-12 h-12 mb-3" />
+            <p className="font-bold text-xl text-gray-700">ANNOUNCEMENTS</p>
+            <p className="text-sm text-gray-900 text-center">
+              Stay updated with important notifications, deadlines, timetable, and college news in one place.
+            </p>
+          </div>
+        </Link>
+        <Link to="/community" className="w-[280px] md:w-[320px]">
+          <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
+            <img src="/community-icon.png" alt="Community" className="w-12 h-12 mb-3" />
+            <p className="font-bold text-xl text-gray-700">COMMUNITY</p>
+            <p className="text-sm text-gray-900 text-center">
+              Connect with peers & educators, join discussions, and collaborate on projects easily.
+            </p>
+          </div>
+        </Link>
+      </div>
+    </div>
+  </div>
+</div> */}
+
+            <div className=" top-[500px] w-full md:w-[80vw] sm:w-full h-[40vh]  p-3 absolute overflow-x-hidden  ">
+                <div className="   w-full h-full justify-between flex" >
+                    <div className="flex  md:flex-wrap  justify-center md:justify-between w-full gap-6">
+                        <Link to="/assignments" className="w-[280px] md:w-[320px]">
                             <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
                                 <img src="/assignment-icon.png" alt="Assignments" className="w-12 h-12 mb-3" />
                                 <p className="font-bold text-xl text-gray-700">ASSIGNMENTS</p>
@@ -49,7 +84,7 @@ function Home() {
                             </div>
                         </Link>
                         <Link to="/announcements" className="w-[280px] md:w-[320px]">
-                            <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col  items-center w-[280px] md:w-[320px]">
+                            <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
                                 <img src="/announcements-icon.png" alt="Announcements" className="w-12 h-12 mb-3" />
                                 <p className="font-bold text-xl text-gray-700">ANNOUNCEMENTS</p>
                                 <p className="text-sm text-gray-900 text-center">
@@ -58,16 +93,14 @@ function Home() {
                             </div>
                         </Link>
                         <Link to="/community" className="w-[280px] md:w-[320px]">
-
                             <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
                                 <img src="/community-icon.png" alt="Community" className="w-12 h-12 mb-3" />
                                 <p className="font-bold text-xl text-gray-700">COMMUNITY</p>
                                 <p className="text-sm text-gray-900 text-center">
                                     Connect with peers & educators, join discussions, and collaborate on projects easily.
                                 </p>
-                            </div></Link>
-
-
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
