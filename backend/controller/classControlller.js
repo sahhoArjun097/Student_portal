@@ -4,13 +4,13 @@ import { Class } from "../models/classSchema.js";
 
 
 export const createClass = catchAsyncError(async (req, res, next) => {
-    const { className, sections, subjects } = req.body;
+    const { className, sections } = req.body;
 
     if (!className ) {
         return next(new ErrorHandler("Please provide all required fields", 400));
     }
 
-    const newClass = await Class.create({ className, sections, subjects });
+    const newClass = await Class.create({ className, sections });
 
     res.status(201).json({
         success: true,

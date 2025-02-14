@@ -5,7 +5,20 @@ const sectionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // teachers: [
+   
+    teachers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+ 
+    }],
+    students: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ],
+   
+     // teachers: [
     //     {
     //         subject: {
     //             type: String,
@@ -18,21 +31,6 @@ const sectionSchema = new mongoose.Schema({
     //         }
     //     }
     // ],
-    teachers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
- 
-    }],
-    students: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-        }
-    ],
-    totalStudents: {
-        type: Number,
-        default: 0
-    }
 })
 
 export const Section = mongoose.model("Section", sectionSchema);

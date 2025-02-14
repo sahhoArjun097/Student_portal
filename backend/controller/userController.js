@@ -16,8 +16,9 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
         // class , section -> ObjectId
 
         const getClass = await Class.findById(classId);
+        
 
-        if (!getClass.sections.includes(sectionId)) {
+        if (!getClass.sections.includes(sectionId)) { 
             return next(new ErrorHandler("Enter Valid section", 400))
         }
 
@@ -28,9 +29,21 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
         if (existingUser) {
             return next(new ErrorHandler("Student already exists", 400));
         } 
-            const newStudent = await User.create({
-                name, email, gender, password, dateOfBirth: new Date(dateOfBirth), rollNumber, address, phone, role, classSectionDetails: [{ section: sectionId, class: classId }]
-            });
+        
+        const newStudent = await User.create({
+            name, email, gender, password, dateOfBirth: new Date(dateOfBirth), rollNumber, address, phone, role, classSectionDetails: [{ section: sectionId, class: classId }]
+        });
+        if (sectionId) {
+            const updatedSection = await Class.findByIdAndUpdate(
+                classId,
+                { $push: { student: newStudent._id, name: newStudent.name } }, // Push new section ID into sections array
+                { new: true } // Return updated class document
+            );
+    
+            if (!updatedSection) {
+                return next(new ErrorHandler("Class not found", 404));
+            }
+        }
             res.status(200).json({
                 success: true,
                 message: "student register successfully",
