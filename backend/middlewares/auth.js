@@ -18,7 +18,7 @@ export  const  isAdminAuthenticated = catchAsyncError(async( req , res , next)=>
 })
 
 export const isTeacherAuthenticated = catchAsyncError(async(req,res,next)=>{
-    const token = req.cookie?.token
+    const token = req.cookies?.token
     if(!token){
         return next(new ErrorHandler ("Teacher is not authenticated",400))
     }
@@ -31,7 +31,7 @@ export const isTeacherAuthenticated = catchAsyncError(async(req,res,next)=>{
 })
 
 export const isStudentAuthenticated = catchAsyncError(async(req ,res ,next)=>{
-    const token  = req.cookie?.token
+    const token  = req.cookies?.token
     if(!token){
         return next(new ErrorHandler("Student is not Authenticated",400))
     }
