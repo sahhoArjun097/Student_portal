@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/student/register",isAdminAuthenticated,StudentRegister)
 router.post("/teacher/register",isAdminAuthenticated,TeacherRegister)
-router.get("/getAllStudent",isAdminAuthenticated,getAllStudents);
+router.get("/getAllStudent",getAllStudents);
 router.get("/getAllTeacher",isAdminAuthenticated,getAllTeachers);
 router.get("/getstudentbyid/:id",getStudentById);
 router.post("/login",Login);

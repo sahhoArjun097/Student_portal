@@ -11,6 +11,7 @@ import Timetable from "./pages/Timetable";
 import Fee from "./pages/Fee";
 import DataBoxes from "./pages/text";
 import Notice from "./pages/Notice";
+import Class from "./pages/Class";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/fee" element={<Fee/>}/>
         <Route path="/test" element={<DataBoxes/>}/>
         <Route path="/notice" element={<Notice/>}/>
+        <Route path="/class" element={<Class/>}/>
       </Routes>
       <Footer/>
     </Router>
