@@ -1,6 +1,8 @@
+import mongoose from "mongoose";
 import config from "../config/index.js";
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/ErrorHandler.js";
+import { Section } from "../models/sectionSchema.js";
 
 import { Class } from "../models/classSchema.js";
 import { User } from "../models/userSchema.js"
@@ -10,50 +12,59 @@ import jwt from "jsonwebtoken";
 
 export const StudentRegister = catchAsyncError(async (req, res, next) => {
     try {
-        // const { name, password, email, gender, dateOfBirth, StudentClass, section, rollNumber, address, phone, role } = req.body;
-        const { name, password, email, gender, dateOfBirth, classId, sectionId, rollNumber, address, phone, role } = req.body;
+        const { name, password, email, gender, dateOfBirth,  sectionId, rollNumber, address, phone, role } = req.body;
 
-        // class , section -> ObjectId
-
-        const getClass = await Class.findById(classId);
-        
-
-        if (!getClass.sections.includes(sectionId)) { 
-            return next(new ErrorHandler("Enter Valid section", 400))
-        }
-
-        if (!name || !email || !password || !gender || !dateOfBirth || !sectionId || !classId || !rollNumber || !address || !phone || !role) {
+        // Validate required fields
+        if (!name || !email || !password || !gender || !dateOfBirth    || !rollNumber || !address || !phone || !role) {
             return next(new ErrorHandler("Please fill out the entire form", 400));
         }
+
+        // Check if user already exists
         const existingUser = await User.findOne({ $or: [{ email }, { rollNumber }] });
         if (existingUser) {
             return next(new ErrorHandler("Student already exists", 400));
-        } 
-        
+        }
+
+        // Create the student
         const newStudent = await User.create({
-            name, email, gender, password, dateOfBirth: new Date(dateOfBirth), rollNumber, address, phone, role, classSectionDetails: [{ section: sectionId, class: classId }]
+            name, 
+            email, 
+            gender, 
+            password, 
+            dateOfBirth: new Date(dateOfBirth), 
+            rollNumber, 
+            address, 
+            phone, 
+            role, 
+            sectionId,
+
+          
         });
-        if (sectionId) {
-            const updatedSection = await Class.findByIdAndUpdate(
-                classId,
-                { $push: { student: newStudent._id, name: newStudent.name } }, // Push new section ID into sections array
-                { new: true } // Return updated class document
+
+        res.status(200).json({
+            success: true,
+            message: "Student registered successfully",
+            user: newStudent
+        });
+
+        // ✅ Correctly update the Section model, not Class
+        try {
+            await Section.findByIdAndUpdate(
+                sectionId,
+                { $push: { students: newStudent._id } }, // Push student ID to the section
+                { new: true }
             );
-    
-            if (!updatedSection) {
-                return next(new ErrorHandler("Class not found", 404));
-            }
+            console.log(`Student ${newStudent.name} added to Section ${sectionId}`);
+        } catch (error) {
+            console.error("Error updating section:", error);
         }
-            res.status(200).json({
-                success: true,
-                message: "student register successfully",
-                user: newStudent
-            })}
-        catch (error) {
-            console.error("Error registering user:", error);
-            return next(new ErrorHandler("Internal Server Error", 500));
-        }
-    });
+
+    } catch (error) {
+        console.error("Error registering user:", error);
+        return next(new ErrorHandler("Internal Server Error", 500));
+    }
+});
+
 
 export const getAllStudents = catchAsyncError(async (req, res, next) => {
     try {

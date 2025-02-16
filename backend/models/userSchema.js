@@ -17,18 +17,17 @@ const userSchema = new mongoose.Schema({
   phone: { type: String },
   department: { type: String },
   role: { type: String, enum: ["student", "teacher", "admin"], required: true, default: "student" },
-  classSectionDetails: [{
-    section: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Section",
-      required: true
-    },
-    class: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Class",
-      required: true
-    }
-  }]
+  section: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Section",
+  
+  },
+  // class: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "Class",
+  //   required: true
+  // }
+  
 }, { timestamps: true });
 
 userSchema.pre("save", async function (next) {

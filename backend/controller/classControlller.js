@@ -9,6 +9,10 @@ export const createClass = catchAsyncError(async (req, res, next) => {
     if (!className ) {
         return next(new ErrorHandler("Please provide all required fields", 400));
     }
+    const existingClass = await Class.findOne({ className});
+    if (existingClass) {
+        return next(new ErrorHandler("Class  already exists", 400));
+    }
 
     const newClass = await Class.create({ className, sections });
 

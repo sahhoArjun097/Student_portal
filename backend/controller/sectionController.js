@@ -10,7 +10,6 @@ export const createSection = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("Section name is required", 400));
     }
 
-    // Create a new section with an empty students array
     const newSection = await Section.create({
         sectionName,
         teachers: teachers || [],
@@ -21,13 +20,14 @@ export const createSection = catchAsyncError(async (req, res, next) => {
     if (classId) {
         const updatedClass = await Class.findByIdAndUpdate(
             classId,
-            { $push: { sections: newSection._id, sectionName: newSection.sectionName } }, // Push new section ID into sections array
+            { $push: { sections: newSection._id } }, // Push new section ID into sections array
             { new: true } // Return updated class document
-        );
+        ).populate("sections");
 
         if (!updatedClass) {
             return next(new ErrorHandler("Class not found", 404));
         }
+        console.log(updatedClass.sections); 
     }
 
     res.status(201).json({
