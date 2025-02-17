@@ -17,20 +17,12 @@ const sectionSchema = new mongoose.Schema({
             ref: "User",
         }
     ],
+    class:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Class",
+
+    }
    
-     // teachers: [
-    //     {
-    //         subject: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         teacher: {
-    //             type: mongoose.Schema.Types.ObjectId,
-    //             ref: "User",
-    //             required: true
-    //         }
-    //     }
-    // ],
 })
 
 export const Section = mongoose.model("Section", sectionSchema);

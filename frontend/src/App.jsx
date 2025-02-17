@@ -12,6 +12,8 @@ import Fee from "./pages/Fee";
 import DataBoxes from "./pages/text";
 import Notice from "./pages/Notice";
 import Class from "./pages/Class";
+import RegisterStudent from "./pages/RegisterStudent";
+import RegisterTeacher from "./pages/RegisterTeaher";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route path="/test" element={<DataBoxes/>}/>
         <Route path="/notice" element={<Notice/>}/>
         <Route path="/class" element={<Class/>}/>
+        <Route path="/Sr" element={<RegisterStudent/>}/>
+        <Route path="/Tr" element={<RegisterTeacher/>}/>
       </Routes>
       <Footer/>
     </Router>

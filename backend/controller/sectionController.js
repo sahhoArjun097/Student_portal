@@ -13,7 +13,14 @@ export const createSection = catchAsyncError(async (req, res, next) => {
     const newSection = await Section.create({
         sectionName,
         teachers: teachers || [],
-        students: students || [] // Explicitly setting it empty
+        students: students || [] ,
+        class:classId
+        // Explicitly setting it empty
+    });
+    res.status(201).json({
+        success: true,
+        section: newSection,
+        message: "Section created successfully and added to the class"
     });
 
     // If a classId is provided, add the section to the class
@@ -30,9 +37,6 @@ export const createSection = catchAsyncError(async (req, res, next) => {
         console.log(updatedClass.sections); 
     }
 
-    res.status(201).json({
-        success: true,
-        section: newSection,
-        message: "Section created successfully and added to the class"
-    });
+    
 });
+
