@@ -23,17 +23,15 @@ export const createClass = catchAsyncError(async (req, res, next) => {
     });
 });
 
-// ✅ Get all classes
+
 export const getAllClasses = catchAsyncError(async (req, res, next) => {
     const classes = await Class.find().populate("sections");
-
     res.status(200).json({
         success: true,
         classes
     });
 });
 
-// ✅ Get a single class by ID
 export const getClassById = catchAsyncError(async (req, res, next) => {
     const { id } = req.params;
     const classData = await Class.findById(id).populate("sections");
@@ -51,9 +49,9 @@ export const getClassById = catchAsyncError(async (req, res, next) => {
 // ✅ Update a class by ID
 export const updateClass = catchAsyncError(async (req, res, next) => {
     const { id } = req.params;
-    const { className, sections, subjects } = req.body;
+    const { className, sections } = req.body;
 
-    const updatedClass = await Class.findByIdAndUpdate(id, { className, sections, subjects }, { new: true });
+    const updatedClass = await Class.findByIdAndUpdate(id, { className, sections }, { new: true });
 
     if (!updatedClass) {
         return next(new ErrorHandler("Class not found", 404));

@@ -7,10 +7,11 @@ function StudentPage() {
   const fetchStudents = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/user/getallstudent",  
+        "http://localhost:4000/api/v1/class/getclass",  
         { withCredentials: true }
       );
       setStudents(data);
+      console.log(data)
     } catch (error) {
       console.error("Error fetching students:", error.response?.data || error.message);
     }

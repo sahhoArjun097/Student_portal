@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-function RegisterTeacher() {
+function Register() {
     const [isStudent, setIsStudent] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
@@ -21,17 +21,35 @@ function RegisterTeacher() {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+  
 
+    //   const getAllClass = async ()=>{
+    //     try {
+    //         const {res} = await axios.get("http://localhost:4000/api/v1/class/getclass",{
+    //             withCredentials:true
+    //         });
+    //         console.log(res)
+    //     } catch (error) {
+    //         console.log(error)
+            
+    //     }
+    //   }
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
+
+        const updatedFormData = {
+            ...formData,
+            role: isStudent ? "student" : "teacher", // Ensure role is updated correctly
+        };
 
         const endpoint = isStudent
             ? "http://localhost:4000/api/v1/user/student/register"
             : "http://localhost:4000/api/v1/user/teacher/register";
 
         try {
-            const response = await axios.post(endpoint, formData, {
+            const response = await axios.post(endpoint, updatedFormData, {
                 headers: { "Content-Type": "application/json" },
                 withCredentials: true,
             });
@@ -61,7 +79,10 @@ function RegisterTeacher() {
     };
 
     return (
-        <div className="w-full min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-r from-blue-300 to-purple-400">
+        <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center p-4 bg-gradient-to-r from-blue-400 to-purple-300">
+           <div className="md:w-1/2  justify-center hidden md:block">
+                <img src="/studentregister.png" alt="Register" className="w-full " />
+            </div>
             <div className="w-full md:w-1/2 p-6 bg-opacity-80 backdrop-blur-xl rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-center mb-4">{isStudent ? "Student" : "Teacher"} Registration</h2>
                 <div className="flex justify-center mb-4">
@@ -112,4 +133,4 @@ function RegisterTeacher() {
     );
 }
 
-export default RegisterTeacher;
+export default Register;

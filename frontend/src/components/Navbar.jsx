@@ -12,20 +12,16 @@ function Navbar() {
       <Link to="/">
         <p className={`text-xl font-bold ${darkMode ? "text-yellow-400" : "text-black"}`}>StudentPortal</p>
       </Link>
-      
-      {/* Hamburger Menu for Mobile */}
       <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-md focus:outline-none">
         {isMenuOpen ? <X size={28} className={darkMode ? "text-white" : "text-black"} /> : <Menu size={28} className={darkMode ? "text-white" : "text-black"} />}
       </button>
-
-      {/* Navigation Links */}
       <div className={`absolute md:static top-16 left-0 w-full md:w-auto bg-opacity-95 md:bg-transparent z-50 flex flex-col md:flex-row md:gap-7 items-center transition-all duration-300 ease-in-out ${isMenuOpen ? "block bg-gray-800 p-5" : "hidden md:flex"}`}>
         <Link to="/" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Home</Link>
         <Link to="/profile" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Profile</Link>
         <Link to="/login" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Login</Link>
+        {/* <Link to="/class" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">class</Link> */}
+        <Link to="/register" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">register</Link>
       </div>
-      
-      {/* Dark Mode Toggle */}
       <label className="relative inline-flex items-center cursor-pointer ml-4 md:ml-0">
         <input type="checkbox" className="sr-only peer" checked={darkMode} onChange={toggleMode} />
         <div className={`w-16 h-8 rounded-full duration-500 bg-gray-200 shadow-lg ${darkMode ? "bg-[#383838] shadow-gray-700" : "shadow-gray-400"}`}>
@@ -40,5 +36,4 @@ function Navbar() {
     </nav>
   );
 }
-
 export default Navbar;

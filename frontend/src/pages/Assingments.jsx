@@ -89,7 +89,6 @@ const Assignments = () => {
       >
         📚 Assignments
       </h1>
-
       <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         {assignments.length === 0 ? (
           <div className="text-center text-red-400">No assignments available.</div>

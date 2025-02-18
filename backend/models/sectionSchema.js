@@ -20,7 +20,6 @@ const sectionSchema = new mongoose.Schema({
     class:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Class",
-
     }
    
 })

@@ -4,22 +4,22 @@ import { Contest } from "../models/contestSchema.js";
 import cloudinary from "cloudinary";
 
 export const contestController = catchAsyncError(async (req, res, next) => {
-    // if (!req.files || !req.files.contestImage) {
-    //     return next(new ErrorHandler("Please upload a contest image", 400));
-    // }
+    if (!req.files || !req.files.contestImage) {
+        return next(new ErrorHandler("Please upload a contest image", 400));
+    }
 
-    // const { contestImage } = req.files;
-    // const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+    const { contestImage } = req.files;
+    const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
 
-    // if (!allowedFormats.includes(contestImage.mimetype)) {
-    //     return next(new ErrorHandler("File format not supported", 400));
-    // }
+    if (!allowedFormats.includes(contestImage.mimetype)) {
+        return next(new ErrorHandler("File format not supported", 400));
+    }
 
-    // const cloudinaryResponse = await cloudinary.uploader.upload(contestImage.tempFilePath);
+    const cloudinaryResponse = await cloudinary.uploader.upload(contestImage.tempFilePath);
     
-    // if (!cloudinaryResponse || cloudinaryResponse.error) {
-    //     return next(new ErrorHandler("Failed to upload file", 400));
-    // }
+    if (!cloudinaryResponse || cloudinaryResponse.error) {
+        return next(new ErrorHandler("Failed to upload file", 400));
+    }
 
     try {
         const { title, description, openingDate, duration, registrationDate, registrationLink } = req.body;
@@ -35,10 +35,10 @@ export const contestController = catchAsyncError(async (req, res, next) => {
             duration,
             registrationDate,
             registrationLink,
-            // contestImage: {
-            //     public_id: cloudinaryResponse.public_id,
-            //     url: cloudinaryResponse.secure_url,
-            // }
+            contestImage: {
+                public_id: cloudinaryResponse.public_id,
+                url: cloudinaryResponse.secure_url,
+            }
         });
 
         res.status(200).json({
