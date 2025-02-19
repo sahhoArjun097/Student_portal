@@ -21,13 +21,13 @@ function Profile() {
                 className={`min-h-screen w-full flex justify-center bg-cover bg-center bg-no-repeat items-center ${darkMode ? "bg-[#09090b] text-white" : "bg-gray-100 text-black"
                     }`}
                 style={{ backgroundImage: "url('/profilebg.jpg')" }}
-        
+
             >
                 <div
                     className={`max-w-3xl w-full h-auto rounded-2xl shadow-lg p-6 ${darkMode ? "bg-opacity-0 backdrop-blur-xl" : "bg-opacity-0 backdrop-blur-xl"
                         }`}
                 >
-                
+
 
                     <div className="flex flex-col md:flex-row items-center gap-6">
 

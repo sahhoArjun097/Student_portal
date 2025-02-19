@@ -12,9 +12,9 @@ import Fee from "./pages/Fee";
 import DataBoxes from "./pages/text";
 import Notice from "./pages/Notice";
 import Class from "./pages/Class";
-// import RegisterStudent from "./pages/RegisterStudent";
-// import RegisterTeacher from "./pages/RegisterTeaher";
 import Register from "./pages/Register";
+import AddContest from "./pages/AddContest";
+import AddNotice from "./pages/AddNotice";
 
 function App() {
   return (
@@ -33,9 +33,9 @@ function App() {
         <Route path="/test" element={<DataBoxes/>}/>
         <Route path="/notice" element={<Notice/>}/>
         <Route path="/class" element={<Class/>}/>
-        {/* <Route path="/Sr" element={<RegisterStudent/>}/> */}
-        {/* <Route path="/Tr" element={<RegisterTeacher/>}/> */}
         <Route path="/register" element={<Register/>}/>
+        <Route path="/addcontest" element={<AddContest/>}/>
+        <Route path="/addnotice" element={<AddNotice/>}/>
       </Routes>
       <Footer/>
     </Router>

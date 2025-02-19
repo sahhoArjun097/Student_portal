@@ -21,7 +21,7 @@ function Register() {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-  
+
 
     //   const getAllClass = async ()=>{
     //     try {
@@ -31,10 +31,10 @@ function Register() {
     //         console.log(res)
     //     } catch (error) {
     //         console.log(error)
-            
+
     //     }
     //   }
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
@@ -80,7 +80,7 @@ function Register() {
 
     return (
         <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center p-4 bg-gradient-to-r from-blue-400 to-purple-300">
-           <div className="md:w-1/2  justify-center hidden md:block">
+            <div className="md:w-1/2  justify-center hidden md:block">
                 <img src="/studentregister.png" alt="Register" className="w-full " />
             </div>
             <div className="w-full md:w-1/2 p-6 bg-opacity-80 backdrop-blur-xl rounded-lg shadow-md">
@@ -88,11 +88,11 @@ function Register() {
                 <div className="flex justify-center mb-4">
                     <label className="flex items-center cursor-pointer">
                         <span className="mr-2 font-medium">Student</span>
-                        <input 
-                            type="checkbox" 
-                            className="hidden" 
-                            checked={!isStudent} 
-                            onChange={() => setIsStudent(!isStudent)} 
+                        <input
+                            type="checkbox"
+                            className="hidden"
+                            checked={!isStudent}
+                            onChange={() => setIsStudent(!isStudent)}
                         />
                         <div className="w-12 h-6 bg-gray-300 rounded-full relative">
                             <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${isStudent ? "translate-x-0" : "translate-x-6"}`}></div>
