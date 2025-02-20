@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Context } from "../main";
 
 function Contest() {
@@ -54,7 +54,7 @@ function Contest() {
               <h2 className="text-2xl font-semibold mt-4">{contest.title}</h2>
               <p className="text-lg mt-2">{contest.description}</p>
               <p className="text-sm mt-2 text-gray-400">
-                <strong>Date:</strong> {new Date(contest.openingDate).toDateString()}
+                <strong>Date:</strong> {new Date(contest.registrationDate).toDateString()}
               </p>
               <a
                 href={contest.registrationLink}

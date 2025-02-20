@@ -22,16 +22,15 @@ export const contestController = catchAsyncError(async (req, res, next) => {
     }
 
     try {
-        const { title, description, openingDate, duration, registrationDate, registrationLink } = req.body;
+        const { title, description, duration, registrationDate, registrationLink } = req.body;
 
-        if (!title || !description || !openingDate || !duration || !registrationDate || !registrationLink) {
+        if (!title || !description || !duration || !registrationDate || !registrationLink) {
             return next(new ErrorHandler("Please fill out the full form", 400));
         }
 
         const newContest = await Contest.create({
             title,
             description,
-            openingDate,
             duration,
             registrationDate,
             registrationLink,

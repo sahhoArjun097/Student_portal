@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function Profile() {
     const { darkMode } = useContext(Context);
-    const [name, setName] = useState("Arjun Agarwal")
+    const [name] = useState("Arjun Agarwal")
 
     const getInitials = (fullName) => {
         const initials = fullName

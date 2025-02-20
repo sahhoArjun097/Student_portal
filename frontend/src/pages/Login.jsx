@@ -66,7 +66,7 @@ function Login() {
 
         </div>
       </div>
-      <div className="w-full min-h-screen  md:w-1/2 flex items-center justify-center containers bg-white p-8 rounded-lg shadow-lg">
+      <div className="w-full min-h-screen  md:w-1/2 flex items-center justify-center bg-white p-8 rounded-lg shadow-lg">
         <div className="w-full max-w-sm ">
           <h2 className="text-2xl font-semibold text-center mb-4">Login</h2>
           {message && <p className="text-center text-red-500">{message}</p>}

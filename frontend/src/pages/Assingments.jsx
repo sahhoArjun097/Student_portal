@@ -52,70 +52,12 @@
 // };
 
 // export default Assignments;
-import { useContext } from "react";
-import { Context } from "../main";
-import React from "react";
+import React from 'react'
 
-const Assignments = () => {
-  const { darkMode } = useContext(Context);
-  const assignments = [
-    {
-      subject: "Mathematics",
-      deadline: "2025-02-15T23:59:59",
-      fileUrl: "https://example.com/assignment1.pdf",
-    },
-    {
-      subject: "Physics",
-      deadline: "2025-02-20T23:59:59",
-      fileUrl: "https://example.com/assignment2.pdf",
-    },
-    {
-      subject: "Computer Science",
-      deadline: "2025-02-18T23:59:59",
-      fileUrl: "https://example.com/assignment3.pdf",
-    },
-  ];
-
+function Assingments() {
   return (
-    <div
-      style={{ backgroundImage: "url('/assingments.jpg')" }}
-      className="w-full bg-cover bg-center bg-no-repeat min-h-screen px-6 py-12"
-    >
-      <h1
-        style={{ textShadow: "0px 0px 12px rgba(255, 255, 0, 0.8)" }}
-        className={`${
-          darkMode ? "text-black" : "text-white"
-        } text-5xl font-bold text-center mb-8`}
-      >
-        📚 Assignments
-      </h1>
-      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-        {assignments.length === 0 ? (
-          <div className="text-center text-red-400">No assignments available.</div>
-        ) : (
-          assignments.map((assignment, index) => (
-            <div
-              key={index}
-              className="bg-gray-800 p-6 rounded-xl shadow-xl flex flex-col items-start justify-between h-40"
-            >
-              <h2 className="text-2xl font-semibold text-white">
-                {assignment.subject}
-              </h2>
-              <p className="mt-2 text-gray-300">Deadline: {new Date(assignment.deadline).toLocaleString()}</p>
-              {assignment.fileUrl && (
-                <a
-                  href={assignment.fileUrl}
-                  className="text-teal-400 font-medium mt-4 hover:underline"
-                >
-                  📥 Download Assignment
-                </a>
-              )}
-            </div>
-          ))
-        )}
-      </div>
-    </div>
-  );
-};
+    <div>Assingments</div>
+  )
+}
 
-export default Assignments;
+export default Assingments
