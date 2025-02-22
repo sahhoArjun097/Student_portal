@@ -11,6 +11,7 @@ function Notice() {
         { withCredentials: true }
       );
       setNotices(data.notice);
+      console.log(data.notice)
     } catch (error) {
       console.error("No notices are coming", error);
     }
@@ -37,7 +38,10 @@ function Notice() {
                   {n.description}
                 </p>
                 <div className="mt-3 text-sm text-gray-500 dark:text-gray-400">
-                  <p>📅 {new Date(n.date).toLocaleDateString()}</p>
+                  <div className="flex gap-4 "> 
+                  <p>📅 {n.updatedAt.substring(0,9)} </p>
+                  <p> AT - {n.updatedAt.substring(11,16) }</p>
+                    </div>
                   <p>📝 Issued By: <span className="font-medium">{n.issuedBy}</span></p>
                 </div>
               </div>

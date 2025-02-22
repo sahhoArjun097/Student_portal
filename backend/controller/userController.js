@@ -3,7 +3,6 @@ import config from "../config/index.js";
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/ErrorHandler.js";
 import { Section } from "../models/sectionSchema.js";
-
 import { Class } from "../models/classSchema.js";
 import { User } from "../models/userSchema.js"
 import { generateToken } from "../utils/jwtToken.js";

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Register() {
     const [isStudent, setIsStudent] = useState(true);
+    const [allClass,setAllClass] = useState([])
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -23,18 +24,18 @@ function Register() {
     };
 
 
-    //   const getAllClass = async ()=>{
-    //     try {
-    //         const {res} = await axios.get("http://localhost:4000/api/v1/class/getclass",{
-    //             withCredentials:true
-    //         });
-    //         console.log(res)
-    //     } catch (error) {
-    //         console.log(error)
-
-    //     }
-    //   }
-
+    const getAllClass = async () => {
+        try {
+          const { data } = await axios.get("http://localhost:4000/api/v1/class/getclass", {
+            withCredentials: true
+          });
+          console.log(data.classes);
+          setAllClass(data.classes); 
+        } catch (error) {
+          console.error("Error fetching class data:", error);
+        }
+      };
+      
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
@@ -77,7 +78,9 @@ function Register() {
             setMessage("An error occurred. Please try again.");
         }
     };
-
+    useEffect(() => {
+      getAllClass();
+      }, []);
     return (
         <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center p-4 bg-gradient-to-r from-blue-400 to-purple-300">
             <div className="md:w-1/2  justify-center hidden md:block">
@@ -122,11 +125,46 @@ function Register() {
                             <input type="text" name="department" placeholder="Department" value={formData.department} onChange={handleChange} className="w-full p-2 border rounded" required />
                         </>
                     )}
+                    <select  className="w-full h-full border ">
+                        <option  value="" >
+                        Select
+                        </option>
+                        {allClass.length > 0 ? (
+    allClass.map((classItem) => (
+        <option key={classItem._id}>
+            {classItem.className}
+        </option>
+    //   <p key={classItem._id} className="text-white">{classItem.className}</p>
+    ))
+  ) : (
+    <p className="text-gray-400">No classes available</p>
+  )}
+
+                    </select>
+                    <select>
+                        <option>
+                            select section
+                        </option>
+                        {
+                            
+                        }
+                    </select>
+
                     <input type="text" name="sectionId" placeholder="Section ID" value={formData.sectionId} onChange={handleChange} className="w-full p-2 border rounded" required />
                     <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} className="w-full p-2 border rounded" required />
                     <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-all">
                         Register
                     </button>
+                    {/* <div>
+  {allClass.length > 0 ? (
+    allClass.map((classItem) => (
+      <p key={classItem._id} className="text-white">{classItem.className}</p>
+    ))
+  ) : (
+    <p className="text-gray-400">No classes available</p>
+  )}
+</div> */}
+
                 </form>
             </div>
         </div>

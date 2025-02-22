@@ -9,12 +9,13 @@ import Contest from "./pages/Contest";
 import Assingments from "./pages/Assingments";
 import Timetable from "./pages/Timetable";
 import Fee from "./pages/Fee";
-import DataBoxes from "./pages/text";
+// import DataBoxes from "./pages/text";
 import Notice from "./pages/Notice";
 import Class from "./pages/Class";
 import Register from "./pages/Register";
 import AddContest from "./pages/AddContest";
 import AddNotice from "./pages/AddNotice";
+import ClassSelector from "./pages/text";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
         <Route path="/assingments" element={<Assingments/>}/>
         <Route path="/timetable" element={<Timetable/>}/>
         <Route path="/fee" element={<Fee/>}/>
-        <Route path="/test" element={<DataBoxes/>}/>
+        <Route path="/test" element={<ClassSelector/>}/>
         <Route path="/notice" element={<Notice/>}/>
         <Route path="/class" element={<Class/>}/>
         <Route path="/register" element={<Register/>}/>

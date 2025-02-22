@@ -40,3 +40,11 @@ export const createSection = catchAsyncError(async (req, res, next) => {
     
 });
 
+export const  getSectionByID = catchAsyncError(async (req ,res , next)=>{
+    try {
+        const section = await Section.findById()
+    } catch (error) {
+        
+    }
+
+})
