@@ -49,20 +49,24 @@ export const contestController = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler(error.message, 500));
     }
 });
-
-export const getAllContest = catchAsyncError(async (req , res , next)=>{
+export const getAllContest = catchAsyncError(async (req, res, next) => {
     try {
-        const allcontest = await Contest.find();
-        res.status(200).json({
-            success:true,
-            message:"all contest",
-            contest : allcontest
+        console.log("Fetching contests..."); // Check if function is called
 
-        })
-    } catch (error) {
-        return next(new ErrorHandler(error.message,500))
+        const allcontest = await Contest.find();
         
+        console.log("Contests fetched:", allcontest); // Check if data is fetched
+        
+        res.status(200).json({
+            success: true,
+            message: "All contests",
+            contest: allcontest
+        });
+    } catch (error) {
+        console.error("Error fetching contests:", error); // Log error
+        return next(new ErrorHandler(error.message, 500));
     }
-})
+});
+
 
 

@@ -36,24 +36,23 @@ function ClassSelector() {
     getAllClass();
   }, []);
 
-  // Handle class selection change
+ 
   const handleClassChange = (e) => {
     const selectedId = e.target.value;
     setSelectedClassId(selectedId); // ✅ Corrected
     
     // Find the selected class and update sections
     const selectedClass = allClass.find(cls => cls._id === selectedId);
-    setSections(selectedClass ? selectedClass.sections : []);
+    setSections(selectedClass.sections );
     console.log(selectedClass)
     setSelectedSectionId(""); // Reset section selection
   };
-  
-  // Handle section selection change
+
   const handleSectionChange = (e) => {
     setSelectedSectionId(e.target.value);
+    console.log(selectedSectionId)
   };
 
-  // Handle form submission (Mocked)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -83,9 +82,7 @@ function ClassSelector() {
           ))}
         </select>
 
-        {/* Section Selection (Visible Only if Class is Selected) */}
-        {selectedClassId && (
-          <>
+    
             <label className="text-white font-semibold mt-4">Select a Section:</label>
             <select
               value={selectedSectionId}
@@ -100,8 +97,7 @@ function ClassSelector() {
                 </option>
               ))}
             </select>
-          </>
-        )}
+         
 
         {/* Submit Button */}
         <button
@@ -117,3 +113,5 @@ function ClassSelector() {
 }
 
 export default ClassSelector;
+
+

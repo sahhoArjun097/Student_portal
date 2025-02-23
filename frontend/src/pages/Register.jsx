@@ -3,7 +3,11 @@ import axios from "axios";
 
 function Register() {
     const [isStudent, setIsStudent] = useState(true);
-    const [allClass,setAllClass] = useState([])
+    const [allClass, setAllClass] = useState([])
+    const [section, setSection] = useState([])
+    // const [selectedclass, setSelectedClass] = useState("")
+    const [selectedClassId,setselectedclassId] = useState("")
+    const [ selectedSectionId,setselectedsectionId] = useState("")
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -26,16 +30,26 @@ function Register() {
 
     const getAllClass = async () => {
         try {
-          const { data } = await axios.get("http://localhost:4000/api/v1/class/getclass", {
-            withCredentials: true
-          });
-          console.log(data.classes);
-          setAllClass(data.classes); 
+            const { data } = await axios.get("http://localhost:4000/api/v1/class/getclass", {
+                withCredentials: true
+            });
+            console.log(data.classes);
+            setAllClass(data.classes);
         } catch (error) {
-          console.error("Error fetching class data:", error);
+            console.error("Error fetching class data:", error);
         }
-      };
-      
+    };
+    const handleClass = (e) => {
+        const selectid = e.target.value
+        setselectedclassId(selectid);
+        const selectedclass = allClass.find(cls => cls._id === selectid) 
+        setSection(selectedclass.sections)
+        setselectedsectionId("")
+
+    }
+    const handleSection = () => [
+
+    ]
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
@@ -79,10 +93,10 @@ function Register() {
         }
     };
     useEffect(() => {
-      getAllClass();
-      }, []);
+        getAllClass();
+    }, []);
     return (
-        <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center p-4 bg-gradient-to-r from-blue-400 to-purple-300">
+        <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center md:p-4 bg-gradient-to-r from-blue-400 to-purple-300">
             <div className="md:w-1/2  justify-center hidden md:block">
                 <img src="/studentregister.png" alt="Register" className="w-full " />
             </div>
@@ -125,46 +139,40 @@ function Register() {
                             <input type="text" name="department" placeholder="Department" value={formData.department} onChange={handleChange} className="w-full p-2 border rounded" required />
                         </>
                     )}
-                    <select  className="w-full h-full border ">
-                        <option  value="" >
-                        Select
+                    <select onChange={handleClass} value={selectedClassId} className="w-full p-2 border rounded">
+                        <option value="" >
+                            Select Class
                         </option>
                         {allClass.length > 0 ? (
-    allClass.map((classItem) => (
-        <option key={classItem._id}>
-            {classItem.className}
-        </option>
-    //   <p key={classItem._id} className="text-white">{classItem.className}</p>
-    ))
-  ) : (
-    <p className="text-gray-400">No classes available</p>
-  )}
+                            allClass.map((classItem) => (
+                                <option key={classItem._id} value={classItem._id}>
+                                    {classItem.className}
+                                </option>
+
+                            ))
+                        ) : (
+                            <p className="text-gray-400">No classes available</p>
+                        )}
 
                     </select>
-                    <select>
+                    <select onChange={handleSection} value={selectedSectionId} className="w-full p-2 border rounded">
                         <option>
                             select section
                         </option>
                         {
-                            
+                            section.map((sections)=>{
+                                <option value={sections._id} key={sections._id}>
+                                    {sections.sectionName}
+                                </option>
+                            })
                         }
                     </select>
 
-                    <input type="text" name="sectionId" placeholder="Section ID" value={formData.sectionId} onChange={handleChange} className="w-full p-2 border rounded" required />
+                    {/* <input type="text" name="sectionId" placeholder="Section ID" value={formData.sectionId} onChange={handleChange} className="w-full p-2 border rounded" required /> */}
                     <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} className="w-full p-2 border rounded" required />
                     <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-all">
                         Register
                     </button>
-                    {/* <div>
-  {allClass.length > 0 ? (
-    allClass.map((classItem) => (
-      <p key={classItem._id} className="text-white">{classItem.className}</p>
-    ))
-  ) : (
-    <p className="text-gray-400">No classes available</p>
-  )}
-</div> */}
-
                 </form>
             </div>
         </div>
