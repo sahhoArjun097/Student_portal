@@ -1,9 +1,10 @@
 import express from "express";
 import { createClass, getAllClasses } from "../controller/classControlller.js";
+import { isAdminAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.post("/classes", createClass);        
+router.post("/classes", isAdminAuthenticated,createClass);        
 router.get("/getclass", getAllClasses);     
 // router.get("/class/:id", getClassById);     
 // router.put("/class/:id", updateClass);    

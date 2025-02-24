@@ -1,7 +1,8 @@
 import axios from 'axios'
-import  { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function AddNotice() {
+    const [teacher, setTeachers] = useState([])
     const [notice, setNotice] = useState({
         title: "",
         description: "",
@@ -9,33 +10,59 @@ function AddNotice() {
     });
 
     const handleChange = (e) => {
-        setNotice({ ...notice, [e.target.name]: e.target.value.toUpperCase() });
+        setNotice({ ...notice, [e.target.name]: e.target.value});
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault(); // Fixed typo
+    const handleIssueBy = async () => {
         try {
-            const res = await axios.post("http://localhost:4000/api/v1/notice/noticeinfo",
+            const { data } = await axios.get("http://localhost:4000/api/v1/user/getAllTeacher", {
+                withCredentials: true
+            });
+            setTeachers(data);
+            console.log(data)
+
+        } catch (error) {
+            console.error("Error fetching teachers:", error);
+            setTeachers([]); // Set empty array on error to prevent undefined access
+        }
+    };
+
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!notice.issuedBy) {
+            alert("Please select a teacher who issued the notice.");
+            return;
+        }
+
+        try {
+            const res = await axios.post(
+                "http://localhost:4000/api/v1/notice/noticeinfo",
                 notice,
                 {
                     headers: { "Content-Type": "application/json" },
                     withCredentials: true,
                 }
             );
-            console.log(res.data)
+            console.log(res.data);
             setNotice({
                 title: "",
                 description: "",
                 issuedBy: ""
-
-            })
+            });
             alert("Notice created successfully");
         } catch (error) {
             console.log(error);
-            alert("Failed to create notice")
-
+            alert("Failed to create notice");
         }
     };
+
+    useEffect(() => {
+        handleIssueBy()
+
+    }, []);
     return (
 
         <div className="flex justify-center w-full flex-col items-center min-h-screen gap-8 bg-gray-500 p-5 text-white">
@@ -53,7 +80,7 @@ function AddNotice() {
                             value={notice.title}
                             onChange={handleChange}
                             required
-                            className="w-full p-3 rounded-lg bg-transparent border border-[#414141] text-white 
+                            className="w-full p-3 rounded-lg bg-transparent uppercase border border-[#414141] text-white 
             focus:outline-none focus:border-[#e81cff]"/>
                     </div>
                     <div className="flex flex-col gap-1">
@@ -69,16 +96,23 @@ function AddNotice() {
                         ></textarea>
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label className="text-[#717171] font-semibold text-sm">Issued by</label>
-                        <input
-                            type="text"
+                        <select
                             name="issuedBy"
+                            className="border bg-transparent   p-3 rounded-lg focus:outline-none focus:border-[#e81cff]"
+                            onChange={(e) => setNotice({ ...notice, issuedBy: e.target.value })}
                             value={notice.issuedBy}
-                            onChange={handleChange}
-                            required
-                            className="w-full p-3 rounded-lg bg-transparent border border-[#414141] text-white 
-            focus:outline-none focus:border-[#e81cff]"
-                        />
+                        >
+                            <option value="" className='bg-black'>Issued BY</option>
+                            {
+                                teacher.map((t) => (
+                                    <option className='bg-black' key={t._id} value={t.name}>
+                                        {t.name}
+                                    </option>
+                                ))
+
+                            }
+                        </select>
+
                     </div>
                 </form>
             </div>
@@ -93,8 +127,8 @@ function AddNotice() {
                         <p className="font-semibold">Title: {notice.title}</p>
                         <p>Description: {notice.description}</p>
                         <p>Issued By: {notice.issuedBy}</p>
-                    </div>
 
+                    </div>
                     <button
                         type="submit"
                         onClick={handleSubmit}

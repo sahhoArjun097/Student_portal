@@ -16,11 +16,14 @@ function Navbar() {
         {isMenuOpen ? <X size={28} className={darkMode ? "text-white" : "text-black"} /> : <Menu size={28} className={darkMode ? "text-white" : "text-black"} />}
       </button>
       <div className={`absolute md:static top-16 left-0 w-full md:w-auto bg-opacity-95 md:bg-transparent z-50 flex flex-col md:flex-row md:gap-7 items-center transition-all duration-300 ease-in-out ${isMenuOpen ? "block bg-gray-800 p-5" : "hidden md:flex"}`}>
-        <Link to="/" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Home</Link>
+        {/* <Link to="/" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Home</Link> */}
         <Link to="/profile" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Profile</Link>
         <Link to="/login" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Login</Link>
         {/* <Link to="/class" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">class</Link> */}
         <Link to="/register" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">register</Link>
+        <Link to="/addnotice" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"> addnotice</Link>
+        <Link to="/addcontest" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">addcontest</Link>
+        {/* <Link to="/" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">register</Link> */}
       </div>
       <label className="relative inline-flex items-center cursor-pointer ml-4 md:ml-0">
         <input type="checkbox" className="sr-only peer" checked={darkMode} onChange={toggleMode} />

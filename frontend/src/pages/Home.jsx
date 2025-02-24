@@ -35,42 +35,6 @@ function Home() {
                 </div>
             </div>
 
-            {/* <div className="w-[80vw] ">
-  <div className="relative bg-amber-500">
-    <div className="absolute top-[-300px] md:top-[-150px] left-0 w-full gap-8 flex md:flex-col justify-center h-full">
-      <div className="flex bg-amber-200 md:flex-wrap md:px-27 justify-center md:justify-between w-full gap-6">
-        <Link to="/assignments" className="w-[280px] md:w-[320px]">
-          <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
-            <img src="/assignment-icon.png" alt="Assignments" className="w-12 h-12 mb-3" />
-            <p className="font-bold text-xl text-gray-700">ASSIGNMENTS</p>
-            <p className="text-sm text-gray-900 text-center">
-              Access your courses, submit assignments on time, and track your progress effortlessly.
-            </p>
-          </div>
-        </Link>
-        <Link to="/announcements" className="w-[280px] md:w-[320px]">
-          <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
-            <img src="/announcements-icon.png" alt="Announcements" className="w-12 h-12 mb-3" />
-            <p className="font-bold text-xl text-gray-700">ANNOUNCEMENTS</p>
-            <p className="text-sm text-gray-900 text-center">
-              Stay updated with important notifications, deadlines, timetable, and college news in one place.
-            </p>
-          </div>
-        </Link>
-        <Link to="/community" className="w-[280px] md:w-[320px]">
-          <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
-            <img src="/community-icon.png" alt="Community" className="w-12 h-12 mb-3" />
-            <p className="font-bold text-xl text-gray-700">COMMUNITY</p>
-            <p className="text-sm text-gray-900 text-center">
-              Connect with peers & educators, join discussions, and collaborate on projects easily.
-            </p>
-          </div>
-        </Link>
-      </div>
-    </div>
-  </div>
-</div> */}
-
             <div className=" top-[500px] w-full md:w-[80vw] sm:w-full h-[40vh]  p-3 absolute overflow-x-hidden  ">
                 <div className="   w-full h-full justify-between flex" >
                     <div className="flex  md:flex-wrap  justify-center md:justify-between w-full gap-6">
@@ -83,7 +47,7 @@ function Home() {
                                 </p>
                             </div>
                         </Link>
-                        <Link to="/announcements" className="w-[280px] md:w-[320px]">
+                        <Link to="/notice" className="w-[280px] md:w-[320px]">
                             <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
                                 <img src="/announcements-icon.png" alt="Announcements" className="w-12 h-12 mb-3" />
                                 <p className="font-bold text-xl text-gray-700">ANNOUNCEMENTS</p>
@@ -136,7 +100,7 @@ function Home() {
                             </Link>
                         </div>
                         <div className="w-full h-full col-start-1 row-start-4 col-end-2 row-end-5 flex justify-center items-center">
-                            <Link to="/assingments">
+                            <Link to="/assignments">
                                 <button
                                     className="group relative bg-slate-900 h-16 w-64 border-2 border-teal-600 text-white text-2xl font-bold rounded-xl overflow-hidden transform transition-all duration-500  hover:border-emerald-400 hover:text-emerald-300 p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
                                 >
