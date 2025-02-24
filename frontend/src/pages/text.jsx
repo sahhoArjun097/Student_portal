@@ -50,7 +50,7 @@ function ClassSelector() {
 
   const handleSectionChange = (e) => {
     setSelectedSectionId(e.target.value);
-    console.log(selectedSectionId)
+    
   };
 
   const handleSubmit = async (e) => {

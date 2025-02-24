@@ -5,9 +5,8 @@ function Register() {
     const [isStudent, setIsStudent] = useState(true);
     const [allClass, setAllClass] = useState([])
     const [section, setSection] = useState([])
-    // const [selectedclass, setSelectedClass] = useState("")
-    const [selectedClassId,setselectedclassId] = useState("")
-    const [ selectedSectionId,setselectedsectionId] = useState("")
+    const [selectedClassId, setselectedclassId] = useState("")
+    const [selectedSectionId, setselectedsectionId] = useState("")
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -42,33 +41,37 @@ function Register() {
     const handleClass = (e) => {
         const selectid = e.target.value
         setselectedclassId(selectid);
-        const selectedclass = allClass.find(cls => cls._id === selectid) 
+        const selectedclass = allClass.find(cls => cls._id === selectid)
         setSection(selectedclass.sections)
         setselectedsectionId("")
 
     }
-    const handleSection = () => [
-
-    ]
+    const handleSection = (e) => {
+        const sectionId = e.target.value;
+        setselectedsectionId(sectionId);
+        setFormData((prev) => ({ ...prev, sectionId }));  // Update formData
+    };
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
-
+    
         const updatedFormData = {
             ...formData,
-            role: isStudent ? "student" : "teacher", // Ensure role is updated correctly
+            role: isStudent ? "student" : "teacher",
+            sectionId: selectedSectionId,  // Ensure sectionId is added
         };
-
+    
         const endpoint = isStudent
             ? "http://localhost:4000/api/v1/user/student/register"
             : "http://localhost:4000/api/v1/user/teacher/register";
-
+    
         try {
             const response = await axios.post(endpoint, updatedFormData, {
                 headers: { "Content-Type": "application/json" },
                 withCredentials: true,
             });
-
+    
             if (response.data.success) {
                 setMessage(`${isStudent ? "Student" : "Teacher"} registered successfully!`);
                 setFormData({
@@ -84,6 +87,9 @@ function Register() {
                     department: "",
                     role: isStudent ? "student" : "teacher",
                 });
+
+                setselectedsectionId("");  
+                setselectedclassId("")// Reset section selection
             } else {
                 setMessage("Registration failed. Try again.");
             }
@@ -92,6 +98,7 @@ function Register() {
             setMessage("An error occurred. Please try again.");
         }
     };
+    
     useEffect(() => {
         getAllClass();
     }, []);
@@ -160,13 +167,19 @@ function Register() {
                             select section
                         </option>
                         {
-                            section.map((sections)=>{
-                                <option value={sections._id} key={sections._id}>
-                                    {sections.sectionName}
-                                </option>
-                            })
+                            section.length > 0 ?(
+                                section.map((section) => (
+                                    <option value={section._id} key={section._id}>
+                                        {section.sectionName}
+                                    </option>
+                                ))
+
+                            ):(<option disabled> No option available</option>)
+                            
                         }
                     </select>
+
+
 
                     {/* <input type="text" name="sectionId" placeholder="Section ID" value={formData.sectionId} onChange={handleChange} className="w-full p-2 border rounded" required /> */}
                     <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} className="w-full p-2 border rounded" required />
