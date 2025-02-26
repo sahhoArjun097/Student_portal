@@ -5,6 +5,8 @@ import App from './App.jsx'
 import { createContext } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import Store from './utils/Store.js'
+import { Provider } from "react-redux";
 
 export const Context = createContext();
 const AppWrapper = () => {
@@ -31,7 +33,9 @@ const AppWrapper = () => {
 
   return (
     <Context.Provider value={{ darkMode, setDarkMode, toggleMode }}>
-      <App />
+       <Provider store={Store}>
+        <App />
+      </Provider>
     </Context.Provider>
   )
 }

@@ -10,7 +10,10 @@ function Navbar() {
   return (
     <nav className={`w-full h-auto py-4 px-5 md:px-16 flex items-center justify-between ${darkMode ? "bg-gray-900" : "bg-gray-200"}`}>
       <Link to="/">
-        <p className={`text-xl font-bold ${darkMode ? "text-yellow-400" : "text-black"}`}>StudentPortal</p>
+        {/* <p className={`text-xl font-bold ${darkMode ? "text-yellow-400" : "text-black"}`}>StudentPortal</p> */}
+        {/* <img  className="h-10" src="logo1.png " alt=""/> */}
+        {/* <img  className="h-10" src="logo2.png " alt=""/> */}
+        <img  className="h-10" src="logo3.png " alt=""/>
       </Link>
       <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-md focus:outline-none">
         {isMenuOpen ? <X size={28} className={darkMode ? "text-white" : "text-black"} /> : <Menu size={28} className={darkMode ? "text-white" : "text-black"} />}

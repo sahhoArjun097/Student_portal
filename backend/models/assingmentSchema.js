@@ -7,7 +7,7 @@ const assingmentSchema = new mongoose.Schema({
         public_id: String,
         url: String,
     },
-    class: {
+    classes: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Class",
     },
