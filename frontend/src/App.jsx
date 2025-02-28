@@ -19,7 +19,6 @@ import AddNotice from "./pages/AddNotice";
 const ProtectedRoute = ({ children }) => {
   // const userData = useSelector((state)=>state.userData)
   const userData = useSelector((state) => state.authSlice.userData)
-
   console.log(userData)
   // const userData = localStorage.getItem("userData");
 
@@ -38,8 +37,7 @@ const Layout = () => {
   return (
     <div className="w-full h-full flex flex-col items-center bg-gray-100">
       {!hideNavbar && <Navbar />}
-      <Outlet /> {/* ✅ This will render nested routes */}
-      {!hideNavbar && <Footer />}
+      <Outlet />
     </div>
   );
 };
@@ -65,11 +63,10 @@ function App() {
           <Route path="/class" element={<ProtectedRoute><Class /></ProtectedRoute>} />
           <Route path="/addcontest" element={<ProtectedRoute><AddContest /></ProtectedRoute>} />
           <Route path="/addnotice" element={<ProtectedRoute><AddNotice /></ProtectedRoute>} />
-
-          {/* ✅ Redirect unknown routes */}
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
+        <Footer />
     </Router>
   );
 }

@@ -5,50 +5,43 @@ function Footer() {
     const { darkMode } = useContext(Context);
 
     return (
-        <div className={`w-full h-full p-2 md:p-10 flex flex-col items-center gap-8 ${darkMode ? "bg-gray-900" : "bg-white"}`}>
-            <div className="flex flex-col md:flex-row justify-center   md:justify-between w-full max-w-6xl">
+        <>
+        <hr className='text-white'/>
+        <div className={`w-full h-full p-5 md:p-10 flex flex-col items-center gap-8 ${darkMode ? "bg-gray-900" : "bg-white"}`}>
+            <div className="flex gap-5 flex-col md:flex-row justify-center   md:justify-between w-full max-w-6xl">
                 <div className='md:w-[200px]'>
-                       {/* <img  className="h-10" src="logo1.png " alt=""/> */}
-        <img  className="h-15" src="logo2.png " alt=""/>
-        {/* <img  className="h-15" src="logo3.png " alt=""/> */}
+                    {/* <img  className="h-10" src="logo1.png " alt=""/> */}
+                    <img className="h-15" src="logo2.png " alt="" />
+                    {/* <img  className="h-15" src="logo3.png " alt=""/> */}
                     <p className={`text-lg font-semibold mt-5 ${darkMode ? "text-white" : "text-gray-700"} `}>Easy access to Records, Fee, Assingments etc.</p>
                 </div>
-                {/* <div className="mt-4 md:mt-0">
-                    <h3 className={`text-lg font-semibold  ${darkMode ? "text-white" : "text-gray-700"} `}>Quick Links</h3>
-                    <ul className="mt-2 space-y-1 text-sm">
-                        <li><a href="/" className={`  hover:text-yellow-600 ${darkMode ? "text-white" : "text-gray-800 "}`}>Home</a></li>
-                        <li><a href="/fee" className={`  hover:text-yellow-600 ${darkMode ? "text-white" : "text-gray-800 "}`}> Pay Fee</a></li>
-                        <li><a href="/login" className={`  hover:text-yellow-600 ${darkMode ? "text-white" : "text-gray-800 "}`}>Login</a></li>
-                        <li><a href="/terms" className={`  hover:text-yellow-600 ${darkMode ? "text-white" : "text-gray-800 "}`}>Terms of Service</a></li>
-                    </ul>
-                </div> */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          <div >
-          <h3 className={`text-lg font-semibold  ${darkMode ? "text-white" : "text-gray-700"} `}>Quick Links</h3>
-            <ul className="space-y-2 text-sm opacity-90">
-              <li className=" cursor-pointer"><a href="/" className={ ` hover:text-yellow-600   ${darkMode ? "text-white" : "text-gray-800 "}`}>Home</a></li>
-              <li className="hover:text-orange-400 cursor-pointer">Careers</li>
-              <li className="hover:text-orange-400 cursor-pointer">Team</li>
-              {/* <li className="hover:text-orange-400 cursor-pointer">Services</li> */}
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-3 text-white">Support</h3>
-            <ul className="space-y-2 text-sm opacity-90">
-              <li className="hover:text-orange-400 cursor-pointer">Help & Support</li>
-              <li className="hover:text-orange-400 cursor-pointer">Partner With Us</li>
-              <li className="hover:text-orange-400 cursor-pointer">Work With Us</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-3 text-white">Legal</h3>
-            <ul className="space-y-2 text-sm opacity-90">
-              <li className="hover:text-orange-400 cursor-pointer">Terms & Conditions</li>
-              <li className="hover:text-orange-400 cursor-pointer">Privacy Policy</li>
-              <li className="hover:text-orange-400 cursor-pointer">Cookie Policy</li>
-            </ul>
-          </div>
-        </div>
+                    <div  className='flex flex-col gap-5'>
+                        <h3 className={`text-lg font-semibold   ${darkMode ? "text-white" : "text-gray-700"} `}>Quick Links</h3>
+                        <ul className="space-y-2 text-sm opacity-90">
+                            <li className=" cursor-pointer"><a href="/" className={` hover:text-yellow-600   ${darkMode ? "text-white" : "text-gray-800 "}`}>Home</a></li>
+                            <li className="hover:text-orange-400 cursor-pointer text-white ">Careers</li>
+                            <li className="hover:text-orange-400 cursor-pointer text-white ">Team</li>
+                            {/* <li className="hover:text-orange-400 cursor-pointer">Services</li> */}
+                        </ul>
+                    </div>
+                    <div  className='flex flex-col gap-2'>
+                        <h3 className="font-semibold text-lg mb-3 text-white">Support</h3>
+                        <ul className="space-y-2 text-sm opacity-90">
+                            <li className="hover:text-orange-400 cursor-pointer text-white ">Help & Support</li>
+                            <li className="hover:text-orange-400 cursor-pointer text-white ">Partner With Us</li>
+                            <li className="hover:text-orange-400 cursor-pointer text-white ">Work With Us</li>
+                        </ul>
+                    </div>
+                    <div  className='flex flex-col gap-2'>
+                        <h3 className="font-semibold text-lg mb-3 text-white">Legal</h3>
+                        <ul className="space-y-2 text-sm opacity-90">
+                            <li className="hover:text-orange-400 cursor-pointer text-white ">Terms & Conditions</li>
+                            <li className="hover:text-orange-400 cursor-pointer text-white ">Privacy Policy</li>
+                            <li className="hover:text-orange-400 cursor-pointer text-white ">Cookie Policy</li>
+                        </ul>
+                    </div>
+                </div>
 
 
                 {/* Social Media */}
@@ -89,6 +82,7 @@ function Footer() {
                 Designed and Developed with <span className="text-red-500">❤️</span> by <span className="text-yellow-600 font-semibold">Arjun Agarwal</span>
             </div>
         </div>
+        </>
     );
 }
 

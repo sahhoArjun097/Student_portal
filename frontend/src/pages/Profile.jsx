@@ -1,11 +1,15 @@
 import { useContext } from "react";
-import { useSelector } from "react-redux";
 import { Context } from "../main";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "../utils/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
     const { darkMode } = useContext(Context);
-    const userData = useSelector((state) => state.authSlice.userData.user)
-    console.log(userData)
+    const userData = useSelector((state) => state.authSlice.userData.user);
+    console.log(userData);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const getInitials = (fullName) => {
         return fullName
@@ -14,61 +18,51 @@ function Profile() {
             .join("")
             .toUpperCase();
     };
+
+      const handleLogOut = () => {
+        dispatch(removeUser());
+        navigate("/login");
+      };
     
 
     return (
-        <div
-            className={`min-h-screen w-full flex justify-center items-center bg-cover bg-center bg-no-repeat ${darkMode ? "bg-[#09090b] text-white" : "bg-gray-100 text-black"}`}
-            style={{ backgroundImage: "url('/profilebg.jpg')" }}
-        >
-            <div className={`max-w-3xl w-full p-6 rounded-2xl shadow-xl ${darkMode ? "bg-opacity-30 backdrop-blur-md" : "bg-white"}`}>
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                    {/* Profile Image / Initials */}
-                    <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-gray-300 flex items-center justify-center text-3xl font-bold overflow-hidden">
-                        <span className="text-gray-700 text-6xl">{getInitials(userData.name)}</span>
+        <div className={`min-h-screen flex  w-full justify-center items-center ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}>
+            <div className={`max-w-2xl w-full p-6 rounded-lg shadow-lg ${darkMode ? "bg-gray-800" : "bg-white"}`}>
+                <div className="flex items-center gap-6">
+                    <div className="w-24 h-24 rounded-full bg-gray-400 flex items-center justify-center text-2xl font-bold">
+                        <span className="text-gray-700">{getInitials(userData.name)}</span>
                     </div>
-
-                    {/* User Info */}
-                    <div className="text-center md:text-left">
-                        <h1 className={`text-3xl font-bold ${darkMode ? "text-gray-100" : "text-gray-800"}`}>{userData.name}</h1>
-                        <p className={`text-base ${darkMode ? "text-gray-300" : "text-gray-700"}`}>Roll No: {userData.rollNumber}</p>
-                        <p className={`text-base ${darkMode ? "text-gray-300" : "text-gray-700"}`}>Email: {userData.email}</p>
+                    <div>
+                        <h1 className="text-2xl font-bold">{userData.name}</h1>
+                        <p className="text-sm text-gray-400">{userData.email}</p>
                     </div>
                 </div>
 
-                {/* Divider */}
-                <hr className="my-6 border-gray-300" />
+                <hr className="my-4 border-gray-300" />
 
-                {/* Details Section */}
-                <div className="space-y-4">
-                    <h2 className="text-xl font-semibold">Basic Information</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <p className="font-medium">Date of Birth:</p>
-                            <p className="text-gray-400">{new Date(userData.dateOfBirth).toDateString()}</p>
-                        </div>
-                        <div>
-                            <p className="font-medium">Mobile Number:</p>
-                            <p className="text-gray-400">{userData.phone}</p>
-                        </div>
-                        <div>
-                            <p className="font-medium">Address:</p>
-                            <p className="text-gray-400">{userData.address}</p>
-                        </div>
-                        <div>
-                            <p className="font-medium">Gender:</p>
-                            <p className="text-gray-400">{userData.gender}</p>
-                        </div>
+                {userData.role === "student" ? (
+                    <div className="space-y-2">
+                        <p><strong>Roll No:</strong> {userData.rollNumber}</p>
+                        <p><strong>Date of Birth:</strong> {new Date(userData.dateOfBirth).toDateString()}</p>
+                        <p><strong>Phone:</strong> {userData.phone}</p>
+                        <p><strong>Address:</strong> {userData.address}</p>
+                        <p><strong>Gender:</strong> {userData.gender}</p>
                     </div>
-                </div>
+                ) : (
+                    <div className="space-y-2">
+                        <p><strong>Department:</strong> {userData.department}</p>
+                        <p><strong>Phone:</strong> {userData.phone}</p>
+                    </div>
+                )}
 
-                {/* Action Buttons */}
-                <div className="mt-6 flex justify-center md:justify-end gap-4">
-                    <button className={`px-4 py-2 rounded-md font-medium transition-all ${darkMode ? "bg-indigo-600 hover:bg-indigo-500" : "bg-blue-600 text-white hover:bg-blue-500"}`}>
-                        Edit Profile
-                    </button>
-                    <button className={`px-4 py-2 rounded-md font-medium transition-all ${darkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-gray-300 text-black hover:bg-gray-200"}`}>
-                        View Academics
+                <div className="mt-6 flex justify-end">
+                    <button
+                        className="group flex items-center justify-center w-11 h-11 bg-red-500 rounded-full hover:bg-red-600"
+                        onClick={handleLogOut}
+                    >
+                        <svg className="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                            <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                        </svg>
                     </button>
                 </div>
             </div>

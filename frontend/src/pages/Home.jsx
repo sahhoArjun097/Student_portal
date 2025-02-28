@@ -1,11 +1,13 @@
 import { useContext } from "react"
 import { Context } from "../main"
+import { useSelector } from "react-redux";
 // import InfoCards from "../components/InfoCards"
 import '../index.css'
 import { Link } from "react-router-dom"
 
 
 function Home() {
+    const userData = useSelector((state) => state.authSlice.userData.user)
 
     const { darkMode } = useContext(Context)
     return (
@@ -16,7 +18,7 @@ function Home() {
                     <div className=" justify-center items-center flex flex-col h-full">
                         <div className=" p-2 md:p-6">
                             <div className="w-full h-full flex flex-col  p-[4px] md:p-1 rounded-sm bg-amber-50">
-                                <p>🎉 Introducing StudentPortal</p>
+                                <p>🎉 Introducing {userData.role}Portal</p>
                             </div>
                         </div>
                         <div className="w-full justify-center flex h-full  mt-10 p-[14px] md:p-1 rounded-sm">
@@ -50,6 +52,11 @@ function Home() {
                         <Link to="/notice" className="w-[280px] md:w-[320px]">
                             <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
                                 <img src="/announcements-icon.png" alt="Announcements" className="w-12 h-12 mb-3" />
+                                {/* {
+                                    userData.role === "teacher" ? <p className="font-bold text-xl text-gray-700"> ADD ANNOUNCEMENTS</p> :
+                                        <p className="font-bold text-xl text-gray-700">ANNOUNCEMENTS</p>
+
+                                } */}
                                 <p className="font-bold text-xl text-gray-700">ANNOUNCEMENTS</p>
                                 <p className="text-sm text-gray-900 text-center">
                                     Stay updated with important notifications, deadlines, timetable, and college news in one place.
@@ -138,9 +145,6 @@ function Home() {
 
                     </div>
                 </div>
-
-
-
 
                 <div className="loader relative  w-[200px] h-[200px] md:w-[280px] md:h-[280px] top-0 flex transform -translate-x-1 -translate-y-1">
                     <div className="cube">

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { useState } from 'react';
+import { useState } from 'react';
 
 function AddContest() {
   const [contest, setContest] = useState({
@@ -10,21 +10,14 @@ function AddContest() {
     registrationLink: '',
     contestImage: null,
   });
-
   const [imagePreview, setImagePreview] = useState(null);
-
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setContest((prev) => ({ ...prev, [name]: value }));
   };
-
-  // Handle image file selection
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setContest((prev) => ({ ...prev, contestImage: file }));
-
-    // Preview Image
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -33,11 +26,8 @@ function AddContest() {
       reader.readAsDataURL(file);
     }
   };
-
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append('title', contest.title);
     formData.append('description', contest.description);
@@ -54,8 +44,6 @@ function AddContest() {
 
       console.log('Contest created:', res.data);
       alert("contest created")
-      
-      // Reset form after submission
       setContest({
         title: '',
         description: '',
@@ -75,9 +63,8 @@ function AddContest() {
     <div className="w-full min-h-screen flex justify-center p-4 bg-gray-500">
       <div className="w-[50%] bg-gray-800 p-7 flex flex-col items-center">
         <h2 className="text-2xl text-white font-bold">Create Contest</h2>
-        
+
         <form onSubmit={handleSubmit} className="flex w-full p-7 flex-col gap-5">
-          {/* Title */}
           <div className="flex flex-col gap-1">
             <label className="text-[#717171] font-semibold text-sm">Enter the Title</label>
             <input
@@ -90,8 +77,6 @@ function AddContest() {
               required
             />
           </div>
-
-          {/* Description */}
           <div className="flex flex-col gap-1">
             <label className="text-[#717171] font-semibold text-sm">Description</label>
             <textarea
@@ -104,8 +89,6 @@ function AddContest() {
               required
             ></textarea>
           </div>
-
-          {/* Duration */}
           <div className="flex flex-col gap-1">
             <label className="text-[#717171] font-semibold text-sm">Duration (in Days)</label>
             <input
@@ -117,8 +100,6 @@ function AddContest() {
               required
             />
           </div>
-
-          {/* Registration Date */}
           <div className="flex flex-col gap-1">
             <label className="text-[#717171] font-semibold text-sm">Registration Date</label>
             <input
@@ -130,8 +111,6 @@ function AddContest() {
               required
             />
           </div>
-
-          {/* Registration Link */}
           <div className="flex flex-col gap-1">
             <label className="text-[#717171] font-semibold text-sm">Registration Link</label>
             <input
@@ -144,9 +123,6 @@ function AddContest() {
               required
             />
           </div>
-
-
-          {/* Image Upload */}
           <div className="flex flex-col gap-1">
             <label className="text-[#717171] font-semibold text-sm">Upload Contest Image</label>
             <input
@@ -158,7 +134,6 @@ function AddContest() {
             />
           </div>
 
-          {/* Image Preview */}
           {imagePreview && (
             <div className="mt-4">
               <p className="text-white text-sm">Image Preview:</p>
@@ -166,7 +141,6 @@ function AddContest() {
             </div>
           )}
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full mt-4 p-3 bg-[#e81cff] text-white font-semibold rounded-lg hover:bg-[#c61cd8] transition"

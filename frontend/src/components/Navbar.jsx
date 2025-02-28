@@ -1,58 +1,107 @@
 import { useContext, useState } from "react";
 import { Context } from "../main";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { removeUser } from "../utils/authSlice";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Menu, X } from "lucide-react";
 
 function Navbar() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  // const userData = useSelector((state) => state.user?.userData); 
 
+  const userData = useSelector((state) => state.authSlice.userData);
   const { darkMode, toggleMode } = useContext(Context);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const handleLogOut = () => {
-    dispatch(removeUser()); // Clear user data from Redux & local storage
-    navigate("/login"); // Redirect to login page
-  };
 
-  
+
 
   return (
-    <nav className={`w-full h-auto py-4 px-5 md:px-16 flex items-center justify-between ${darkMode ? "bg-gray-900" : "bg-gray-200"}`}>
-      <Link to="/">
-        {/* <p className={`text-xl font-bold ${darkMode ? "text-yellow-400" : "text-black"}`}>StudentPortal</p> */}
-        {/* <img  className="h-10" src="logo1.png " alt=""/> */}
-        {/* <img  className="h-10" src="logo2.png " alt=""/> */}
-        <img  className="h-10" src="logo3.png " alt=""/>
-      </Link>
-      <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-md focus:outline-none">
-        {isMenuOpen ? <X size={28} className={darkMode ? "text-white" : "text-black"} /> : <Menu size={28} className={darkMode ? "text-white" : "text-black"} />}
-      </button>
-      <div className={`absolute md:static top-16 left-0 w-full md:w-auto bg-opacity-95 md:bg-transparent z-50 flex flex-col md:flex-row md:gap-7 items-center transition-all duration-300 ease-in-out ${isMenuOpen ? "block bg-gray-800 p-5" : "hidden md:flex"}`}>
-        {/* <Link to="/" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Home</Link> */}
-        <Link to="/profile" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Profile</Link>
-        <Link to="/login" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">Login</Link>
-        {/* <Link to="/class" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">class</Link> */}
-        <Link to="/register" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">register</Link>
-        <Link to="/addnotice" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"> addnotice</Link>
-        <Link to="/addcontest" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">addcontest</Link>
-        {/* <Link to="/" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">register</Link> */}
-      </div>
-      <button className="border text-white" onClick={handleLogOut}>logout</button>
-      <label className="relative inline-flex items-center cursor-pointer ml-4 md:ml-0">
-        <input type="checkbox" className="sr-only peer" checked={darkMode} onChange={toggleMode} />
-        <div className={`w-16 h-8 rounded-full duration-500 bg-gray-200 shadow-lg ${darkMode ? "bg-[#383838] shadow-gray-700" : "shadow-gray-400"}`}>
-          <div className={`absolute h-6 w-6 rounded-full bg-white top-1/2 left-1 transition-all duration-700 ${darkMode ? "-translate-y-full opacity-0 rotate-90" : "-translate-y-1/2"}`}>
-            ☀️
-          </div>
-          <div className={`absolute h-6 w-6 rounded-full bg-[#1d1d1d] top-[2px] right-1 transition-all duration-700 ${darkMode ? "translate-y-0 opacity-100 rotate-180" : "translate-y-full opacity-0"}`}>
-            🌑
-          </div>
+    <>
+      <nav
+        className={`w-full h-auto py-4 px-5 md:px-16 flex items-center justify-between ${darkMode ? "bg-gray-900" : "bg-gray-200"
+          }`}
+      >
+        <Link to="/">
+          <img className="h-10" src="logo.png" alt="" />
+        </Link>
+
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden p-2 rounded-md focus:outline-none"
+        >
+          {isMenuOpen ? (
+            <X size={28} className={darkMode ? "text-white" : "text-black"} />
+          ) : (
+            <Menu size={28} className={darkMode ? "text-white" : "text-black"} />
+          )}
+        </button>
+        <div className=" flex   gap-5">
+          <Link
+            to="/"
+            className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
+          >
+            About us
+          </Link>
+
+
         </div>
-      </label>
-    </nav>
+
+        <div
+          className={`absolute md:static top-16 left-0 w-full md:w-auto bg-opacity-95 md:bg-transparent z-50 flex flex-col md:flex-row md:gap-7 items-center transition-all duration-300 ease-in-out ${isMenuOpen ? "block bg-gray-800 p-5" : "hidden md:flex"
+            }`}
+        >
+
+          <div className="flex">
+            <img src="/notification.png" className="h-10 w-10" alt=""/>
+            <div className="h-5 w-5 bg-amber-300 rounded-2xl"></div>
+            </div>
+          {userData?.user?.role === "student" && (
+            <Link
+              to="/profile"
+              className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
+            >
+
+              {
+                userData?.user?.gender === "Male" ? <img className="w-10 h-10" src="/maleprofile.png" alt="" /> : <img className="w-10 h-10" src="/femaleprofile.png" alt="" />
+              }
+
+            </Link>
+            
+          )} 
+
+
+          {userData?.user?.role === "teacher" && (
+            <>
+              <Link
+                to="/profile"
+                className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
+              >
+                Profile
+              </Link>
+              <Link
+                to="/addnotice"
+                className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
+              >
+                Add Notice
+              </Link>
+              <Link
+                to="/addcontest"
+                className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
+              >
+                Add Contest
+              </Link>
+            </>
+          )}
+
+        </div>
+
+      </nav>
+      <hr />
+    </>
   );
 }
+
 export default Navbar;
