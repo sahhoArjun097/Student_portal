@@ -41,18 +41,18 @@ export const isStudentAuthenticated = catchAsyncError(async(req ,res ,next)=>{
         return next(new ErrorHandler(`${req.user.role} not authorized to this resources`,403))
     }
 })
-export const isAdminOrTeacherAuthenticated = catchAsyncError(async (req, res, next) => {
-    const token = req.cookies?.token;
-    if (!token) {
-        return next(new ErrorHandler("Authentication required", 400));
-    }
+// export const isAdminOrTeacherAuthenticated = catchAsyncError(async (req, res, next) => {
+//     const token = req.cookies?.token;
+//     if (!token) {
+//         return next(new ErrorHandler("Authentication required", 400));
+//     }
 
-    const decoded = jwt.verify(token, config.JWT_SECRET_KEY);
-    req.user = await User.findById(decoded.id);
+//     const decoded = jwt.verify(token, config.JWT_SECRET_KEY);
+//     req.user = await User.findById(decoded.id);
 
-    if (req.user.role !== "admin" && req.user.role !== "teacher") {
-        return next(new ErrorHandler(`${req.user.role} not authorized to access this resource`, 403));
-    }
+//     if (req.user.role !== "admin" && req.user.role !== "teacher") {
+//         return next(new ErrorHandler(`${req.user.role} not authorized to access this resource`, 403));
+//     }
 
-    next();
-});
+//     next();
+// });

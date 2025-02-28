@@ -1,11 +1,23 @@
 import { useContext, useState } from "react";
 import { Context } from "../main";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../utils/authSlice";
 import { Menu, X } from "lucide-react";
 
 function Navbar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const userData = useSelector((state) => state.user?.userData); 
+
   const { darkMode, toggleMode } = useContext(Context);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleLogOut = () => {
+    dispatch(removeUser()); // Clear user data from Redux & local storage
+    navigate("/login"); // Redirect to login page
+  };
+
+  
 
   return (
     <nav className={`w-full h-auto py-4 px-5 md:px-16 flex items-center justify-between ${darkMode ? "bg-gray-900" : "bg-gray-200"}`}>
@@ -28,6 +40,7 @@ function Navbar() {
         <Link to="/addcontest" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">addcontest</Link>
         {/* <Link to="/" className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white">register</Link> */}
       </div>
+      <button className="border text-white" onClick={handleLogOut}>logout</button>
       <label className="relative inline-flex items-center cursor-pointer ml-4 md:ml-0">
         <input type="checkbox" className="sr-only peer" checked={darkMode} onChange={toggleMode} />
         <div className={`w-16 h-8 rounded-full duration-500 bg-gray-200 shadow-lg ${darkMode ? "bg-[#383838] shadow-gray-700" : "shadow-gray-400"}`}>

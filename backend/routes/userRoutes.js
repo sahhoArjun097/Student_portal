@@ -1,6 +1,6 @@
 import express from "express";
 import {  Admin, getAllStudents, getAllTeachers, getStudentById, Login, Logout, StudentRegister, TeacherRegister } from "../controller/userController.js";
-import { isAdminAuthenticated, isAdminOrTeacherAuthenticated, isTeacherAuthenticated } from "../middlewares/auth.js";
+import { isAdminAuthenticated, isTeacherAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
 

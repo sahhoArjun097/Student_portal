@@ -1,9 +1,15 @@
 import { useState,  } from "react";
 // import { Context } from "../main";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {addUser} from "../utils/authSlice"
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   // const { setUser } = useContext(Context);
+  const userData = useSelector((state)=>state.authSlice.userdata)
+  const navigate = useNavigate()
+  const dispatch  = useDispatch()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,26 +23,33 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-
+  
     try {
       const response = await axios.post("http://localhost:4000/api/v1/user/login", formData, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-
+  
       if (response.data.success) {
-        // setUser(response.data.user);
-        console.log(response.data.user)
+        // console.log(response.data);
         setMessage("Login successful!");
+        dispatch(addUser(response.data)); // Ensure only user data is stored
+        navigate("/");
       } else {
-        setMessage("Invalid email or password.");
+        setMessage(response.data.message || "Invalid email or password.");
       }
     } catch (error) {
       console.error("Login error:", error);
-      setMessage("An error occurred. Please try again.");
+  
+      // Extract error message from backend response
+      if (error.response && error.response.data && error.response.data.message) {
+        setMessage(error.response.data.message);
+      } else {
+        setMessage("An error occurred. Please try again.");
+      }
     }
   };
-
+  
   return (
     <div className="w-full flex relative">
       <div className="w-1/2 min-h-screen relative hidden md:block">

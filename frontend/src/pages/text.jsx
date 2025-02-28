@@ -14,7 +14,7 @@ function ClassSelector() {
         withCredentials: true
       });
       console.log(data.classes);
-      setAllClass(data.classes); 
+      setAllClass(data.classes);
     } catch (error) {
       console.error("Error fetching class data:", error);
     }
@@ -36,27 +36,27 @@ function ClassSelector() {
     getAllClass();
   }, []);
 
- 
+
   const handleClassChange = (e) => {
     const selectedId = e.target.value;
     setSelectedClassId(selectedId); // ✅ Corrected
-    
+
     // Find the selected class and update sections
     const selectedClass = allClass.find(cls => cls._id === selectedId);
-    setSections(selectedClass.sections );
+    setSections(selectedClass.sections);
     console.log(selectedClass)
     setSelectedSectionId(""); // Reset section selection
   };
 
   const handleSectionChange = (e) => {
     setSelectedSectionId(e.target.value);
-    
+
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Submitting ", );
+    console.log("Submitting ",);
 
     setTimeout(() => {
       alert(` successfully!`);
@@ -82,22 +82,22 @@ function ClassSelector() {
           ))}
         </select>
 
-    
-            <label className="text-white font-semibold mt-4">Select a Section:</label>
-            <select
-              value={selectedSectionId}
-              onChange={handleSectionChange}
-              className="w-full p-2 rounded bg-gray-600 text-white mt-2"
-              required
-            >
-              <option value="">Choose a section</option>
-              {sections.map((section) => (
-                <option key={section._id} value={section._id}>
-                  {section.sectionName}
-                </option>
-              ))}
-            </select>
-         
+
+        <label className="text-white font-semibold mt-4">Select a Section:</label>
+        <select
+          value={selectedSectionId}
+          onChange={handleSectionChange}
+          className="w-full p-2 rounded bg-gray-600 text-white mt-2"
+          required
+        >
+          <option value="">Choose a section</option>
+          {sections.map((section) => (
+            <option key={section._id} value={section._id}>
+              {section.sectionName}
+            </option>
+          ))}
+        </select>
+
 
         {/* Submit Button */}
         <button
