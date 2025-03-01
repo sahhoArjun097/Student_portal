@@ -1,8 +1,11 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 
 function AddNotice() {
     const [teacher, setTeachers] = useState([])
+    const userData = useSelector((state) => state.authSlice.userData.user)
+    console.log(userData)
     const [notice, setNotice] = useState({
         title: "",
         description: "",
@@ -19,7 +22,6 @@ function AddNotice() {
                 withCredentials: true
             });
             setTeachers(data);
-            console.log(data)
 
         } catch (error) {
             console.error("Error fetching teachers:", error);
@@ -102,14 +104,12 @@ function AddNotice() {
                             value={notice.issuedBy}
                         >
                             <option value="" className='bg-black'>Issued BY</option>
-                            {
-                                teacher.map((t) => (
-                                    <option className='bg-black' key={t._id} value={t.name}>
-                                        {t.name}
-                                    </option>
-                                ))
+                            {teacher.map((t) => (
+                                <option className="bg-black" key={t._id} value={t.name}>
+                                    {userData.name === t.name ? t.name : ""}
+                                </option>
+                            ))}
 
-                            }
                         </select>
 
                     </div>

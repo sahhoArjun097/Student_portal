@@ -14,13 +14,12 @@ import Class from "./pages/Class";
 import Register from "./pages/Register";
 import AddContest from "./pages/AddContest";
 import AddNotice from "./pages/AddNotice";
-
-// ✅ Route Guard Component (Only allow authenticated users)
+import Features from "./components/Features";
 const ProtectedRoute = ({ children }) => {
-  // const userData = useSelector((state)=>state.userData)
+
   const userData = useSelector((state) => state.authSlice.userData)
   console.log(userData)
-  // const userData = localStorage.getItem("userData");
+
 
   if (!userData) {
     return <Navigate to="/login" replace />;
@@ -28,11 +27,9 @@ const ProtectedRoute = ({ children }) => {
 
   return children;
 };
-
-// ✅ Layout Component
 const Layout = () => {
   const location = useLocation();
-  const hideNavbar = location.pathname === "/login" || location.pathname === "/register";
+  const hideNavbar = location.pathname === "/login"
 
   return (
     <div className="w-full h-full flex flex-col items-center bg-gray-100">
@@ -41,16 +38,11 @@ const Layout = () => {
     </div>
   );
 };
-
-// ✅ Updated App Component
 function App() {
   return (
     <Router>
       <Routes>
-        {/* ✅ Public Routes */}
         <Route path="/login" element={<Login />} />
-
-        {/* ✅ Wrap all protected routes inside Layout */}
         <Route element={<Layout />}>
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
@@ -63,6 +55,7 @@ function App() {
           <Route path="/class" element={<ProtectedRoute><Class /></ProtectedRoute>} />
           <Route path="/addcontest" element={<ProtectedRoute><AddContest /></ProtectedRoute>} />
           <Route path="/addnotice" element={<ProtectedRoute><AddNotice /></ProtectedRoute>} />
+          <Route path="/features" element={<ProtectedRoute><Features/></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
@@ -70,9 +63,7 @@ function App() {
     </Router>
   );
 }
-
 export default App;
-
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import Home from "./pages/Home"
 // import Login from "./pages/Login"

@@ -2,103 +2,105 @@ import { useContext, useState } from "react";
 import { Context } from "../main";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Bell } from "lucide-react";
 
 function Navbar() {
-
   const userData = useSelector((state) => state.authSlice.userData);
-  const { darkMode, toggleMode } = useContext(Context);
+  const { darkMode } = useContext(Context);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-
 
   return (
     <>
       <nav
-        className={`w-full h-auto py-4 px-5 md:px-16 flex items-center justify-between ${darkMode ? "bg-gray-900" : "bg-gray-200"
-          }`}
+        className={`w-full h-auto py-4 px-5 md:px-16 flex items-center justify-between ${
+          darkMode ? "bg-gray-900 text-white" : "bg-gray-200 text-black"
+        }`}
       >
+        {/* Left - Logo */}
         <Link to="/">
-          <img className="h-10" src="logo.png" alt="" />
+          <img className="h-10 rounded-2xl" src="mainlogo1.png" alt="Logo" />
         </Link>
 
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 rounded-md focus:outline-none"
-        >
-          {isMenuOpen ? (
-            <X size={28} className={darkMode ? "text-white" : "text-black"} />
-          ) : (
-            <Menu size={28} className={darkMode ? "text-white" : "text-black"} />
-          )}
-        </button>
-        <div className=" flex   gap-5">
-          <Link
-            to="/"
-            className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
-          >
+        {/* Center - Navigation Links */}
+        <div className="hidden md:flex gap-7">
+          <Link to="/" className="text-lg font-semibold hover:text-blue-400 duration-300">
             Home
           </Link>
-          <Link
-            to="/about"
-            className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
-          >
-            About us
+          <Link to="/about" className="text-lg font-semibold hover:text-blue-400 duration-300">
+            About Us
+          </Link>
+          <Link to="/features" className="text-lg font-semibold hover:text-blue-400 duration-300">
+            Features
+          </Link>
+        </div>
+
+        {/* Right - Profile & Notifications */}
+        <div className="hidden md:flex items-center gap-6">
+          {/* Notification Icon */}
+          <div className="relative cursor-pointer">
+            <Bell size={24} />
+            <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+              
+            </span>
+          </div>
+
+          {/* Profile Section */}
+          {userData?.user?.role && (
+            <Link to="/profile">
+              {userData.user.gender === "Male" ? (
+                <img className="w-10 h-10 rounded-full" src="/maleprofile.png" alt="Profile" />
+              ) : (
+                <img className="w-10 h-10 rounded-full" src="/femaleprofile.png" alt="Profile" />
+              )}
+            </Link>
+          )}
+        </div>
+
+        {/* Mobile Menu Toggle Button */}
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2">
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </nav>
+
+      {/* Mobile Navigation Menu */}
+      <div
+        className={`md:hidden absolute top-16 left-0 w-full bg-opacity-95 ${
+          darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-black"
+        } p-5 transition-all duration-300 ease-in-out ${isMenuOpen ? "block" : "hidden"}`}
+      >
+        <div className="flex flex-col gap-5 items-center">
+          <Link to="/" className="text-lg font-semibold hover:text-blue-400 duration-300">
+            Home
+          </Link>
+          <Link to="/about" className="text-lg font-semibold hover:text-blue-400 duration-300">
+            About Us
+          </Link>
+          <Link to="/features" className="text-lg font-semibold hover:text-blue-400 duration-300">
+            Features
           </Link>
 
-
-        </div>
-
-        <div
-          className={`absolute md:static top-16 left-0 w-full md:w-auto bg-opacity-95 md:bg-transparent z-50 flex flex-col md:flex-row md:gap-7 items-center transition-all duration-300 ease-in-out ${isMenuOpen ? "block bg-gray-800 p-5" : "hidden md:flex"
-            }`}
-        >
-
-          <div className="flex">
-            <img src="/notification.png" className="h-10 w-10" alt=""/>
-            <div className="h-5 w-5 bg-amber-300 rounded-2xl"></div>
+          {/* Mobile Profile & Notifications */}
+          <div className="flex gap-5 items-center">
+            <div className="relative cursor-pointer">
+              <Bell size={24} />
+              <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                
+              </span>
             </div>
-          {userData?.user?.role === "student" && (
-            <Link
-              to="/profile"
-              className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
-            >
 
-              {
-                userData?.user?.gender === "Male" ? <img className="w-10 h-10" src="/maleprofile.png" alt="" /> : <img className="w-10 h-10" src="/femaleprofile.png" alt="" />
-              }
-
-            </Link>
-            
-          )} 
-
-
-          {userData?.user?.role === "teacher" && (
-            <>
-              <Link
-                to="/profile"
-                className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
-              >
-                Profile
+            {userData?.user?.role && (
+              <Link to="/profile">
+                {userData.user.gender === "Male" ? (
+                  <img className="w-10 h-10 rounded-full" src="/maleprofile.png" alt="Profile" />
+                ) : (
+                  <img className="w-10 h-10 rounded-full" src="/femaleprofile.png" alt="Profile" />
+                )}
               </Link>
-              <Link
-                to="/addnotice"
-                className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
-              >
-                Add Notice
-              </Link>
-              <Link
-                to="/addcontest"
-                className="text-lg font-semibold hover:text-blue-300 duration-300 text-white md:text-black dark:md:text-white"
-              >
-                Add Contest
-              </Link>
-            </>
-          )}
-
+            )}
+          </div>
         </div>
+      </div>
 
-      </nav>
       <hr />
     </>
   );

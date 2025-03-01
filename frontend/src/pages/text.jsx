@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-
 function ClassSelector() {
   const [allClass, setAllClass] = useState([]);  // Stores classes
   const [sections, setSections] = useState([]);  // Stores sections of selected class
   const [selectedClassId, setSelectedClassId] = useState("");
   const [selectedSectionId, setSelectedSectionId] = useState("");
-
-  // Mock API Data for Testing
   const getAllClass = async () => {
     try {
       const { data } = await axios.get("http://localhost:4000/api/v1/class/getclass", {
@@ -19,8 +16,6 @@ function ClassSelector() {
       console.error("Error fetching class data:", error);
     }
   };
-
-  // Simulated API Fetching
   // const getAllClass = async () => {
   //   try {
   //     setTimeout(() => {
@@ -31,21 +26,16 @@ function ClassSelector() {
   //     console.error("Error fetching class data:", error);
   //   }
   // };
-
   useEffect(() => {
     getAllClass();
   }, []);
-
-
   const handleClassChange = (e) => {
     const selectedId = e.target.value;
-    setSelectedClassId(selectedId); // ✅ Corrected
-
-    // Find the selected class and update sections
+    setSelectedClassId(selectedId); 
     const selectedClass = allClass.find(cls => cls._id === selectedId);
     setSections(selectedClass.sections);
     console.log(selectedClass)
-    setSelectedSectionId(""); // Reset section selection
+    setSelectedSectionId(""); 
   };
 
   const handleSectionChange = (e) => {
@@ -62,11 +52,9 @@ function ClassSelector() {
       alert(` successfully!`);
     }, 500);
   };
-
   return (
     <div className="w-full min-h-screen flex justify-center items-center bg-gray-800">
       <form onSubmit={handleSubmit} className="bg-gray-700 p-6 rounded-lg">
-        {/* Class Selection */}
         <label className="text-white font-semibold">Select a Class:</label>
         <select
           value={selectedClassId}
@@ -81,8 +69,6 @@ function ClassSelector() {
             </option>
           ))}
         </select>
-
-
         <label className="text-white font-semibold mt-4">Select a Section:</label>
         <select
           value={selectedSectionId}
@@ -97,13 +83,10 @@ function ClassSelector() {
             </option>
           ))}
         </select>
-
-
-        {/* Submit Button */}
         <button
           type="submit"
           className="mt-4 w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-          disabled={!selectedSectionId} // Disable if no section is selected
+          disabled={!selectedSectionId} 
         >
           Submit
         </button>
@@ -111,7 +94,6 @@ function ClassSelector() {
     </div>
   );
 }
-
 export default ClassSelector;
 
 
