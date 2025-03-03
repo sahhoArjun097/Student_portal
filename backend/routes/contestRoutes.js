@@ -3,7 +3,7 @@ import { contestController, getAllContest } from "../controller/contestControlle
 import { isAdminAuthenticated, isStudentAuthenticated, isTeacherAuthenticated } from "../middlewares/auth.js";
 const router = express.Router();
 router.post("/contestInfo",isTeacherAuthenticated,contestController);
-router.get("/getallcontest",getAllContest);
+router.get("/getallcontest",isStudentAuthenticated,getAllContest);
 
 // deletecontest
 // updatecontest

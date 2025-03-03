@@ -1,25 +1,24 @@
-import { useContext } from 'react'
-import { Context } from '../main'
+
 
 function Footer() {
-    const { darkMode } = useContext(Context);
+   
 
     return (
         <>
         <hr className='text-white'/>
-        <div className={`w-full h-full p-5 md:p-10 flex flex-col items-center gap-8 ${darkMode ? "bg-gray-900" : "bg-white"}`}>
+        <div className="w-full h-full p-5 md:p-10 flex flex-col bg-black items-center gap-8bg-gray-900">
             <div className="flex gap-5 flex-col md:flex-row justify-center   md:justify-between w-full max-w-6xl">
                 <div className='md:w-[200px]'>
                     {/* <img  className="h-10" src="logo1.png " alt=""/> */}
                     <img className="h-15" src="logo2.png " alt="" />
                     {/* <img  className="h-15" src="logo3.png " alt=""/> */}
-                    <p className={`text-lg font-semibold mt-5 ${darkMode ? "text-white" : "text-gray-700"} `}>Easy access to Records, Fee, Assingments etc.</p>
+                    <p className="text-lg font-semibold mt-5 text-white">Easy access to Records, Fee, Assingments etc.</p>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                     <div  className='flex flex-col gap-5'>
-                        <h3 className={`text-lg font-semibold   ${darkMode ? "text-white" : "text-gray-700"} `}>Quick Links</h3>
+                        <h3 className="text-lg font-semibold   text-white" >Quick Links</h3>
                         <ul className="space-y-2 text-sm opacity-90">
-                            <li className=" cursor-pointer"><a href="/" className={` hover:text-yellow-600   ${darkMode ? "text-white" : "text-gray-800 "}`}>Home</a></li>
+                            <li className=" cursor-pointer"><a href="/" className="hover:text-yellow-600   text-white ">Home</a></li>
                             <li className="hover:text-orange-400 cursor-pointer text-white ">Careers</li>
                             <li className="hover:text-orange-400 cursor-pointer text-white ">Team</li>
                             {/* <li className="hover:text-orange-400 cursor-pointer">Services</li> */}
@@ -47,7 +46,7 @@ function Footer() {
                 {/* Social Media */}
                 <div className='items-center'>
                     <div className="mt-4 md:mt-0 ">
-                        <h3 className={`text-lg font-semibold  ${darkMode ? "text-white" : "text-gray-700"} `}>Connect With Us</h3>
+                        <h3 className="text-lg font-semibod text-white">Connect With Us</h3>
                         <ul className="flex space-x-5 mt-3">
                             <li>
                                 <a href="#" aria-label="Facebook" className="text-gray-500 hover:text-yellow-600">

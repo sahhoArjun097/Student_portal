@@ -22,7 +22,7 @@ function StudentPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white p-6">
+    <div className="min-h-screen mt-18 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white p-6">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold mb-6 text-center">🎓 Student List</h2>
 

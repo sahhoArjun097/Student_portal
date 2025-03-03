@@ -3,7 +3,7 @@ import { getAllNotices, noticeController } from "../controller/noticeController.
 import { isStudentAuthenticated, isTeacherAuthenticated } from "../middlewares/auth.js";
 const router = express.Router();
 router.post("/noticeinfo", isTeacherAuthenticated,noticeController);
-router.get("/getallNotice",getAllNotices);
+router.get("/getallNotice",isStudentAuthenticated,getAllNotices);
 // deletecontest
 // updatecontest
 export default router;

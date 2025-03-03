@@ -11,6 +11,8 @@ import contestRouter from "./routes/contestRoutes.js"
 import noticeRouter from "./routes/noticeRoutes.js" 
 import classRouter from "./routes/classRoutes.js" 
 import sectionRouter from "./routes/sectionRoutes.js" 
+import notificationRoutes from "./routes/notificationRoutes.js";
+
 const app = express();
 app.use(cors({
     origin: 'http://localhost:5173', // Change '*' to your frontend URL
@@ -39,6 +41,7 @@ app.use("/api/v1/notice",noticeRouter)
 app.use("/api/v1/fee",noticeRouter)
 app.use("/api/v1/class",classRouter)
 app.use("/api/v1/section",sectionRouter)
+app.use("/api/v1/notification", notificationRoutes);
 dbConnection();
 app.use(errorMiddlerware)
 export default app;

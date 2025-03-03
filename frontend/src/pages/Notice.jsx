@@ -22,7 +22,7 @@ function Notice() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 w-full   dark:text-white p-6 bg-cover bg-center bg-no-repeat"  style={{ backgroundImage: "url('/notice.png')" }}>
+    <div className="min-h-screen bg-gray-100 w-full mt-18  dark:text-white p-6 bg-cover bg-center bg-no-repeat"  style={{ backgroundImage: "url('/notice.png')" }}>
       <div className="max-w-4xl mx-auto"> 
         <h2 className="text-3xl font-bold mb-6 text-center">📢 Latest Notices</h2>
 

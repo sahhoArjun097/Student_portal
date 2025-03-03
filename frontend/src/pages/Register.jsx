@@ -103,7 +103,7 @@ function Register() {
         getAllClass();
     }, []);
     return (
-        <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center md:p-4 bg-gradient-to-r from-blue-400 to-purple-300">
+        <div className="w-full mt-18 min-h-screen flex flex-col md:flex-row items-center justify-center md:p-4 bg-gradient-to-r from-blue-400 to-purple-300">
             <div className="md:w-1/2  justify-center hidden md:block">
                 <img src="/studentregister.png" alt="Register" className="w-full " />
             </div>

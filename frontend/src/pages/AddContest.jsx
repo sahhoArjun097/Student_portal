@@ -60,7 +60,7 @@ function AddContest() {
   };
 
   return (
-    <div className="w-full min-h-screen flex justify-center p-4 bg-gray-500">
+    <div className="w-full mt-18 min-h-screen flex justify-center p-4 bg-gray-500">
       <div className="w-[50%] bg-gray-800 p-7 flex flex-col items-center">
         <h2 className="text-2xl text-white font-bold">Create Contest</h2>
 

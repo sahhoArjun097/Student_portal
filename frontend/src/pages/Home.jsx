@@ -12,7 +12,7 @@ function Home() {
     const { darkMode } = useContext(Context)
     return (
         <>
-            <div className={`min-h-screen w-full justify-center p-3 md:p-8 flex  bg-cover bg-center bg-no-repeat ${darkMode ? "bg-[#09090b]" : "bg-white"} `}
+            <div className={`min-h-screen mt-19 md:mt-18 w-full justify-center p-3 md:p-8 flex  bg-cover bg-center bg-no-repeat ${darkMode ? "bg-[#09090b]" : "bg-white"} `}
                 style={{ backgroundImage: "url('/homebg.png')" }}>
                 <div className="w-[90%] h-full flex flex-col justify-between ">
                     <div className=" justify-center items-center flex flex-col h-full">
@@ -52,11 +52,6 @@ function Home() {
                         <Link to="/notice" className="w-[280px] md:w-[320px]">
                             <div className="bg-white/10 backdrop-blur-lg shadow-lg rounded-2xl p-6 flex flex-col items-center w-[280px] md:w-[320px]">
                                 <img src="/announcements-icon.png" alt="Announcements" className="w-12 h-12 mb-3" />
-                                {/* {
-                                    userData.role === "teacher" ? <p className="font-bold text-xl text-gray-700"> ADD ANNOUNCEMENTS</p> :
-                                        <p className="font-bold text-xl text-gray-700">ANNOUNCEMENTS</p>
-
-                                } */}
                                 <p className="font-bold text-xl text-gray-700">ANNOUNCEMENTS</p>
                                 <p className="text-sm text-gray-900 text-center">
                                     Stay updated with important notifications, deadlines, timetable, and college news in one place.

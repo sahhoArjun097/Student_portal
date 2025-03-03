@@ -1,7 +1,6 @@
-import { useContext } from "react"
-import { Context } from "../main"
+
 const Timetable = () => {
-  const { darkMode } = useContext(Context)
+ 
   const timetable = [
     { time: "9:00 AM - 10:00 AM", lecture: "Mathematics", teacher: "Dr. Sharma" },
     { time: "10:15 AM - 11:15 AM", lecture: "Physics", teacher: "Prof. Verma" },
@@ -13,7 +12,7 @@ const Timetable = () => {
 
   return (
     <>
-      <div className={`w-full min-h-screen ${darkMode ? "bg-gray-900" : "bg-white"} bg-blend-soft-light bg-cover bg-center bg-no-repeat text-white px-6 py-12 flex flex-col items-center`}
+      <div className="w-full  mt-18 min-h-screen  bg-gray-900 bg-blend-soft-light bg-cover bg-center bg-no-repeat text-white px-6 py-12 flex flex-col items-center"
         style={{ backgroundImage: "url('/timetabil.png')" }}>
         <h1 className=" text-4xl md:text-7xl font-bold text-center p-9 text-black"
           style={{ textShadow: "0px 0px 17px rgba(255, 255, 0, 0.9)", }}>
@@ -37,16 +36,16 @@ const Timetable = () => {
                   className="border-b border-gray-700 bg-gray-600 hover:bg-gray-800  transition-all"
                 >
                   {/* <td className={`${darkMode?"text-white":"text-gray-600"} p-4`}>{entry.day}</td> */}
-                  <td className={`${darkMode ? "text-white" : "text-gray-600"} p-4`}>{entry.time}</td>
+                  <td className="text-white p-4">{entry.time}</td>
                   <td className="p-4 text-teal-300">{entry.lecture}</td>
-                  <td className={`${darkMode ? "text-white" : "text-gray-600"} p-4`}>{entry.teacher}</td>
+                  <td className= "text-white p-4">{entry.teacher}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-      <hr className={` w-full h-[1px] ${darkMode ? "text-white" : "text-black"}`} />
+      <hr className=" w-full h-[1px] text-white" />
     </>
   );
 };

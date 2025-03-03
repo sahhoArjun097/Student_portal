@@ -16,7 +16,7 @@ const AppWrapper = () => {
   });
 
   const toggleMode = () => {
-    const newMode = !darkMode;
+    const newMode = darkMode;
     setDarkMode(newMode);
     document.body.classList.toggle("dark-mode", newMode);
     localStorage.setItem("darkMode", newMode);
