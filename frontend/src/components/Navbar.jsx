@@ -6,6 +6,7 @@ import axios from "axios";
 
 function Navbar() {
   const userData = useSelector((state) => state.authSlice.userData);
+  const name = (userData.user)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -46,7 +47,10 @@ function Navbar() {
       <nav className="w-full fixed z-10 py-4 px-5 md:px-16 flex items-center justify-between bg-black text-white">
         {/* Logo */}
         <Link to="/">
-          <p className="Sigmar">StudentPortal</p>
+         
+            {
+              name.role === "student" ? <p className="Sigmar">StudentPortal</p>: <p className="Sigmar">TeacherPortal</p>
+            }
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -90,27 +94,25 @@ function Navbar() {
         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2">
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
-      </nav>
-
-      {/* Notification Dropdown */}
-      {isNotificationOpen && (
+</nav>
+{/* Notification Dropdown */}
+{isNotificationOpen && (
         <div className="absolute top-16 right-0 z-1 w-[50%] bg-gray-800 bg-opacity-95 text-white p-5 transition-all duration-300 ease-in-out overflow-hidden h-screen overflow-x-hidden">
           <h3 className="text-lg font-semibold">Notifications</h3>
           <ul>
             {/* Check for new notices and contests separately */}
-            <div className="w-[50%] h-40 p-4 flex gap-6 flex-col bg-black">
+            <div className="w-[60%] h-full p-4 flex gap-6 flex-col  ">
             {Message.notice.length > 0 && (
               <Link to={"/notice"}>
-                <li className="p-2 border-b border-gray-600">📢 New Notice Available</li>
+                <li className="p-2 border-b border-gray-600">📢 New Notice Available ({Message.notice.length})</li>
               </Link>
             )}
             {Message.contest.length > 0 && (
               <Link to={"/contest"}>
-              <li className="p-2 border-b border-gray-600">🏆 New Contest Announced</li>
+              <li className="p-2 border-b border-gray-600">🏆 New Contest Announced  ({Message.contest.length})</li>
               </Link>
             )}
-
-            </div>
+</div>
 
 
             {/* If there are no notifications */}
