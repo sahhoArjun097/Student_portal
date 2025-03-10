@@ -16,9 +16,12 @@ import AddContest from "./pages/AddContest";
 import AddNotice from "./pages/AddNotice";
 import Features from "./components/Features";
 import About from "./pages/About";
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children  , allowRoles}) => {
   const userData = useSelector((state) => state.authSlice.userData)
   console.log(userData)
+  if(allowRoles && !allowRoles.includes(userData.user.role)){
+    return <Navigate to="/" replace></Navigate>
+  }
 
 
   if (!userData) {
@@ -46,7 +49,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
+          <Route path="/register" element={<ProtectedRoute allowRoles="admin"><Register /></ProtectedRoute>} />
           <Route path="/contest" element={<ProtectedRoute><Contest /></ProtectedRoute>} />
           <Route path="/assignments" element={<ProtectedRoute><Assignments /></ProtectedRoute>} />
           <Route path="/timetable" element={<ProtectedRoute><Timetable /></ProtectedRoute>} />
@@ -54,8 +57,8 @@ function App() {
           <Route path="/notice" element={<ProtectedRoute><Notice /></ProtectedRoute>} />
           <Route path="/class" element={<ProtectedRoute><Class /></ProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute><About/></ProtectedRoute>} />
-          <Route path="/addcontest" element={<ProtectedRoute><AddContest /></ProtectedRoute>} />
-          <Route path="/addnotice" element={<ProtectedRoute><AddNotice /></ProtectedRoute>} />
+          <Route path="/addcontest" element={<ProtectedRoute allowRoles="teacher"><AddContest /></ProtectedRoute>} />
+          <Route path="/addnotice" element={<ProtectedRoute allowRoles="teacher"><AddNotice /></ProtectedRoute>} />
           <Route path="/features" element={<ProtectedRoute><Features /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
