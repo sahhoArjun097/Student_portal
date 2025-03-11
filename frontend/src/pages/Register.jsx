@@ -46,6 +46,7 @@ function Register() {
         setselectedclassId(selectid);
         const selectedclass = allClass.find(cls => cls._id === selectid)
         setSection(selectedclass.sections)
+        console.log(selectedclass.sections)
         setselectedsectionId("")
 
 

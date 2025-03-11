@@ -2,13 +2,58 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../utils/authSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Profile() {
 
     const userData = useSelector((state) => state.authSlice.userData.user);
-    console.log(userData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [classes, setClasses] = useState("");
+    const getOrdinalSuffix = (classNumber) => {
+        if (classNumber === 1) return "st";
+        if (classNumber === 2) return "nd";
+        if (classNumber === 3) return "rd";
+        return "th";
+    };
+    
+    const fetchClass = async () => {
+        try {
+            const { data } = await axios.get(`http://localhost:4000/api/v1/class/class/${userData.className}`);
+            
+            if (data.class && data.class.className) {
+                const classNum = parseInt(data.class.className, 10); // Convert to number
+                const suffix = getOrdinalSuffix(classNum);
+                setClasses(`${classNum}${suffix} Class`);
+                console.log(`${classNum}${suffix} Class`);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        if (userData.className) {
+            fetchClass(); // ✅ Run only if userData.className exists
+        }
+    }, [userData.className]);
+    
+    // const fetchStudents = async () => {
+    //     try {
+    //       const { data } = await axios.get(
+    //         "http://localhost:4000/api/v1/class/getclass",  
+    //         { withCredentials: true }
+    //       );
+    //       setStudents(data);
+    //       console.log(data)
+    //     } catch (error) {
+    //       console.error("Error fetching students:", error.response?.data || error.message);
+    //     }
+    //   };
+
+    //   useEffect(() => {
+    //     fetchStudents();
+    //   }, []);
 
     const getInitials = (fullName) => {
         return fullName
@@ -38,7 +83,7 @@ function Profile() {
                             <h1 className="text-3xl font-bold text-gray-900">{userData.name}</h1>
                             <p className="text-lg text-gray-600">{userData.email}</p>
                         </div>
-
+            
                     </div>
                     <div className="earth justify-center flex flex-col items-center">
                         <svg width="200" height="100" viewBox="0 0 200 100" className="mb-[-60px]">
@@ -81,7 +126,7 @@ function Profile() {
                                     d="M39.4,-66C48.6,-62.9,51.9,-47.4,52.9,-34.3C53.8,-21.3,52.4,-10.6,54.4,1.1C56.3,12.9,61.7,25.8,57.5,33.2C53.2,40.5,39.3,42.3,28.2,46C17,49.6,8.5,55.1,1.3,52.8C-5.9,50.5,-11.7,40.5,-23.6,37.2C-35.4,34,-53.3,37.5,-62,32.4C-70.7,27.4,-70.4,13.7,-72.4,-1.1C-74.3,-15.9,-78.6,-31.9,-73.3,-43C-68.1,-54.2,-53.3,-60.5,-39.5,-60.9C-25.7,-61.4,-12.9,-56,1.1,-58C15.1,-59.9,30.2,-69.2,39.4,-66Z"
                                     fill="#7CC133"
                                 ></path>
-                            </svg>
+                            </svg>  
                         </div>
 
 
@@ -103,7 +148,9 @@ function Profile() {
                 {/* Student Details */}
                 {userData.role === "student" ? (
                     <div className="space-y-3 text-gray-700">
+                        <p><strong>Class no :</strong> {classes}</p>
                         <p><strong>Roll No:</strong> {userData.rollNumber}</p>
+                       
                         <p><strong>Date of Birth:</strong> {new Date(userData.dateOfBirth).toDateString()}</p>
                         <p><strong>Phone:</strong> {userData.phone}</p>
                         <p><strong>Address:</strong> {userData.address}</p>

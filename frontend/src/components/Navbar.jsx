@@ -26,7 +26,7 @@ function Navbar() {
       setMessgae(data.notifications);
 
       setNotifications(allNotifications);
-      console.log(data.notifications)
+     
     } catch (error) {
       console.error("No notices are coming", error);
     }
