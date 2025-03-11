@@ -34,7 +34,10 @@ export const getAllClasses = catchAsyncError(async (req, res, next) => {
 
 export const getClassById = catchAsyncError(async (req, res, next) => {
     const { id } = req.params;
-    const classData = await Class.findById(id).populate("sections");
+    const classData = await Class.findById(id)
+
+
+    console.log("Received Class ID:", id);
 
     if (!classData) {
         return next(new ErrorHandler("Class not found", 404));
@@ -45,7 +48,18 @@ export const getClassById = catchAsyncError(async (req, res, next) => {
         class: classData
     });
 });
+export const getStudentById = async (req, res) => {
+    try {
+        const student = await User.findById(req.params.id)
+            .select("name email gender dateOfBirth StudentClass section rollNumber address phone");
 
+        if (!student) return res.status(404).json({ message: "Student not found" });
+
+        res.status(200).json(student);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 // ✅ Update a class by ID
 export const updateClass = catchAsyncError(async (req, res, next) => {
     const { id } = req.params;

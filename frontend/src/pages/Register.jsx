@@ -18,6 +18,7 @@ function Register() {
         address: "",
         phone: "",
         department: "",
+        className: "",
         role: "student",
     });
     const [message, setMessage] = useState("");
@@ -36,42 +37,47 @@ function Register() {
             setAllClass(data.classes);
         } catch (error) {
             console.error("Error fetching class data:", error);
+
         }
     };
     const handleClass = (e) => {
         const selectid = e.target.value
+        console.log(selectid)
         setselectedclassId(selectid);
         const selectedclass = allClass.find(cls => cls._id === selectid)
         setSection(selectedclass.sections)
         setselectedsectionId("")
 
+
     }
     const handleSection = (e) => {
         const sectionId = e.target.value;
         setselectedsectionId(sectionId);
+
         setFormData((prev) => ({ ...prev, sectionId }));  // Update formData
     };
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
-    
+
         const updatedFormData = {
             ...formData,
             role: isStudent ? "student" : "teacher",
-            sectionId: selectedSectionId,  // Ensure sectionId is added
+            sectionId: selectedSectionId, 
+            className:selectedClassId // Ensure sectionId is added
         };
-    
+
         const endpoint = isStudent
             ? "http://localhost:4000/api/v1/user/student/register"
             : "http://localhost:4000/api/v1/user/teacher/register";
-    
+
         try {
             const response = await axios.post(endpoint, updatedFormData, {
                 headers: { "Content-Type": "application/json" },
                 withCredentials: true,
             });
-    
+
             if (response.data.success) {
                 setMessage(`${isStudent ? "Student" : "Teacher"} registered successfully!`);
                 setFormData({
@@ -85,20 +91,21 @@ function Register() {
                     address: "",
                     phone: "",
                     department: "",
+                    className: "",
                     role: isStudent ? "student" : "teacher",
                 });
 
-                setselectedsectionId("");  
+                setselectedsectionId("");
                 setselectedclassId("")// Reset section selection
             } else {
                 setMessage("Registration failed. Try again.");
             }
         } catch (error) {
             console.error("Error registering:", error);
-            setMessage("An error occurred. Please try again.");
+            setMessage("Registration failed. Try again.");
         }
     };
-    
+
     useEffect(() => {
         getAllClass();
     }, []);
@@ -167,15 +174,15 @@ function Register() {
                             select section
                         </option>
                         {
-                            section.length > 0 ?(
+                            section.length > 0 ? (
                                 section.map((section) => (
                                     <option value={section._id} key={section._id}>
                                         {section.sectionName}
                                     </option>
                                 ))
 
-                            ):(<option disabled> No option available</option>)
-                            
+                            ) : (<option disabled> No option available</option>)
+
                         }
                     </select>
                     {/* <input type="text" name="sectionId" placeholder="Section ID" value={formData.sectionId} onChange={handleChange} className="w-full p-2 border rounded" required /> */}

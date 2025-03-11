@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
     ref: "Section",
   
   },
+  className:{type:String}
   // class: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "Class",

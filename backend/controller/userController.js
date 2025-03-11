@@ -11,14 +11,19 @@ import jwt from "jsonwebtoken";
 // for student 
 export const StudentRegister = catchAsyncError(async (req, res, next) => {
     try {
-        const { name, password, email, gender, dateOfBirth, sectionId, rollNumber, address, phone, role } = req.body;
-        if (!name || !email || !password || !gender || !dateOfBirth || !rollNumber || !address || !phone || !role) {
+        const { name, password, email, gender, className, dateOfBirth, sectionId, rollNumber, address, phone, role } = req.body;
+        if (!name || !email || !password || !gender || !dateOfBirth || !rollNumber || !className || !sectionId || !address || !phone || !role) {
             return next(new ErrorHandler("Please fill out the entire form", 400));
         }
         const existingUser = await User.findOne({ $or: [{ email }, { rollNumber }] });
         if (existingUser) {
             return next(new ErrorHandler("Student already exists", 400));
         }
+        const existingClass = await Class.findById(className);
+        if (!existingClass) {
+            return next(new ErrorHandler("Class doesn't exist", 400));
+        }
+        
         const newStudent = await User.create({
             name,
             email,
@@ -30,6 +35,7 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
             phone,
             role,
             sectionId,
+            className
         });
         res.status(200).json({
             success: true,
@@ -39,10 +45,10 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
         try {
             await Section.findByIdAndUpdate(
                 sectionId,
-                { $push: { students: newStudent._id } }, 
+                { $push: { students: newStudent._id } },
                 { new: true }
             );
-            console.log(`Student ${newStudent.name} added to Section ${sectionId}`);
+            // console.log(`Student ${newStudent.name} added to Section ${sectionId}`);
         } catch (error) {
             console.error("Error updating section:", error);
         }
@@ -98,13 +104,13 @@ export const getStudentById = async (req, res) => {
 // register teacher 
 export const TeacherRegister = catchAsyncError(async (req, res, next) => {
     try {
-        const { name, email, department, phone, password, role , sectionId} = req.body;
+        const { name, email, department, phone, password, role, sectionId } = req.body;
         const user = await User.findOne({ email });
         if (user) {
             return next(new ErrorHandler("Teacher already exists", 400));
         }
         const newteacher = await User.create({
-            name, email, password, department, phone, role,sectionId
+            name, email, password, department, phone, role, sectionId
         });
         res.status(200).json({
             success: true,
@@ -114,15 +120,15 @@ export const TeacherRegister = catchAsyncError(async (req, res, next) => {
 
         try {
             await Section.findByIdAndUpdate(
-                sectionId ,
-                {$push:{teachers:newteacher._id}},
-                {new:true}
+                sectionId,
+                { $push: { teachers: newteacher._id } },
+                { new: true }
             )
             console.log(`teacher ${newteacher.name} added to the section ${sectionId}`)
-            
+
         } catch (error) {
             console.error("Error updating section:", error);
-            
+
         }
     } catch (error) {
         console.error("Error registering user:", error);
