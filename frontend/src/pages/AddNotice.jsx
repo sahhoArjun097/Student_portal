@@ -69,7 +69,7 @@ function AddNotice() {
     }, []);
     return (
         <>
-        { userData.role === "teacher" && (
+        
             <div className="flex justify-center w-full mt-18 flex-col items-center min-h-screen gap-8 bg-black p-5 text-white">
                 <div className="w-full p-6 md:w-96 bg-gray-900 md:p-8 rounded-2xl border-2 border-transparent 
                     relative before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#e81cff] before:to-[#40c9ff] 
@@ -140,7 +140,7 @@ function AddNotice() {
                     </div>
                 </div>
             </div>
-        )}
+        
         </>
         
         

@@ -12,13 +12,14 @@ function Footer() {
             Empowering students with knowledge, skills, and community to succeed in today's world.
           </p>
           <div className="flex space-x-4">
-            <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+            <a href="https://github.com/sahhoArjun097" className="text-gray-400 hover:text-purple-400 transition-colors">
               {/* Facebook Icon */}
-              <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              {/* <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
-              </svg>
+              </svg> */}
+              <img className="h-5 w-7" src="github.png" alt=""/>
             </a>
-            <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+            <a href="https://x.com/saaho94539047/" className="text-gray-400 hover:text-purple-400 transition-colors">
               {/* Twitter Icon */}
               <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
@@ -57,7 +58,8 @@ function Footer() {
         <ul className="space-y-3">
             <li className="flex items-start gap-2 ">
               {/* <MapPin className="h-5 w-5 text-edu-purple mt-0.5 mr-2" /> */}
-              <svg className="h-7   text-white " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#ffffff" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg><span className="text-gray-400 hover:text-purple-400 transition-colors">123 Campus Drive, University City, ST 12345</span>
+              <svg className="h-6  text-white " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#ffffff" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg><span className="text-gray-400 hover:text-purple-400 transition-colors">123 Campus Drive, University City, ST 12345</span>
+           
             </li>
             <li className="flex items-center gap-2">
               {/* <Phone className="h-5 w-5 text-edu-purple mr-2" /> */}

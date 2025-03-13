@@ -57,8 +57,8 @@ function App() {
           <Route path="/notice" element={<ProtectedRoute><Notice /></ProtectedRoute>} />
           <Route path="/class" element={<ProtectedRoute><Class /></ProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute><About/></ProtectedRoute>} />
-          <Route path="/addcontest" element={<ProtectedRoute allowRoles="teacher"><AddContest /></ProtectedRoute>} />
-          <Route path="/addnotice" element={<ProtectedRoute allowRoles="teacher"><AddNotice /></ProtectedRoute>} />
+          <Route path="/addcontest" element={<ProtectedRoute allowRoles="teacher && admin"><AddContest /></ProtectedRoute>} />
+          <Route path="/addnotice" element={<ProtectedRoute allowRoles="teacher && admin"><AddNotice /></ProtectedRoute>} />
           <Route path="/features" element={<ProtectedRoute><Features /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>

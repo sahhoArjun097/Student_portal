@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 function Profile() {
 
     const userData = useSelector((state) => state.authSlice.userData.user);
+    console.log(userData)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [classes, setClasses] = useState("");

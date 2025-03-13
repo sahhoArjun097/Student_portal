@@ -2,6 +2,7 @@ import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/ErrorHandler.js";
 import { Section } from "../models/sectionSchema.js";
 import { Class } from "../models/classSchema.js"; // Import Class Model
+import { User } from "../models/userSchema.js";
 
 export const createSection = catchAsyncError(async (req, res, next) => {
     const { sectionName, teachers, students, classId } = req.body;
@@ -39,7 +40,27 @@ export const createSection = catchAsyncError(async (req, res, next) => {
 
     
 });
+// export const getSectionByStudent  = catchAsyncError(async (req , resizeBy, next)=>{
+//     try {
+//          const findStudent = await Section.findOne({students:userId})
+//     } catch (error) {
+        
+//     }
+// })
+export const getallSection = catchAsyncError(async (req, res ,next)=>{
+    try {
+        const section = await Section.find()
+        res.status(200).json({
+            success:true,
+            message:"all section are there",
+            
 
+        })
+    } catch (error) {
+        
+    }
+
+})
 export const  getSectionByID = catchAsyncError(async (req ,res , next)=>{
     try {
         const section = await Section.findById()

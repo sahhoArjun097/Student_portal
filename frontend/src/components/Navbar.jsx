@@ -71,6 +71,10 @@ function Navbar() {
           <Link to="/features" className="text-lg font-semibold hover:text-blue-400 duration-300">
             Features
           </Link>
+          
+          {/* <Link to="/register" className="text-lg font-semibold hover:text-blue-400 duration-300">
+            register
+          </Link> */}
         </div>
 
         {/* Right - Profile & Notifications */}
@@ -89,7 +93,7 @@ function Navbar() {
           {userData?.user?.role && (
             <Link to="/profile">
               <img
-                className="w-10 h-10 rounded-full"
+                className="w-15 h-10 rounded-full"
                 src={userData.user.gender === "Male" ? "/maleprofile.png" : "/femaleprofile.png"}
                 alt="Profile"
               />
