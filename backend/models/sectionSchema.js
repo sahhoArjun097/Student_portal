@@ -20,8 +20,11 @@ const sectionSchema = new mongoose.Schema({
     class:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Class",
-    }
-   
+    },
+   timetable:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"TimeTable"
+   }
 })
 
 export const Section = mongoose.model("Section", sectionSchema);

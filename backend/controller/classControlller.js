@@ -2,10 +2,8 @@ import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/ErrorHandler.js";
 import { Class } from "../models/classSchema.js";
 
-
 export const createClass = catchAsyncError(async (req, res, next) => {
     const { className, sections } = req.body;
-
     if (!className) {
         return next(new ErrorHandler("Please provide all required fields", 400));
     }
@@ -20,7 +18,6 @@ export const createClass = catchAsyncError(async (req, res, next) => {
         class: newClass
     });
 });
-
 
 export const getAllClasses = catchAsyncError(async (req, res, next) => {
     const classes = await Class.find().populate("sections");
@@ -51,26 +48,21 @@ export const updateClass = catchAsyncError(async (req, res, next) => {
     if (!updatedClass) {
         return next(new ErrorHandler("Class not found", 404));
     }
-
     res.status(200).json({
         success: true,
         message: "Class updated successfully",
         class: updatedClass
     });
 });
-
 // ✅ Delete a class by ID
 export const deleteClass = catchAsyncError(async (req, res, next) => {
     const { id } = req.params;
     const classData = await Class.findByIdAndDelete(id);
-
     if (!classData) {
         return next(new ErrorHandler("Class not found", 404));
     }
-
     res.status(200).json({
         success: true,
         message: "Class deleted successfully"
     });
 });
-// 

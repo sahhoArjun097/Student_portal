@@ -1,20 +1,10 @@
 import mongoose from "mongoose";
 
 const timetableSchema = new mongoose.Schema({
-    teacher: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-        index: true  // Indexing for faster queries
-    },
+   
     section: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Section",
-        required: true
-    },
-    class: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Class",
         required: true
     },
     schedule: [

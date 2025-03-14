@@ -147,14 +147,7 @@ function Register() {
                             <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} className="w-full p-2 border rounded" required />
                             <input type="text" name="rollNumber" placeholder="Roll Number" value={formData.rollNumber} onChange={handleChange} className="w-full p-2 border rounded" required />
                             <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full p-2 border rounded" required />
-                        </>
-                    )}
-                    {!isStudent && (
-                        <>
-                            <input type="text" name="department" placeholder="Department" value={formData.department} onChange={handleChange} className="w-full p-2 border rounded" required />
-                        </>
-                    )}
-                    <select onChange={handleClass} value={selectedClassId} className="w-full p-2 border rounded">
+                            <select onChange={handleClass} value={selectedClassId} className="w-full p-2 border rounded">
                         <option value="" >
                             Select Class
                         </option>
@@ -186,6 +179,15 @@ function Register() {
 
                         }
                     </select>
+                        </>
+                    )}
+                    {!isStudent && (
+                        <>
+                            <input type="text" name="department" placeholder="Department" value={formData.department} onChange={handleChange} className="w-full p-2 border rounded" required />
+                            
+                        </>
+                    )}
+                    
                     {/* <input type="text" name="sectionId" placeholder="Section ID" value={formData.sectionId} onChange={handleChange} className="w-full p-2 border rounded" required /> */}
                     <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} className="w-full p-2 border rounded" required />
                     <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-all">

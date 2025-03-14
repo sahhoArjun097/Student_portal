@@ -338,8 +338,8 @@
 .earth p {
   color: white;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  
+  
   padding-top: 0.25em;
   font-size: 1.25em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;

@@ -10,9 +10,4 @@ export const assingmentController = catchAsyncError(async(req , rez ,next)=>{
     }
     const {AssingmentImage} = req.files;
     const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
-
-
-
-
-    
 })
