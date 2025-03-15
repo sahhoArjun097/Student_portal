@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
+
     <footer className="bg-black text-white pt-16 pb-12 border-t border-gray-700">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
@@ -49,7 +50,8 @@ function Footer() {
           <ul className="space-y-3">
           <li><Link to="/contest" className="text-gray-600 hover:text-edu-purple transition-colors">Contest</Link></li>
             <li><Link to="/notice" className="text-gray-600 hover:text-edu-purple transition-colors"> Notice</Link></li>
-            <li><Link to="/assignments" className="text-gray-600 hover:text-edu-purple transition-colors">Assingments</Link></li>
+            <li>
+              <Link to="/assignments" className="text-gray-600 hover:text-edu-purple transition-colors">Assingments</Link></li>
             <li><Link to="/timetable" className="text-gray-600 hover:text-edu-purple transition-colors">Time Table</Link></li>
           </ul>
         </div>

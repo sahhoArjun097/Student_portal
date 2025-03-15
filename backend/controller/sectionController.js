@@ -5,7 +5,7 @@ import { Class } from "../models/classSchema.js"; // Import Class Model
 import { User } from "../models/userSchema.js";
 
 export const createSection = catchAsyncError(async (req, res, next) => {
-    const { sectionName, teachers, students, classId } = req.body;
+    const { sectionName,  students, classId } = req.body;
 
     if (!sectionName) {
         return next(new ErrorHandler("Section name is required", 400));
@@ -13,7 +13,6 @@ export const createSection = catchAsyncError(async (req, res, next) => {
 
     const newSection = await Section.create({
         sectionName,
-        teachers: teachers || [],
         students: students || [] ,
         class:classId
         // Explicitly setting it empty
@@ -23,12 +22,10 @@ export const createSection = catchAsyncError(async (req, res, next) => {
         section: newSection,
         message: "Section created successfully and added to the class"
     });
-
-    // If a classId is provided, add the section to the class
     if (classId) {
         const updatedClass = await Class.findByIdAndUpdate(
             classId,
-            { $push: { sections: newSection._id } }, // Push new section ID into sections array
+            { $push: { sections: newSection._id },$slice:-2 }, // Push new section ID into sections array
             { new: true } // Return updated class document
         ).populate("sections");
 

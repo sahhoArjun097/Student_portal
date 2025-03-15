@@ -5,12 +5,6 @@ const sectionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-   
-    teachers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
- 
-    }],
     students: [
         {
             type: mongoose.Schema.Types.ObjectId,

@@ -18,7 +18,7 @@ function Register() {
         address: "",
         phone: "",
         department: "",
-        className: "",
+        classNames: "",
         role: "student",
     });
     const [message, setMessage] = useState("");
@@ -66,7 +66,7 @@ function Register() {
             ...formData,
             role: isStudent ? "student" : "teacher",
             sectionId: selectedSectionId, 
-            className:selectedClassId // Ensure sectionId is added
+            classNames:selectedClassId // Ensure sectionId is added
         };
 
         const endpoint = isStudent
@@ -92,7 +92,7 @@ function Register() {
                     address: "",
                     phone: "",
                     department: "",
-                    className: "",
+                    classNames: "",
                     role: isStudent ? "student" : "teacher",
                 });
 
@@ -147,14 +147,14 @@ function Register() {
                             <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} className="w-full p-2 border rounded" required />
                             <input type="text" name="rollNumber" placeholder="Roll Number" value={formData.rollNumber} onChange={handleChange} className="w-full p-2 border rounded" required />
                             <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full p-2 border rounded" required />
-                            <select onChange={handleClass} value={selectedClassId} className="w-full p-2 border rounded">
+                            <select onChange={handleClass} value={selectedClassId} className="w-full text-black p-2 border rounded">
                         <option value="" >
                             Select Class
                         </option>
                         {allClass.length > 0 ? (
                             allClass.map((classItem) => (
                                 <option key={classItem._id} value={classItem._id}>
-                                    {classItem.className}
+                                    {classItem.classId}
                                 </option>
 
                             ))
@@ -184,7 +184,25 @@ function Register() {
                     {!isStudent && (
                         <>
                             <input type="text" name="department" placeholder="Department" value={formData.department} onChange={handleChange} className="w-full p-2 border rounded" required />
-                            
+                            <select onChange={handleClass} value={selectedClassId} className="w-full p-2 border rounded">
+                        <option value="" >
+                            Select Class
+                        </option>
+                        {allClass.length > 0 ? (
+                            allClass.map((classItem) => (
+                                <option key={classItem._id} value={classItem._id}>
+                                   <p className="text-black">
+
+                                   h
+                                    </p> 
+                                </option>
+
+                            ))
+                        ) : (
+                            <p className="text-gray-400">No classes available</p>
+                        )}
+
+                    </select>
                         </>
                     )}
                     
