@@ -2,8 +2,6 @@ import React from 'react'
 function About() {
     return (
         <>
-
-
             <div
                 className=" mt-18  gap-7 flex flex-col bg-cover w-full  bg-center bg-no-repeat h-full"
                 style={{ backgroundImage: "url('/about.jpg')" }}
@@ -20,8 +18,6 @@ function About() {
                                 </textPath>
                             </text>
                         </svg>
-
-
                         <div className="earth-loader">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
                                 <path
@@ -59,63 +55,97 @@ function About() {
                         </p>
                     </div>
                 </div>
-
-
                 <div className='w-full h-full flex justify-center items-center'>
-                     <p className="text-5xl uppercase text-gray-800  Sigmar mt-2 max--2wxl mx-auto text-center">gallary</p>
-                     </div>
+                    <p className="text-5xl uppercase text-gray-800  Sigmar mt-2 max--2wxl mx-auto text-center">gallary</p>
+                </div>
 
-                     <div className="w-full h-full flex justify-center items-center p-4">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-7">
-       
-            <div 
-          
-                className="relative overflow-hidden w-80 h-60 rounded-3xl cursor-pointer text-2xl font-bold"
-            >
-                {/* Overlay */}
-                <div className="z-10 absolute w-full h-full peer flex justify-center items-center"></div>
+                <div className="w-full h-full flex justify-center items-center p-3 md:p-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-7">
 
-                {/* Hover Animation - Circle */}
-                <div className="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500"></div>
+                        <div className="relative overflow-hidden  w-90 md:w-80 h-60 rounded-3xl cursor-pointer text-2xl font-bold">
+                            <div className="z-10 absolute w-full h-full peer flex justify-center items-center"></div>
+                            <div className="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500"></div>
+                            <div className="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-12 w-36 h-44 rounded-full bg-white opacity-70 transition-all p-7 Sigmar duration-500">FUTURE INNOVATION EVENT</div>
+                            <div
+                                className=" w-90 md:w-80 h-full bg-cover bg-center bg-no-repeat"
+                                style={{ backgroundImage: "url('/techevent.jpg')" }}
+                            ></div>
+                        </div>
+                        <div className="relative overflow-hidden w-90 md:w-80 h-60 rounded-3xl cursor-pointer text-2xl font-bold">
+                            <div className="z-10 absolute w-full h-full peer flex justify-center items-center"></div>
+                            <div className="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500"></div>
+                            <div className="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-12 w-36 h-44 rounded-full bg-white opacity-70 Sigmar transition-all duration-500">HACKTHON EVENT</div>
+                            <div
+                                className="w-90 md:w-80 h-full bg-cover bg-center bg-no-repeat"
+                                style={{ backgroundImage: "url('/study.png')" }}
+                            ></div>
+                        </div>
+                        <div className="relative overflow-hidden w-90 md:w-80 h-60 rounded-3xl cursor-pointer text-2xl font-bold">
+                            <div className="z-10 absolute w-full h-full peer flex justify-center items-center"></div>
+                            <div className="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500"></div>
+                            <div className="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-12 w-36 h-44 rounded-full bg-white opacity-70  p-7 Sigmar  transition-all duration-500">TRAINIGN WORKSHOPS</div>
+                            <div
+                                className="w-90 md:w-80 h-full bg-cover bg-center bg-no-repeat"
+                                style={{ backgroundImage: "url('/hackthon.png')" }}
+                            ></div>
+                        </div>
+                        <div className="relative overflow-hidden w-90 md:w-80 h-60 rounded-3xl cursor-pointer text-2xl font-bold">
+                            <div className="z-10 absolute w-full h-full peer flex justify-center items-center"></div>
+                            <div className="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500"></div>
+                            <div className="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-12 w-36 h-44 rounded-full bg-white opacity-70  p-7 Sigmar  transition-all duration-500">CULTURAL EVENT</div>
+                            <div
+                                className="w-90 md:w-80 h-full bg-cover bg-center bg-no-repeat"
+                                style={{ backgroundImage: "url('/cultural.png')" }}
+                            ></div>
+                        </div>
+                        <div className="relative overflow-hidden w-90 md:w-80 h-60 rounded-3xl cursor-pointer text-2xl font-bold">
+                            <div className="z-10 absolute w-full h-full peer flex justify-center items-center"></div>
+                            <div className="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500"></div>
+                            <div className="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-12 w-36 h-44 rounded-full bg-white opacity-70  p-7 Sigmar  transition-all duration-500"> FELICITATION EVENT</div>
+                            <div
+                                className="w-90 md:w-80 h-full bg-cover bg-center bg-no-repeat"
+                                style={{ backgroundImage: "url('feliciation.png')" }}
+                            ></div>
+                        </div>
 
-                {/* Hover Animation - Bottom Right Circle */}
-                <div className="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-12 w-36 h-44 rounded-full bg-white opacity-70 transition-all duration-500"></div>
-
-                {/* Background Image */}
-                <div
-                    className="w-80 h-full bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url('/techevent.jpg')" }}
-                ></div>
+                        <div className="relative overflow-hidden w-90 md:w-80 h-60 rounded-3xl cursor-pointer text-2xl font-bold">
+                            <div className="z-10 absolute w-full h-full peer flex justify-center items-center"></div>
+                            <div className="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500"></div>
+                            <div className="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-12 w-36 h-44 rounded-full bg-white opacity-70  p-7 Sigmar  transition-all duration-500">DANCE EVENT</div>
+                            <div
+                                className="w-90 md:w-80 h-full bg-cover bg-center bg-no-repeat"
+                                style={{ backgroundImage: "url('/dance.png')" }}
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+                <div className='w-full h-full   p-15 flex-col justify-center flex items-center'>
+                    <div className=''><p className='Sigmar'>DEVELOP BY</p></div>
+                    <div className="p-6">
+                        <div className="relative bg-black w-[300px] sm:w-[350px] group transition-all duration-700 aspect-video flex items-center justify-center">
+                            <div className="transition-all flex flex-col items-center py-5 justify-start duration-300 group-hover:duration-1000 bg-white w-full h-full absolute group-hover:-translate-y-16">
+                                <p className="text-xl sm:text-2xl font-semibold text-gray-500 font-serif">
+                                    Thank You
+                                </p>
+                                <p className="px-10 text-[10px] sm:text-[12px] text-gray-700">
+                                    It’s so nice that you had the time to view this site
+                                </p>
+                                <p className="font-serif text-[10px] sm:text-[12px] text-gray-700">
+                                    Wishing you a fantastic day ahead!
+                                </p>
+                                <p className="font-sans text-[10px] text-gray-700 pt-5">ARJUN AGARWAL</p>
+                            </div>
+                            <button className="seal bg-rose-500 text-red-800 w-10 aspect-square rounded-full z-40 text-[10px] flex items-center justify-center font-semibold [clip-path:polygon(50%_0%,_80%_10%,_100%_35%,_100%_70%,_80%_90%,_50%_100%,_20%_90%,_0%_70%,_0%_35%,_20%_10%)] group-hover:opacity-0 transition-all duration-1000 group-hover:scale-0 group-hover:rotate-180 border-4 border-rose-900">
+                                HOLA
+                            </button>
+                            <div className="tp transition-all duration-1000 group-hover:duration-100 bg-neutral-800 absolute group-hover:[clip-path:polygon(50%_0%,_100%_0,_0_0)] w-full h-full [clip-path:polygon(50%_50%,_100%_0,_0_0)]"></div>
+                            <div className="lft transition-all duration-700 absolute w-full h-full bg-neutral-900 [clip-path:polygon(50%_50%,_0_0,_0_100%)]"></div>
+                            <div className="rgt transition-all duration-700 absolute w-full h-full bg-neutral-800 [clip-path:polygon(50%_50%,_100%_0,_100%_100%)]"></div>
+                            <div className="btm transition-all duration-700 absolute w-full h-full bg-neutral-900 [clip-path:polygon(50%_50%,_100%_100%,_0_100%)]"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div 
-          
-          className="relative overflow-hidden w-80 h-60 rounded-3xl cursor-pointer text-2xl font-bold"
-      >
-          {/* Overlay */}
-          <div className="z-10 absolute w-full h-full peer flex justify-center items-center"></div>
-
-          {/* Hover Animation - Circle */}
-          <div className="absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500"></div>
-
-          {/* Hover Animation - Bottom Right Circle */}
-          <div className="absolute flex text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-12 w-36 h-44 rounded-full bg-white opacity-70 transition-all duration-500"></div>
-
-          {/* Background Image */}
-          <div
-              className="w-80 h-full bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: "url('/techevent.jpg')" }}
-          ></div>
-      </div>
-        
-    </div>
-</div>
-
-
-
-            </div>
-
-
-
         </>
     )
 }
