@@ -26,8 +26,6 @@ function Register() {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
-
     const getAllClass = async () => {
         try {
             const { data } = await axios.get("http://localhost:4000/api/v1/class/getclass", {
@@ -98,8 +96,7 @@ function Register() {
 
                 setselectedsectionId("");
                 setselectedclassId("")// Reset section selection
-            } else {
-                setMessage("Registration failed. Try again.");
+                setMessage(response.data.message)
             }
         } catch (error) {
             console.error("Error registering:", error);
@@ -147,14 +144,15 @@ function Register() {
                             <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} className="w-full p-2 border rounded" required />
                             <input type="text" name="rollNumber" placeholder="Roll Number" value={formData.rollNumber} onChange={handleChange} className="w-full p-2 border rounded" required />
                             <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full p-2 border rounded" required />
-                            <select onChange={handleClass} value={selectedClassId} className="w-full text-black p-2 border rounded">
+                            <select onChange={handleClass} value={selectedClassId} className="w-full   p-2 border rounded">
                         <option value="" >
                             Select Class
                         </option>
                         {allClass.length > 0 ? (
                             allClass.map((classItem) => (
                                 <option key={classItem._id} value={classItem._id}>
-                                    {classItem.classId}
+                                    {classItem.className}
+                                    
                                 </option>
 
                             ))
@@ -192,8 +190,8 @@ function Register() {
                             allClass.map((classItem) => (
                                 <option key={classItem._id} value={classItem._id}>
                                    <p className="text-black">
-
-                                   h
+                                   {classItem.className}
+                                   
                                     </p> 
                                 </option>
 

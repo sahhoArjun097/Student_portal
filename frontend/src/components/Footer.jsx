@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Footer() {
+  const userData = useSelector((state)=>state.authSlice.userData)
   return (
+    
 
     <footer className="bg-black text-white pt-16 pb-12 border-t border-gray-700">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -38,21 +41,69 @@ function Footer() {
         <div>
           <h3 className="font-semibold text-white mb-4">Quick Links</h3>
           <ul className="space-y-3">
-            <li><Link to="/" className="text-gray-400 hover:text-purple-400 transition-colors">Home</Link></li>
-            <li><Link to="/about" className="text-gray-400 hover:text-purple-400 transition-colors">About Us</Link></li>
-            <li><Link to="/contact" className="text-gray-400 hover:text-purple-400 transition-colors">Contact</Link></li>
-            <li><Link to="/features" className="text-gray-400 hover:text-purple-400 transition-colors">Features</Link></li>
+            <li>{userData ? (
+                <Link to="/" className="text-gray-400 hover:text-purple-400 transition-colors">
+                  Home
+                </Link>
+              ) : (
+                <span className="text-gray-600 cursor-not-allowed opacity-50">Home</span>
+              )}</li>
+            <li> {userData ? (
+                <Link to="/about" className="text-gray-400 hover:text-purple-400 transition-colors">
+                  About Us
+                </Link>
+              ) : (
+                <span className="text-gray-600 cursor-not-allowed opacity-50">About Us</span>
+              )}</li>
+            <li>{userData ? (
+                <Link to="/contact" className="text-gray-400 hover:text-purple-400 transition-colors">
+                  Contact
+                </Link>
+              ) : (
+                <span className="text-gray-600 cursor-not-allowed opacity-50">Contact</span>
+              )}</li>
+            <li> {userData ? (
+                <Link to="/features" className="text-gray-400 hover:text-purple-400 transition-colors">
+                  Features
+                </Link>
+              ) : (
+                <span className="text-gray-600 cursor-not-allowed opacity-50">Features</span>
+              )}</li>
           </ul>
         </div>
 
         <div>
           <h3 className="font-semibold text-white mb-4">Resources</h3>
           <ul className="space-y-3">
-          <li><Link to="/contest" className="text-gray-600 hover:text-edu-purple transition-colors">Contest</Link></li>
-            <li><Link to="/notice" className="text-gray-600 hover:text-edu-purple transition-colors"> Notice</Link></li>
+          <li> {userData ? (
+                <Link to="/contest" className="text-gray-400 hover:text-purple-400 transition-colors">
+                  Contest
+                </Link>
+              ) : (
+                <span className="text-gray-600 cursor-not-allowed opacity-50">Contest</span>
+              )}</li>
+            <li> {userData ? (
+                <Link to="/notice" className="text-gray-400 hover:text-purple-400 transition-colors">
+                  Notice
+                </Link>
+              ) : (
+                <span className="text-gray-600 cursor-not-allowed opacity-50">Notice</span>
+              )}</li>
             <li>
-              <Link to="/assignments" className="text-gray-600 hover:text-edu-purple transition-colors">Assingments</Link></li>
-            <li><Link to="/timetable" className="text-gray-600 hover:text-edu-purple transition-colors">Time Table</Link></li>
+            {userData ? (
+                <Link to="/assignments" className="text-gray-400 hover:text-purple-400 transition-colors">
+                  Assignments
+                </Link>
+              ) : (
+                <span className="text-gray-600 cursor-not-allowed opacity-50">Assignments</span>
+              )}</li>
+            <li>{userData ? (
+                <Link to="/timetable" className="text-gray-400 hover:text-purple-400 transition-colors">
+                  Time Table
+                </Link>
+              ) : (
+                <span className="text-gray-600 cursor-not-allowed opacity-50">Time Table</span>
+              )}</li>
           </ul>
         </div>
         <div>

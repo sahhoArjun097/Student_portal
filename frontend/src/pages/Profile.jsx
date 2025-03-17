@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 function Profile() {
 
     const userData = useSelector((state) => state.authSlice.userData.user);
-    console.log(userData)
+    // console.log(userData)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [classes, setClasses] = useState("");
@@ -18,26 +18,33 @@ function Profile() {
         if (classNumber === 3) return "rd";
         return "th";
     };
-    
     const fetchClass = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:4000/api/v1/class/class/${userData.className}`);
-            
-            if (data.class && data.class.className) {
-                const classNum = parseInt(data.class.className, 10); // Convert to number
+            if (!userData?.classNames || userData.classNames.length === 0) {
+                return;
+            }
+    
+            const classId = userData.classNames[0]; // Extracting first class ID from the array
+    
+            const { data } = await axios.get(`http://localhost:4000/api/v1/class/class/${classId}`);
+    
+            if (data?.class?.className) {
+                const classNum = parseInt(data.class.className, 10);
                 const suffix = getOrdinalSuffix(classNum);
                 setClasses(`${classNum}${suffix} Class`);
-                console.log(`${classNum}${suffix} Class`);
-            }
+            } 
         } catch (error) {
-            console.log(error);
+            console.error("Error fetching class:", error.response ? error.response.data : error.message);
         }
     };
+
+    
     useEffect(() => {
-        if (userData.className) {
-            fetchClass(); // ✅ Run only if userData.className exists
+        if (userData?.classNames?.length > 0) {
+            fetchClass();
         }
-    }, [userData.className]);
+    }, [userData?.classNames]); // Dependency update
+    
     
     // const fetchStudents = async () => {
     //     try {
@@ -68,7 +75,13 @@ function Profile() {
         dispatch(removeUser());
         navigate("/login");
     };
-
+    if(userData.role === "admin"){
+        return <div className="flex min-h-screen flex-col w-full justify-center items-center">
+            <div className="w-[50%] h-10 border shadow-2xl flex justify-center items-center">
+            <p className="font-bold uppercase  text-xl">Daddy is here</p>
+            </div>
+            </div>
+    }
     return (
         <div className="min-h-screen flex w-full justify-center items-center bg-white text-black">
             <div className="max-w-3xl w-full p-8 rounded-lg shadow-2xl bg-gradient-to-br from-white to-gray-100 relative overflow-hidden">
