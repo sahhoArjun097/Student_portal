@@ -165,8 +165,6 @@ export const Admin = catchAsyncError(async (req, res, next) => {
             message: "Teacher register successfully",
             user: newAdmin
         })
-
-
     } catch (error) {
         return next(new ErrorHandler(error.message, 500));
 
@@ -176,6 +174,7 @@ export const Admin = catchAsyncError(async (req, res, next) => {
 
 // get all login
 
+jfd,jf
 export const Login = catchAsyncError(async (req, res, next) => {
     try {
         const { email, password } = req.body;
