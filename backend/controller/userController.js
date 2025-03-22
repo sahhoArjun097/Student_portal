@@ -7,7 +7,6 @@ import { Class } from "../models/classSchema.js";
 import { User } from "../models/userSchema.js"
 import { generateToken } from "../utils/jwtToken.js";
 import jwt from "jsonwebtoken";
-
 // for student 
 export const StudentRegister = catchAsyncError(async (req, res, next) => {
     try {
@@ -23,7 +22,7 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
         if (!existingClass) {
             return next(new ErrorHandler("Class doesn't exist", 400));
         }
-        
+
         const newStudent = await User.create({
             name,
             email,
@@ -45,7 +44,7 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
         try {
             await Section.findByIdAndUpdate(
                 sectionId,
-                { $push: { students: newStudent._id } },
+                { $push: { students: newStudent._id  } },
                 { new: true }
             );
             // console.log(`Student ${newStudent.name} added to Section ${sectionId}`);
@@ -59,9 +58,7 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
     }
 });
 
-
 // get all student 
-
 export const getAllStudents = catchAsyncError(async (req, res, next) => {
     try {
         const students = await User.find({ role: "student" });
@@ -104,13 +101,13 @@ export const getStudentById = async (req, res) => {
 // register teacher 
 export const TeacherRegister = catchAsyncError(async (req, res, next) => {
     try {
-        const { name, email, department, phone, password,  classNames,  role,} = req.body;
+        const { name, email, department, phone, password, classNames, role, } = req.body;
         const user = await User.findOne({ email });
         if (user) {
             return next(new ErrorHandler("Teacher already exists", 400));
         }
         const newteacher = await User.create({
-            name, email, password, department, phone, role,  classNames 
+            name, email, password, department, phone, role, classNames
         });
         res.status(200).json({
             success: true,
@@ -130,8 +127,8 @@ export const TeacherRegister = catchAsyncError(async (req, res, next) => {
                 console.error("Error updating section:", error);
             }
         }
-        
-        
+
+
     } catch (error) {
         console.error("Error registering user:", error);
         return next(new ErrorHandler("Internal Server Error", 500));
@@ -171,10 +168,7 @@ export const Admin = catchAsyncError(async (req, res, next) => {
     }
 })
 
-
 // get all login
-
-jfd,jf
 export const Login = catchAsyncError(async (req, res, next) => {
     try {
         const { email, password } = req.body;

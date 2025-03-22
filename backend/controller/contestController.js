@@ -51,7 +51,7 @@ export const contestController = catchAsyncError(async (req, res, next) => {
 });
 export const getAllContest = catchAsyncError(async (req, res, next) => {
     try {
-        console.log("Fetching contests..."); // Check if function is called
+        // console.log("Fetching contests..."); // Check if function is called
 
         const allcontest = await Contest.find();
         

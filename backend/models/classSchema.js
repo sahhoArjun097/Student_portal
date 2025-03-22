@@ -21,11 +21,11 @@ const classSchema = new mongoose.Schema({
   teachers:[{
     type:mongoose.Schema.Types.ObjectId,
     ref:"User"
-  }]
-//  students: [{
-//   type: mongoose.Schema.Types.ObjectId,
-//   ref: "Section",
-// }]
+  }],
+ students: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "User",
+}]
 })
 
 export const Class = mongoose.model("Class", classSchema);
