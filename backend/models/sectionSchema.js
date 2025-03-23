@@ -11,14 +11,14 @@ const sectionSchema = new mongoose.Schema({
             ref: "User",
         }
     ],
-    class:{
+    class: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Class",
     },
-   timetable:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"TimeTable"
-   }
+    timetable: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "TimeTable"
+    }
 })
 
 export const Section = mongoose.model("Section", sectionSchema);

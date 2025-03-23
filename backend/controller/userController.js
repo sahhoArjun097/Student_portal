@@ -44,7 +44,7 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
         try {
             await Section.findByIdAndUpdate(
                 sectionId,
-                { $push: { students: newStudent._id  } },
+                { $push: { students: { _id: newStudent._id, name: newStudent.name } } },
                 { new: true }
             );
             // console.log(`Student ${newStudent.name} added to Section ${sectionId}`);
