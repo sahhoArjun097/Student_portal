@@ -13,5 +13,4 @@ router.post("/login",Login);
 router.post("/admin",Admin);
 router.get("/logout",Logout);
 // router.get("/class",classdata);
-
 export default router;

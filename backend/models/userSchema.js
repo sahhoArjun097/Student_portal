@@ -17,12 +17,12 @@ const userSchema = new mongoose.Schema({
   phone: { type: String },
   department: { type: String },
   role: { type: String, enum: ["student", "teacher", "admin"], required: true, default: "student" },
+  
   section: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Section",
-  
   },
-  sectionName:{type:String},
+  sectionId:{type:String},
   classNames:[{type:String}]
   // class: {
   //   type: mongoose.Schema.Types.ObjectId,

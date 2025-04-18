@@ -75,11 +75,11 @@ function Navbar() {
               </button>
               : <div className="relative cursor-pointer" onClick={() => setIsNotificationOpen(!isNotificationOpen)}>
                 <Bell size={24} />
-                {/* {notifications.length > 0 && (
+                {notifications.length > 0 && (
                   <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
                     {notifications.length}
                   </span>
-                )} */}
+                )}
               </div>
           }
           {userData?.user?.role && (

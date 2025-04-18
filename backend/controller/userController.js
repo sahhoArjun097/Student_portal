@@ -10,8 +10,8 @@ import jwt from "jsonwebtoken";
 // for student 
 export const StudentRegister = catchAsyncError(async (req, res, next) => {
     try {
-        const { name, password, email, gender, classNames, dateOfBirth, sectionId, rollNumber, address, phone, role } = req.body;
-        if (!name || !email || !password || !gender || !dateOfBirth || !rollNumber || !classNames || !sectionId || !address || !phone || !role) {
+        const { name, password, email, gender, classNames, dateOfBirth, sectionName, rollNumber, sectionId, address, phone, role } = req.body;
+        if (!name || !email || !password || !gender || !dateOfBirth || !rollNumber || !classNames ||!sectionId ||!sectionName || !address || !phone || !role) {
             return next(new ErrorHandler("Please fill out the entire form", 400));
         }
         const existingUser = await User.findOne({ $or: [{ email }, { rollNumber }] });
@@ -33,8 +33,9 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
             address,
             phone,
             role,
-            sectionId,
-            classNames
+            sectionName,
+            classNames,
+            sectionId
         });
         res.status(200).json({
             success: true,

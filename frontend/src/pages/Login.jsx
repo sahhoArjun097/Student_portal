@@ -31,7 +31,8 @@ function Login() {
       });
   
       if (response.data.success) {
-        // console.log(response.data);
+        
+       
         setMessage("Login successful!");
         dispatch(addUser(response.data)); // Ensure only user data is stored
         navigate("/");
