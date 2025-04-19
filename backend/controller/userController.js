@@ -10,8 +10,8 @@ import jwt from "jsonwebtoken";
 // for student 
 export const StudentRegister = catchAsyncError(async (req, res, next) => {
     try {
-        const { name, password, email, gender, classNames, dateOfBirth, sectionName, rollNumber, sectionId, address, phone, role } = req.body;
-        if (!name || !email || !password || !gender || !dateOfBirth || !rollNumber || !classNames ||!sectionId ||!sectionName || !address || !phone || !role) {
+        const { name, password, email, gender, classNames, dateOfBirth,  rollNumber, sectionId, address, phone, role } = req.body;
+        if (!name || !email || !password || !gender || !dateOfBirth || !rollNumber || !classNames ||!sectionId || !address || !phone || !role) {
             return next(new ErrorHandler("Please fill out the entire form", 400));
         }
         const existingUser = await User.findOne({ $or: [{ email }, { rollNumber }] });
@@ -33,7 +33,6 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
             address,
             phone,
             role,
-            sectionName,
             classNames,
             sectionId
         });
@@ -47,6 +46,12 @@ export const StudentRegister = catchAsyncError(async (req, res, next) => {
                 sectionId,
                 { $push: { students: { _id: newStudent._id, name: newStudent.name } } },
                 { new: true }
+                
+            );
+            await Class.findByIdAndUpdate(
+                classNames,
+                {$push : { students:{_id:newStudent._id}}},
+                {new:true}
             );
             // console.log(`Student ${newStudent.name} added to Section ${sectionId}`);
         } catch (error) {

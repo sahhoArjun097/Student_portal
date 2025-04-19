@@ -19,6 +19,7 @@ function Register() {
         phone: "",
         department: "",
         classNames: "",
+        // sectionId:""
         role: "student",
     });
     const [message, setMessage] = useState("");
@@ -52,7 +53,6 @@ function Register() {
     const handleSection = (e) => {
         const sectionId = e.target.value;
         setselectedsectionId(sectionId);
-
         setFormData((prev) => ({ ...prev, sectionId }));  // Update formData
     };
 
@@ -91,6 +91,7 @@ function Register() {
                     phone: "",
                     department: "",
                     classNames: "",
+                    selectId:"",
                     role: isStudent ? "student" : "teacher",
                 });
 
@@ -144,7 +145,7 @@ function Register() {
                             <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} className="w-full p-2 border rounded" required />
                             <input type="text" name="rollNumber" placeholder="Roll Number" value={formData.rollNumber} onChange={handleChange} className="w-full p-2 border rounded" required />
                             <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full p-2 border rounded" required />
-                            <select onChange={handleClass} value={selectedClassId} className="w-full   p-2 border rounded">
+                            <select onChange={handleClass} value={selectedClassId} className="w-full  p-2 border rounded">
                         <option value="" >
                             Select Class
                         </option>

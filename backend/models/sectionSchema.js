@@ -16,8 +16,10 @@ const sectionSchema = new mongoose.Schema({
         ref: "Class",
     },
     timetable: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "TimeTable"
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "TimeTable"
+        type: String,
+        required: true
     }
 })
 

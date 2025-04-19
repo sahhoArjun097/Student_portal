@@ -11,6 +11,7 @@ import contestRouter from "./routes/contestRoutes.js"
 import noticeRouter from "./routes/noticeRoutes.js" 
 import classRouter from "./routes/classRoutes.js" 
 import sectionRouter from "./routes/sectionRoutes.js" 
+import timetableRoutes from "./routes/timetableRoutes.js" 
 import notificationRoutes from "./routes/notificationRoutes.js";
 
 const app = express();
@@ -42,6 +43,7 @@ app.use("/api/v1/fee",noticeRouter)
 app.use("/api/v1/class",classRouter)
 app.use("/api/v1/section",sectionRouter)
 app.use("/api/v1/notification", notificationRoutes);
+app.use("/api/v1/timetable",timetableRoutes);
 dbConnection();
 app.use(errorMiddlerware)
 export default app;

@@ -5,7 +5,7 @@ import { Class } from "../models/classSchema.js"; // Import Class Model
 import { User } from "../models/userSchema.js";
 
 export const createSection = catchAsyncError(async (req, res, next) => {
-    const { sectionName,  students, classId } = req.body;
+    const { sectionName,  students, classId , timetable} = req.body;
 
     if (!sectionName) {
         return next(new ErrorHandler("Section name is required", 400));
@@ -14,7 +14,8 @@ export const createSection = catchAsyncError(async (req, res, next) => {
     const newSection = await Section.create({
         sectionName,
         students: students || [] ,
-        class:classId
+        class:classId,
+        timetable
         // Explicitly setting it empty
     });
     res.status(201).json({
