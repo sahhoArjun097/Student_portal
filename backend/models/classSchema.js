@@ -20,7 +20,7 @@ const classSchema = new mongoose.Schema({
   }],
   teachers:[{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"User"
+    ref:"user"
   }],
 
 })

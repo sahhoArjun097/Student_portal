@@ -57,11 +57,16 @@ export const getallSection = catchAsyncError(async (req, res ,next)=>{
     }
 
 })
-export const  getSectionByID = catchAsyncError(async (req ,res , next)=>{
-    try {
-        const section = await Section.findById()
-    } catch (error) {
-        
-    }
 
-})
+export const getsectionbyID = catchAsyncError(async(req, res, next)=>{
+    const {id} = req.params;
+    const sectionData = await Section.findById(id).populate("timetable")
+     if(!sectionData){
+        return next(new ErrorHandler("section didnt found",404));
+     }
+     res.status(200).json({
+        success:true,
+        section:sectionData
+     })
+});
+
