@@ -60,7 +60,7 @@ export const getallSection = catchAsyncError(async (req, res ,next)=>{
 
 export const getsectionbyID = catchAsyncError(async(req, res, next)=>{
     const {id} = req.params;
-    const sectionData = await Section.findById(id).populate("timetable")
+    const sectionData = await Section.findById(id)
      if(!sectionData){
         return next(new ErrorHandler("section didnt found",404));
      }
@@ -70,3 +70,6 @@ export const getsectionbyID = catchAsyncError(async(req, res, next)=>{
      })
 });
 
+// export const getallstudentsinclassbyID = catchAsyncError(async(req,res,next)=>{
+//     const {}
+// })

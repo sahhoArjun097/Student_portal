@@ -76,3 +76,16 @@ export const getAlltimetable = catchAsyncError(async (req, res, next) => {
         Tits
     });
 });
+
+
+export const gettimetablebyid = catchAsyncError(async(req, res ,next)=>{
+    const {id} = req.params;
+    const TT = await TimeTableSchema.findById(id).populate("days.periods.teacher")
+    if(!TT){
+        return next(new ErrorHandler("Time Table is not created"))
+    }
+    res.status(200).json({
+        success:true,
+        TimeTable : TT
+    })
+})
