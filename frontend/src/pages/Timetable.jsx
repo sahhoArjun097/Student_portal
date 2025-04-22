@@ -1,14 +1,34 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Timetable = () => {
- 
-  const timetable = [
-    { time: "9:00 AM - 10:00 AM", lecture: "Mathematics", teacher: "Dr. Sharma" },
-    { time: "10:15 AM - 11:15 AM", lecture: "Physics", teacher: "Prof. Verma" },
-    { time: "11:15 AM - 12:15 PM", lecture: "Computer Science", teacher: "Mr. Rakesh" },
-    { time: "12:15 AM - 1:15 AM", lecture: "Chemistry", teacher: "Dr. Rao" },
-    { time: "1:30 AM - 2:30 PM", lecture: "English", teacher: "Ms. Kavita" },
-    //   { time: "12:45 PM - 1:45 PM", lecture: "Biology", teacher: "Dr. Gupta" },
-  ];
+
+  const [data,setData]  = useState("");
+  const userData = useSelector((state)=> state.authSlice.userData.user);
+  const usersectionId = userData.sectionId
+  const fetchAllData = async () => {
+    try {
+      const sectionRes = await axios.get(`http://localhost:4000/api/v1/section/getsectionbyid/${usersectionId}`);
+      const section = sectionRes.data.section;
+      setData(section); // Save in state if needed
+      console.log(section);
+  
+      const timetableId = section.timetable;
+      console.log(timetableId)
+      const timetableRes = await axios.get(`http://localhost:4000/api/v1/timetable/allttbyid/${timetableId}`);
+      console.log(timetableRes.data.TimeTable.days);
+    } catch (error) {
+      console.error("Error fetching section or timetable:", error);
+    }
+  };
+  
+  useEffect(() => {
+    if (usersectionId) {
+      fetchAllData();
+    }
+  }, [usersectionId]);
+  
 
   return (
     <>
@@ -23,24 +43,24 @@ const Timetable = () => {
           <table className="w-full border border-gray-700 shadow-lg">
             <thead>
               <tr className="bg-gray-800 text-teal-400">
-                {/* <th className={` p-4 text-left`}>📆 Day</th> */}
+                <th className={` p-4 text-left`}>📆 Day</th>
                 <th className="p-4 text-left">⏰ Time</th>
                 <th className="p-4 text-left">📖 Lecture</th>
                 <th className="p-4 text-left">👩‍🏫 Teacher</th>
               </tr>
             </thead>
             <tbody>
-              {timetable.map((entry, index) => (
+             
                 <tr
-                  key={index}
+                  // key={index}
                   className="border-b border-gray-700 bg-gray-600 hover:bg-gray-800  transition-all"
                 >
-                  {/* <td className={`${darkMode?"text-white":"text-gray-600"} p-4`}>{entry.day}</td> */}
-                  <td className="text-white p-4">{entry.time}</td>
-                  <td className="p-4 text-teal-300">{entry.lecture}</td>
-                  <td className= "text-white p-4">{entry.teacher}</td>
+                  <td className={`"text-white":"text-gray-600"} p-4`}></td>
+                  <td className="text-white p-4"></td>
+                  <td className="p-4 text-teal-300"></td>
+                  <td className= "text-white p-4"></td>
                 </tr>
-              ))}
+              
             </tbody>
           </table>
         </div>

@@ -71,5 +71,5 @@ export const getsectionbyID = catchAsyncError(async(req, res, next)=>{
 });
 
 // export const getallstudentsinclassbyID = catchAsyncError(async(req,res,next)=>{
-//     const {}
+//     const {classId , section}
 // })
