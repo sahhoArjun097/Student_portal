@@ -19,10 +19,9 @@ const Timetable = () => {
       const { data } = await axios.get(`http://localhost:4000/api/v1/timetable/allttbyid/${timetableId}`);
       setItems(data.TimeTable.days)
       console.log(data.TimeTable.days)
-      
       const alldays = data.TimeTable.days.map((dayobj => dayobj.day))
       setDays(alldays)
-      const subjectbyday = data.TimeTable.days.map((periodobj => periodobj.periods))
+      const subjectbyday = data.TimeTable.days[0].periods
       setTime(subjectbyday)
       console.log(subjectbyday)
       const sub = data.TimeTable.days.map((periodobj => periodobj.periods)).map((subobj=> subobj.subject))
@@ -75,9 +74,10 @@ const Timetable = () => {
           <tr key={idx} className="border-b border-gray-700 bg-gray-600 hover:bg-gray-800 transition-all">
             <td className="p-4 border text-teal-300">{timeSlot.time}</td>
             {subjects.map((subsss, index) => (
-              <td key={index} className="p-4 border text-white">{subsss}</td> // You can populate cells here
+              <td key={index} className="p-4 border text-white">{subsss}</td> 
             ))}
           </tr>
+
         ))}
       </tbody>
     </table>
