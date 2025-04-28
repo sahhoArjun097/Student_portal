@@ -1,13 +1,13 @@
 import { useState,  } from "react";
 // import { Context } from "../main";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {addUser} from "../utils/authSlice"
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   // const { setUser } = useContext(Context);
-  const userData = useSelector((state)=>state.authSlice.userdata)
+  // const userData = useSelector((state)=>state.authSlice.userdata)
   const navigate = useNavigate()
   const dispatch  = useDispatch()
   const [formData, setFormData] = useState({

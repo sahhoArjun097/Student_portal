@@ -11,7 +11,7 @@ function Notice() {
         { withCredentials: true }
       );
       setNotices(data.notice);
-      console.log(data.notice)
+      // console.log(data.notice)
     } catch (error) {
       console.error("No notices are coming", error);
     }

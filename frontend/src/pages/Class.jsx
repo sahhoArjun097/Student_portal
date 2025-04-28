@@ -11,7 +11,7 @@ function StudentPage() {
         { withCredentials: true }
       );
       setStudents(data);
-      console.log(data)
+      // console.log(data)
     } catch (error) {
       console.error("Error fetching students:", error.response?.data || error.message);
     }

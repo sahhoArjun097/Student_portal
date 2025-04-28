@@ -3,41 +3,27 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Timetable = () => {
-
-  const [items, setItems] = useState([]);
-  const [days, setDays] = useState([])
-  const [time,  setTime] = useState([])
-  const [subjects,setSubjects] = useState([])
+  const [week,setWeek] = useState([])
+  const [time,setTime] = useState([])
+  const [subject,setSubject] = useState([])
   const userData = useSelector((state) => state.authSlice.userData.user);
   const usersectionId = userData.sectionId
   const fetchAllData = async () => {
     try {
+      
       const sectionRes = await axios.get(`http://localhost:4000/api/v1/section/getsectionbyid/${usersectionId}`);
       const section = sectionRes.data.section;
-      setItems(section);
+  
       const timetableId = section.timetable;
       const { data } = await axios.get(`http://localhost:4000/api/v1/timetable/allttbyid/${timetableId}`);
-      setItems(data.TimeTable.days)
-      console.log(data.TimeTable.days)
-      const alldays = data.TimeTable.days.map((dayobj => dayobj.day))
-      setDays(alldays)
-      const subjectbyday = data.TimeTable.days[0].periods
-      setTime(subjectbyday)
-      console.log(subjectbyday)
-      const sub = data.TimeTable.days.map((periodobj => periodobj.periods)).map((subobj=> subobj.subject))
-      console.log(sub)
-      const ssubjectbyday = data.TimeTable.days.map((periodobj) => 
-        periodobj.periods.map((period) => period.subject)
-      );
-      
-      setSubjects(ssubjectbyday);
-      console.log(ssubjectbyday);
+      const weekdays = data.TimeTable.days.map(weekdaysobj=> weekdaysobj.day)
+      setWeek(weekdays)
+      const classtime = data.TimeTable.days[0].periods
+      setTime(classtime)
+      const periodsubjects = data.TimeTable.days.map(periodsobj => periodsobj.periods.map(subjectobj => subjectobj.subject))
+      setSubject(periodsubjects)
+    
 
-      // extract all subjects
-// const subjects = data.TimeTable.days.flatMap(day =>  
-//   day.periods.map(period => period.subject)
-// );
-// console.log(subjects);
     } catch (error) {
       console.error("Error fetching section or timetable:", error);
     }
@@ -63,22 +49,32 @@ const Timetable = () => {
       <thead>
         <tr className="bg-gray-800 border text-teal-400">
           <th className="p-4 border text-left">⏰ Time/Days</th>
-          {days.map((dayobj, index) => (
-            <th key={index} className="p-4 border text-left">{dayobj}</th>
-          ))}
+          {
+            week.map((dayobj,ind)=>(
+              <td className="border p-4  bg-gray-600 hover:bg-gray-800 transition-all" key={ind}>{dayobj} </td>
+            ))
+          }
         </tr>
       </thead>
 
-      <tbody>
-        {time.map((timeSlot, idx) => (
-          <tr key={idx} className="border-b border-gray-700 bg-gray-600 hover:bg-gray-800 transition-all">
-            <td className="p-4 border text-teal-300">{timeSlot.time}</td>
-            {subjects.map((subsss, index) => (
-              <td key={index} className="p-4 border text-white">{subsss}</td> 
-            ))}
-          </tr>
+      <tbody className="">
+        {
+          time.map((timeobj,idx)=>(
+            <tr key={idx} className="border-b border-gray-700 bg-gray-600 hover:bg-gray-800 transition-all">
+              <td className="p-4 border text-teal-300">{timeobj.time}</td>
+              {
+                subject.map((subobj,index)=>(
+                  <td className="p-4 border uppercase text-teal-300" key={index}>{subobj[idx]}</td>
+                ))
+              }
+              <td></td>
+              </tr>
+          ))
+        }
+      
 
-        ))}
+        
+          
       </tbody>
     </table>
   </div>

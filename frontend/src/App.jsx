@@ -19,7 +19,7 @@ import About from "./pages/About";
 import GetStudent from "./pages/GetStudent";
 const ProtectedRoute = ({ children  , allowRoles}) => {
   const userData = useSelector((state) => state.authSlice.userData)
-  console.log(userData)
+  // console.log(userData)
   if(allowRoles && !allowRoles.includes(userData.user.role)){
     return <Navigate to="/" replace></Navigate>
   }
