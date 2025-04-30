@@ -16,6 +16,7 @@ const Timetable = () => {
       const section = sectionRes.data.section;
       const timetableId = section.timetable;
       const { data } = await axios.get(`http://localhost:4000/api/v1/timetable/allttbyid/${timetableId}`);
+      console.log(data.TimeTable.days)
       const weekdays = data.TimeTable.days.map(weekdaysobj => weekdaysobj.day)
       setWeek(weekdays)
       const classtime = data.TimeTable.days[0].periods
@@ -26,6 +27,16 @@ const Timetable = () => {
       setSublist(sortedsub)
       console.log(sortedsub);
       setSubject(periodsubjects)
+      // const teacherwithdepartment = data.TimeTable.days.map(periodsobj => periodsobj.periods.map(teacherobj => teacherobj.teacher))
+  //     const teacherEntries = data.TimeTable.days
+  // .flatMap(day => day.periods.map(p => p.teacher))
+  // .filter(Boolean) // remove null or undefined
+  // .map(teacher => ({
+  //   department: teacher.department,
+  //   name: teacher.name
+  // }));
+
+// console.log(teacherEntries);
     } catch (error) {
       console.error("Error fetching section or timetable:", error);
     }
@@ -66,7 +77,7 @@ const Timetable = () => {
                     <td className="p-4  flex justify-center items-center border text-teal-300">{timeobj.time}</td>
                     {
                       subject.map((subobj, index) => (
-                        <td className="p-4 border uppercase text-teal-300" key={index}>{subobj[idx]}</td>
+                        <td className="p-4 border uppercase text-teal-300" key={index}>{subobj[idx]}({subobj[idx]})</td>
                       ))
                     }
                     <td></td>
@@ -76,15 +87,7 @@ const Timetable = () => {
             </tbody>
           </table>
           <div className=" mt-4  w-full h-full  justify-center  items-center">
-            <h1 className="w-full justify-center  items-center flex uppercase">Subjects</h1>
-            {
-              sublist.map((sublistobj,index)=>(
-                <div key={index}>
-                  <h1>{sublistobj} -</h1>
-                </div>
-                
-              ))
-            }
+           
 
            </div>
         </div>

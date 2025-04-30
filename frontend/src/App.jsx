@@ -17,6 +17,7 @@ import AddNotice from "./pages/AddNotice";
 import Features from "./components/Features";
 import About from "./pages/About";
 import GetStudent from "./pages/GetStudent";
+import AddTimeTable from "./pages/AddTimeTable";
 const ProtectedRoute = ({ children  , allowRoles}) => {
   const userData = useSelector((state) => state.authSlice.userData)
   // console.log(userData)
@@ -61,7 +62,8 @@ function App() {
           <Route path="/addcontest" element={<ProtectedRoute allowRoles="teacher && admin"><AddContest /></ProtectedRoute>} />
           <Route path="/addnotice" element={<ProtectedRoute allowRoles="teacher && admin"><AddNotice /></ProtectedRoute>} />
           <Route path="/features" element={<ProtectedRoute><Features /></ProtectedRoute>} />
-          <Route path="/getstudents" element={<ProtectedRoute><GetStudent/></ProtectedRoute>} />
+          <Route path="/getstudents" element={<ProtectedRoute><GetStudent/></ProtectedRoute>} /> 
+          <Route path="/addtimetable" element={<ProtectedRoute><AddTimeTable/></ProtectedRoute>} /> 
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
