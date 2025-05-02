@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Navbar() {
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const userData = useSelector((state) => state.authSlice.userData);
   const name = (userData.user)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +17,7 @@ function Navbar() {
   const fetchnotification = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/notification/getnotification",
+        `${baseURL}notification/getnotification`,
         { withCredentials: true }
       );
       const allNotifications = [

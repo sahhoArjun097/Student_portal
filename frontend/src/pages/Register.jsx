@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Register() {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
     const [isStudent, setIsStudent] = useState(true);
     const [allClass, setAllClass] = useState([])
     const [section, setSection] = useState([])
@@ -29,7 +30,7 @@ function Register() {
     };
     const getAllClass = async () => {
         try {
-            const { data } = await axios.get("http://localhost:4000/api/v1/class/getclass", {
+            const { data } = await axios.get(`${baseURL}class/getclass`, {
                 withCredentials: true
             });
             console.log(data.classes);
@@ -68,8 +69,8 @@ function Register() {
         };
 
         const endpoint = isStudent
-            ? "http://localhost:4000/api/v1/user/student/register"
-            : "http://localhost:4000/api/v1/user/teacher/register";
+            ? `${baseURL}user/student/register`
+            : `${baseURL}user/teacher/register`;
 
         try {
             const response = await axios.post(endpoint, updatedFormData, {

@@ -3,6 +3,7 @@ import { Context } from "../main";
 import axios from "axios";
 
 function Contest() {
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const { darkMode } = useContext(Context);
   const [contests, setContests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +12,7 @@ function Contest() {
   const fetchContest = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/contest/getallcontest",
+        `${baseURL}contest/getallcontest`,
         { withCredentials: true }
       );
       setContests(data.contest);

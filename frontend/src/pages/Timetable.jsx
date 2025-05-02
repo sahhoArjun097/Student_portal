@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Timetable = () => {
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const [week, setWeek] = useState([])
   const [time, setTime] = useState([])
   const [subject, setSubject] = useState([])
@@ -12,10 +13,10 @@ const Timetable = () => {
   const usersectionId = userData.sectionId
   const fetchAllData = async () => {
     try {
-      const sectionRes = await axios.get(`http://localhost:4000/api/v1/section/getsectionbyid/${usersectionId}`);
+      const sectionRes = await axios.get(`${baseURL}section/getsectionbyid/${usersectionId}`);
       const section = sectionRes.data.section;
       const timetableId = section.timetable;
-      const { data } = await axios.get(`http://localhost:4000/api/v1/timetable/allttbyid/${timetableId}`);
+      const { data } = await axios.get(`${baseURL}timetable/allttbyid/${timetableId}`);
       console.log(data.TimeTable.days)
       const weekdays = data.TimeTable.days.map(weekdaysobj => weekdaysobj.day)
       setWeek(weekdays)

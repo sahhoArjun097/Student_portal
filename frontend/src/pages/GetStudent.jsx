@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function GetStudent() {
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const [getClass, setGetClass] = useState([]);
   const [getSection, setGetSection] = useState([]);
   const [studentIds, setStudentIds] = useState([]);
@@ -12,7 +13,7 @@ function GetStudent() {
   const fetchClass = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/class/getclass",
+        `${baseURL}class/getclass`,
         { withCredentials: true }
       );
       setGetClass(data.classes);

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function AddContest() {
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const [contest, setContest] = useState({
     title: '',
     description: '',
@@ -37,7 +38,7 @@ function AddContest() {
     formData.append('contestImage', contest.contestImage);
 
     try {
-      const res = await axios.post('http://localhost:4000/api/v1/contest/contestinfo', formData, {
+      const res = await axios.post(`${baseURL}contest/contestinfo`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       });

@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Profile() {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
 
     const userData = useSelector((state) => state.authSlice.userData.user);
     // console.log(userData)
@@ -26,7 +27,9 @@ function Profile() {
 
             const classId = userData.classNames[0]; // Extracting first class ID from the array
 
-            const { data } = await axios.get(`http://localhost:4000/api/v1/class/class/${classId}`);
+            const { data } = await axios.get(`${baseURL}class/class/${classId}`
+            
+            );
 
             if (data?.class?.className) {
                 const classNum = parseInt(data.class.className, 10);

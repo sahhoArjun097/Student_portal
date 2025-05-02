@@ -9,17 +9,14 @@ export const createTimeTable = catchAsyncError(async (req, res, next) => {
         sectionId,
         days: days || []
     });
-
     const updatedSection = await Section.findByIdAndUpdate(
         sectionId,
         { $set: { timetable: newTimetable._id } }, // Use $set for one-to-one
         { new: true }
     ).populate("timetable");
-
     if (!updatedSection) {
         return next(new ErrorHandler("Section not found", 404));
     }
-
     res.status(201).json({
         success: true,
         timetable: newTimetable,
@@ -48,7 +45,6 @@ export  const updatedays = catchAsyncError(async(req , res , next)=>{
 export const addPeriodToDay = catchAsyncError(async (req, res, next) => {
     const { timetableId, dayId } = req.params;
     const { time, subject, teacher ,teacherId} = req.body;
-
     const timetable = await TimeTableSchema.findById(timetableId);
     // console.log(timetable)
     if (!timetable) return res.status(404).json({ message: "Timetable not found" });
@@ -70,7 +66,6 @@ export const addPeriodToDay = catchAsyncError(async (req, res, next) => {
 export const getAlltimetable = catchAsyncError(async (req, res, next) => {
     const Tits = await TimeTableSchema.find()
         .populate("days.periods.teacher")
-
     res.status(200).json({
         success: true,
         Tits

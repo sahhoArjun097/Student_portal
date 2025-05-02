@@ -3,11 +3,12 @@ import axios from "axios";
 
 function StudentPage() {
   const [students, setStudents] = useState([]);
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const fetchStudents = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/class/getclass",  
+        `${baseURL}class/getclass`,  
         { withCredentials: true }
       );
       setStudents(data);

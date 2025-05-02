@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 
 function AddNotice() {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
     const [teacher, setTeachers] = useState([])
     const userData = useSelector((state) => state.authSlice.userData.user)
     console.log(userData)
@@ -19,7 +20,7 @@ function AddNotice() {
     const handleIssueBy = async () => {
         
         try {
-            const { data } = await axios.get("http://localhost:4000/api/v1/user/getAllTeacher", {
+            const { data } = await axios.get(`${baseURL}user/getAllTeacher`, {
                 withCredentials: true
             });
             setTeachers(data);
@@ -43,7 +44,7 @@ function AddNotice() {
         try {
 
             const res = await axios.post(
-                "http://localhost:4000/api/v1/notice/noticeinfo",
+                `${baseURL}notice/noticeinfo`,
                 notice,
                 {
                     headers: { "Content-Type": "application/json" },
@@ -66,7 +67,7 @@ function AddNotice() {
     useEffect(() => {
         handleIssueBy()
 
-    }, []);
+    }, [ ]);
     return (
         <>
         

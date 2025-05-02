@@ -6,6 +6,7 @@ import {addUser} from "../utils/authSlice"
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   // const { setUser } = useContext(Context);
   // const userData = useSelector((state)=>state.authSlice.userdata)
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ function Login() {
     setMessage("");
   
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/user/login", formData, {
+      const response = await axios.post(`${baseURL}user/login`, formData, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });

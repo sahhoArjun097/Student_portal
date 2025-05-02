@@ -5,9 +5,10 @@ function Notice() {
   const [notices, setNotices] = useState([]);
 
   const fetchNotices = async () => {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/notice/getallNotice",
+        `${baseURL}notice/getallNotice`,
         { withCredentials: true }
       );
       setNotices(data.notice);
