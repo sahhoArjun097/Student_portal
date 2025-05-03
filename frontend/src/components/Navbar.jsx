@@ -97,6 +97,9 @@ function Navbar() {
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
+      {
+        !userData.user.role === "admin" 
+      }
     
       {isNotificationOpen && (
         <div className="absolute top-16 right-0 z-10 w-[50%] bg-gray-800 bg-opacity-95 text-white p-5 transition-all duration-300 ease-in-out overflow-hidden h-screen overflow-x-hidden">
