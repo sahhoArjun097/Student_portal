@@ -36,6 +36,7 @@ function Home() {
 
                 </div>
             </div>
+            {/* <div className="h-24 bg-gradient-to-b from-[#92d050] to-[#f7f1e3] w-full"></div> */}
 
             <div className=" top-[500px] w-full md:w-[80vw] sm:w-full h-[40vh]  p-3 absolute overflow-x-hidden  ">
                 <div className="   w-full h-full justify-between flex" >

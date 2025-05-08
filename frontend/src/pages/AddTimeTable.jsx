@@ -1,23 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import StartcreateTimet from "../components/StartcreateTimet";
 
 function AddTimeTable() {
   const [selectClass, setselectClass] = useState([]);
   const [getSection, setgetSection] = useState([])
   const [selectedsectionid,setSelectedsectionid] = useState("")
+  const [show,setShow] = useState(false)
+  const [data,setData] = useState([])
   const baseURL = import.meta.env.VITE_API_BASE_URL;
 
-  const addtimetable = async () => {
-    try {
-      const res = await axios.post(`${baseURL}timetable/create`)
-
-    } catch (error) {
-      console.log(error)
-
-    }
-
-
-  }
   const fetchclass = async () => {
     try {
       const { data } = await axios.get(`${baseURL}class/getclass`, {
@@ -29,7 +21,6 @@ function AddTimeTable() {
       console.error("Error fetching classes:", error);
     }
   };
-
   const selectedClass = (e) => {
     const id = e.target.value
     const selectclassSection = selectClass.find(cls => cls._id === id)
@@ -43,16 +34,20 @@ function AddTimeTable() {
     
   }
 const submitsectiontimetable = async () =>{
-
+  
   try {
     const playload = {
       sectionId : selectedsectionid,
       days:[]
     }
     const res = await axios.post(`${baseURL}timetable/create`,playload);
-    console.log("tti,",res.data);
+    console.log("TimeTime ",res.data.timetable.days);
+    setShow(true)
+    setData(res.data.timetable.days)
+    alert(res.data.message)
 
   } catch (error) {
+    alert(error?.response?.data?.message)
     console.log(error)
 
   }
@@ -65,66 +60,50 @@ const submitsectiontimetable = async () =>{
 
   return (
     <>
-      <div className=" flex-col justify-between  flex min-h-screen mt-10 p-10 items-center">
-          <h1 className="text-xl">Select the class and section </h1>
-        <div className=" flex gap-7 ">
-          <select onChange={selectedClass} className="w-full  p-2 border rounded">
-            <option value="" >
-              Select Class
-            </option>
+     <div
+  style={{ backgroundImage: "url('/about.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+  className="w-full min-h-screen flex flex-col items-center  p-30 "
+>
+  <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 shadow-xl flex flex-col items-center gap-6 w-full max-w-md">
+    <h1 className="text-2xl font-semibold text-white">Select the class and section</h1>
+    
+    <div className="flex flex-col gap-4 w-full">
+      <select
+        onChange={selectedClass}
+        className="w-full p-3 bg-white/70 text-black rounded-lg focus:outline-none shadow-inner"
+      >
+        <option value="">Select Class</option>
+        {selectClass.map((classItem) => (
+          <option key={classItem._id} value={classItem._id}>
+            {classItem.className}
+          </option>
+        ))}
+      </select>
 
-            {selectClass.map((classItem) => (
-              <option key={classItem._id} value={classItem._id}>
-                {classItem.className}
+      <select
+        onClick={handlesection}
+        className="w-full p-3 bg-white/70 text-black rounded-lg focus:outline-none shadow-inner"
+      >
+        <option value="">Select Section</option>
+        {getSection.map((sectionItem) => (
+          <option key={sectionItem._id} value={sectionItem._id}>
+            {sectionItem.sectionName}
+          </option>
+        ))}
+      </select>
+    </div>
 
-              </option>
-            ))}
-          </select>
-          <select onClick={handlesection} className="w-full  p-2  border rounded">
-            <option value="">
-              select section
-            </option>
-            {getSection.map((sectionItem) => (
-              <option key={sectionItem._id} value={sectionItem._id}>
-                {sectionItem.sectionName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <button className="border p-2 rounded-2xl" onClick={submitsectiontimetable}>submit</button>
-        </div>
+    <button
+      className=" p-2 px-4  bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md transition"
+      onClick={submitsectiontimetable}
+    >
+      Start
+    </button>
 
-        <div className="w-full  flex justify-center items-center bg-gray-100 p-4">
-          <table className="border border-black table-fixed text-center w-full max-w-7xl mx-auto">
-            <thead>
-              <tr>
-                <th className="border border-black px-6 py-4 w-40">Time/Day</th>
-                <th className="border border-black px-6 py-4 w-40"></th>
-                <th className="border border-black px-6 py-4 w-40"></th>
-                <th className="border border-black px-6 py-4 w-40"></th>
-                <th className="border border-black px-6 py-4 w-40"></th>
-                <th className="border border-black px-6 py-4 w-40"></th>
-                <th className="border border-black px-6 py-4 w-40"></th>
+  </div>
+    {show && <StartcreateTimet  data={data} />}
+</div>
 
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: 6 }).map((_, rowIndex) => (
-                <tr key={rowIndex}>
-                  {Array.from({ length: 7 }).map((_, colIndex) => (
-                    <td
-                      key={colIndex}
-                      className="border border-black px-6 py-4 h-16"
-                    ></td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-        </div>
-      </div>
     </>
   );
 }
