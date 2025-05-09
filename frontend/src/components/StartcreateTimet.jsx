@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 function StartcreateTimet({ data }) {
   const [days, setDays] = useState([])
   const [classtime, setTime] = useState([])
-  const [classsubject, setClassSubject] = ([])
+  const [classsubject, setClassSubject] = useState([])
   useEffect(() => {
     if (data && data.length > 0) {
       setDays(data);
