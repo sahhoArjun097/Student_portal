@@ -115,6 +115,7 @@ export const addPeriodToDay = catchAsyncError(async (req, res, next) => {
         await timetable.save();
         res.status(200).json({ message: "Period added successfully", timetable });
     }
+    
 });
 
 

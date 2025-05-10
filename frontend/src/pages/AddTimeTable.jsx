@@ -44,6 +44,7 @@ const submitsectiontimetable = async () =>{
     console.log("TimeTime ",res.data.timetable.days);
     setShow(true)
     setData(res.data.timetable.days)
+    console.log(res)
     alert(res.data.message)
 
   } catch (error) {
