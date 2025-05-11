@@ -59,7 +59,7 @@ export const createTimeTable = catchAsyncError(async (req, res, next) => {
     // }));
     // const newTimetable = new TimeTableSchema({
     //     sectionId,
-    //     days
+     //     days
     // });
     // const savedTimeTable = await newTimetable.save();
 
@@ -71,7 +71,7 @@ export const createTimeTable = catchAsyncError(async (req, res, next) => {
     // ).populate("timetable");
     // if (!updatedSection) {
     //     return next(new ErrorHandler("Section not found", 404));
-    // }
+   // }
     // res.status(201).json({
     //     success: true,
     //     timetable: newTimetable,
@@ -101,7 +101,7 @@ export const addPeriodToDay = catchAsyncError(async (req, res, next) => {
     const { timetableId, dayId } = req.params;
     const { time, subject, teacher, teacherId } = req.body;
     const timetable = await TimeTableSchema.findById(timetableId);
-    // console.log(timetable)
+   
     if (!timetable) return res.status(404).json({ message: "Timetable not found" });
     const day = timetable.days.id(dayId);
     if (!day) return res.status(404).json({ message: "Day not found in timetable" });
@@ -110,12 +110,12 @@ export const addPeriodToDay = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("time already aloted", 404));
     }
     else {
-        // Add new period
+    
         day.periods.push({ time, subject, teacher });
         await timetable.save();
         res.status(200).json({ message: "Period added successfully", timetable });
     }
-    
+
 });
 
 

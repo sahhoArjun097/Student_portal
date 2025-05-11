@@ -66,3 +66,120 @@ function StartcreateTimet({ data }) {
 }
 
 export default StartcreateTimet
+
+// import { useState } from "react";
+
+
+// const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+// const periods = 5; // 5 periods per day
+// const classtime = ["9-10", "10-11", "11-12", "12-1", "1-2"];
+// const classsubject = ["Math", "Science", "English", "History"];
+// const teacherOptions = {
+//   Math: ["Mr. Sharma", "Ms. Gupta"],
+//   Science: ["Dr. Verma", "Ms. Roy"],
+//   English: ["Ms. D'Souza", "Mr. Khan"],
+//   History: ["Mr. Singh", "Ms. Jain"],
+// };
+
+// export default function StartcreateTimet() {
+//   const [table, setTable] = useState(
+//     Array(periods).fill().map(() => Array(days.length).fill({ time: "", subject: "", teacher: "" }))
+//   );
+
+//   const [dayCompleted, setDayCompleted] = useState(0);
+
+//   const handleSelect = (rowIdx, colIdx, type, value) => {
+//     const updated = [...table];
+//     updated[rowIdx][colIdx] = {
+//       ...updated[rowIdx][colIdx],
+//       [type]: value,
+//     };
+//     setTable(updated);
+//   };
+
+//   const isCellEditable = (colIdx) => colIdx <= dayCompleted;
+
+//   const checkDayComplete = (colIdx) => {
+//     return table.every((row) => row[colIdx].time && row[colIdx].subject && row[colIdx].teacher);
+//   };
+
+//   const handleNextDay = () => {
+//     if (checkDayComplete(dayCompleted)) {
+//       setDayCompleted((prev) => Math.min(prev + 1, days.length - 1));
+//     } else {
+//       alert("Please complete all periods for the day first!");
+//     }
+//   };
+
+//   return (
+//     <div className="overflow-x-auto">
+//       <table className="border-collapse border w-full bg-white/30 backdrop-blur-md shadow-lg">
+//         <thead>
+//           <tr>
+//             <th className="p-2 border">Time/Day</th>
+//             {days.map((day) => (
+//               <th key={day} className="p-2 border">{day}</th>
+//             ))}
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {Array.from({ length: periods }).map((_, rowIdx) => (
+//             <tr key={rowIdx}>
+//               <td className="border p-2">
+//                 <select
+//                   value={table[rowIdx][0].time}
+//                   onChange={(e) =>
+//                     days.forEach((_, colIdx) => handleSelect(rowIdx, colIdx, "time", e.target.value))
+//                   }
+//                 >
+//                   <option value="">select time</option>
+//                   {classtime.map((t) => (
+//                     <option key={t}>{t}</option>
+//                   ))}
+//                 </select>
+//               </td>
+//               {days.map((_, colIdx) => (
+//                 <td key={colIdx} className="border p-2">
+//                   {isCellEditable(colIdx) ? (
+//                     <>
+//                       <select
+//                         value={table[rowIdx][colIdx].subject}
+//                         onChange={(e) => handleSelect(rowIdx, colIdx, "subject", e.target.value)}
+//                       >
+//                         <option value="">select subject</option>
+//                         {classsubject.map((s) => (
+//                           <option key={s}>{s}</option>
+//                         ))}
+//                       </select>
+//                       {table[rowIdx][colIdx].subject && (
+//                         <select
+//                           className="mt-2"
+//                           value={table[rowIdx][colIdx].teacher}
+//                           onChange={(e) => handleSelect(rowIdx, colIdx, "teacher", e.target.value)}
+//                         >
+//                           <option value="">select teacher</option>
+//                           {(teacherOptions[table[rowIdx][colIdx].subject] || []).map((t) => (
+//                             <option key={t}>{t}</option>
+//                           ))}
+//                         </select>
+//                       )}
+//                     </>
+//                   ) : (
+//                     <span className="text-gray-400">Locked</span>
+//                   )}
+//                 </td>
+//               ))}
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+
+//       <button
+//         className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+//         onClick={handleNextDay}
+//       >
+//         Unlock Next Day
+//       </button>
+//     </div>
+//   );
+// }
