@@ -15,8 +15,48 @@ function StartcreateTimet({ data }) {
   const subjects = ["English","Hindi","Math","Science","GK","Game"]
 
   return (
-    <div className=" flex justify-center  mt-6 w-full max-w-5xl">
-      <table className="min-w-full backdrop-blur-md table-fixed border-collapse border border-gray-300 bg-white/10 shadow-md rounded-lg">
+    <div className=" flex flex-col justify-center items-center  mt-6 w-full max-w-5xl">
+      <div className=' w-[50%] h-full flex justify-between items-center '>
+        <select className='border rounded-xl p-2'>
+          <option className='p-2'>
+            <p className='font-bold'> Select the time </p>
+          </option>
+          {
+            classtime.map((timeobj,index)=>(
+              <option key={index}>{timeobj}</option>
+            ))
+          }
+          
+        </select>
+        <select className='border rounded-xl p-2'>
+          <option className='p-2'>
+            <p className='font-bold'> Select the subject </p>
+          </option>
+          {
+            classsubject.map((subobj,index)=>(
+              <option key={index}>{subobj}</option>
+            ))
+          }
+          
+        </select>
+        <select className='border rounded-xl p-2'>
+          <option className='p-2'>
+            <p className='font-bold'> Select the teacher </p>
+          </option>
+          {
+            classtime.map((timeobj,index)=>(
+              <option key={index}>{timeobj}</option>
+            ))
+          }
+          
+        </select>
+          
+
+
+
+        
+      </div>
+      {/* <table className="min-w-full backdrop-blur-md table-fixed border-collapse border border-gray-300 bg-white/10 shadow-md rounded-lg">
         <thead>
           <tr className="bg-white/30">
             <th className="border border-gray-400 px-4 py-2 text-left text-black font-semibold">Time/Day</th>
@@ -59,7 +99,7 @@ function StartcreateTimet({ data }) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
 
   )
