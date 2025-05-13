@@ -34,7 +34,11 @@ function Navbar() {
   };
 
   useEffect(() => {
-    fetchnotification();
+    if (userData?.user?.role !== "admin") {
+      fetchnotification();
+    }
+    
+    console.log("hello admin")
   }, []);
   useEffect(() => {
     setIsNotificationOpen(false);

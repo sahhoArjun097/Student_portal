@@ -1,60 +1,85 @@
-import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 function StartcreateTimet({ data }) {
   const [days, setDays] = useState([])
   const [classtime, setTime] = useState([])
   const [classsubject, setClassSubject] = useState([])
+  const[teacher,setTeachers] = useState([])
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+  const fetchteacher = async () =>{
+    const  {data} = await axios.get(`${baseURL}user/getallteacher`,{
+      withCredentials:true
+    })
+    console.log(data)
+    const teachername = data.map(nameobj => nameobj.name)
+    setTeachers(teachername)
+    // console.log(teachername)
+
+  }
   useEffect(() => {
-    if (data && data.length > 0) {
+    if (data) {
       setDays(data);
+      fetchteacher()
     }
     setTime(time)
     setClassSubject(subjects)
   }, [data]);
+
   const time = ["9-10", "10-11", "11-12", "12-1", "1-2"]
-  const subjects = ["English","Hindi","Math","Science","GK","Game"]
+  const handledaystosend = (e) => {
+    const selectedday = e.target.value
+    console.log(selectedday)
+  }
+  const subjects = ["English", "Hindi", "Math", "Science", "GK", "Game"]
 
   return (
     <div className=" flex flex-col justify-center items-center  mt-6 w-full max-w-5xl">
-      <div className=' w-[50%] h-full flex justify-between items-center '>
+      <div className=' w-[50%] h-full flex justify-between gap-4 items-center '>
+        <select onClick={handledaystosend} className='border rounded-xl p-2'>
+          <option className='p-2'>
+            <p className='font-bold'> Select the day </p>
+          </option>
+          {
+            days.map((dayobj, index) => (
+              <option key={index} value={dayobj._id}>{dayobj.day}</option>
+            ))
+          }
+
+        </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
             <p className='font-bold'> Select the time </p>
           </option>
           {
-            classtime.map((timeobj,index)=>(
+            classtime.map((timeobj, index) => (
               <option key={index}>{timeobj}</option>
             ))
           }
-          
+
         </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
             <p className='font-bold'> Select the subject </p>
           </option>
           {
-            classsubject.map((subobj,index)=>(
+            classsubject.map((subobj, index) => (
               <option key={index}>{subobj}</option>
             ))
           }
-          
+
         </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
             <p className='font-bold'> Select the teacher </p>
           </option>
           {
-            classtime.map((timeobj,index)=>(
-              <option key={index}>{timeobj}</option>
+            teacher.map((teacherobj, index) => (
+              <option key={index}>{teacherobj}</option>
             ))
           }
-          
+
         </select>
-          
-
-
-
-        
       </div>
       {/* <table className="min-w-full backdrop-blur-md table-fixed border-collapse border border-gray-300 bg-white/10 shadow-md rounded-lg">
         <thead>
