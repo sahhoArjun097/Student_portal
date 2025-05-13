@@ -5,11 +5,11 @@ function StartcreateTimet({ data }) {
   const [days, setDays] = useState([])
   const [classtime, setTime] = useState([])
   const [classsubject, setClassSubject] = useState([])
-  const[teacher,setTeachers] = useState([])
+  const [teacher, setTeachers] = useState([])
   const baseURL = import.meta.env.VITE_API_BASE_URL;
-  const fetchteacher = async () =>{
-    const  {data} = await axios.get(`${baseURL}user/getallteacher`,{
-      withCredentials:true
+  const fetchteacher = async () => {
+    const { data } = await axios.get(`${baseURL}user/getallteacher`, {
+      withCredentials: true
     })
     console.log(data)
     const teachername = data.map(nameobj => nameobj.name)
@@ -34,12 +34,12 @@ function StartcreateTimet({ data }) {
   const subjects = ["English", "Hindi", "Math", "Science", "GK", "Game"]
 
   return (
-    <div className=" flex flex-col justify-center items-center  mt-6 w-full max-w-5xl">
-      <div className=' w-[50%] h-full flex justify-between gap-4 items-center '>
+    <div className=" flex flex-col justify-center items-center  mt-3 w-full max-w-5xl">
+      <div className=' w-full h-full flex justify-between p-5 items-center '>
         <select onClick={handledaystosend} className='border rounded-xl p-2'>
           <option className='p-2'>
-            <p className='font-bold'> Select the day </p>
-          </option>
+            Select the day      
+               </option>
           {
             days.map((dayobj, index) => (
               <option key={index} value={dayobj._id}>{dayobj.day}</option>
@@ -49,7 +49,7 @@ function StartcreateTimet({ data }) {
         </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
-            <p className='font-bold'> Select the time </p>
+            Select the time
           </option>
           {
             classtime.map((timeobj, index) => (
@@ -60,7 +60,7 @@ function StartcreateTimet({ data }) {
         </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
-            <p className='font-bold'> Select the subject </p>
+            Select the subject
           </option>
           {
             classsubject.map((subobj, index) => (
@@ -71,7 +71,7 @@ function StartcreateTimet({ data }) {
         </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
-            <p className='font-bold'> Select the teacher </p>
+            Select the teacher
           </option>
           {
             teacher.map((teacherobj, index) => (

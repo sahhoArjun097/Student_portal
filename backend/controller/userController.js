@@ -122,12 +122,13 @@ export const TeacherRegister = catchAsyncError(async (req, res, next) => {
         })
 
         for (const className of classNames) {
+
             try {
                 await Class.findByIdAndUpdate(
                     className,
                     { $push: { teachers: newteacher._id } },
                     { new: true }
-                );
+                ).populate("teachers");
                 console.log(`Teacher ${newteacher.name} added to the section ${className}`);
             } catch (error) {
                 console.error("Error updating section:", error);

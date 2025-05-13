@@ -4,6 +4,7 @@ import StartcreateTimet from "../components/StartcreateTimet";
 
 function AddTimeTable() {
   const [selectClass, setselectClass] = useState([]);
+  const[teacherinclass,setTeacherinclass] = useState([])
   const [getSection, setgetSection] = useState([])
   const [selectedsectionid, setSelectedsectionid] = useState("")
   const [show, setShow] = useState(false)
@@ -22,7 +23,9 @@ function AddTimeTable() {
     }
   };
   const selectedClass = (e) => {
+
     const id = e.target.value
+    setTeacherinclass(id)
     const selectclassSection = selectClass.find(cls => cls._id === id)
     setgetSection(selectclassSection?.sections)
     console.log(selectclassSection.sections)
@@ -62,10 +65,10 @@ function AddTimeTable() {
     <>
       <div
         style={{ backgroundImage: "url('/about.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
-        className="w-full min-h-screen flex flex-col items-center  p-30 "
+        className="w-full min-h-screen flex flex-col items-center p-20 "
       >
-        <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 shadow-xl flex flex-col items-center gap-6 w-full max-w-md">
-          <h1 className="text-2xl font-semibold text-white">Select the class and section</h1>
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 shadow-xl flex flex-col items-center gap-6 w-full max-w-md">
+          <h1 className="text-2xl font-semibold text-blck">Select the class and section</h1>
 
           <div className="flex flex-col gap-4 w-full">
             <select
@@ -101,7 +104,7 @@ function AddTimeTable() {
           </button>
 
         </div>
-        {show && <StartcreateTimet data={data} />}
+        {show && <StartcreateTimet data={data} teacherinclass={teacherinclass} />}
       </div>
 
     </>

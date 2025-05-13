@@ -29,7 +29,7 @@ export const getAllClasses = catchAsyncError(async (req, res, next) => {
 
 export const getClassById = catchAsyncError(async (req, res, next) => {
     const { id } = req.params;
-    const classData = await Class.findById(id)
+    const classData = await Class.findById(id).populate("teachers")
     if (!classData) {
         return next(new ErrorHandler("Class not found", 404));
     }
