@@ -4,11 +4,11 @@ import StartcreateTimet from "../components/StartcreateTimet";
 
 function AddTimeTable() {
   const [selectClass, setselectClass] = useState([]);
-  const[teacherinclass,setTeacherinclass] = useState([])
+  const[classofteachers,setClassofteachers] = useState([])
   const [getSection, setgetSection] = useState([])
   const [selectedsectionid, setSelectedsectionid] = useState("")
   const [show, setShow] = useState(false)
-  const [data, setData] = useState([])
+  const [classday, setClassday] = useState([])
   const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const fetchclass = async () => {
@@ -16,16 +16,15 @@ function AddTimeTable() {
       const { data } = await axios.get(`${baseURL}class/getclass`, {
         withCredentials: true
       });
-      console.log(data.classes);
+      // console.log(data.classes);
       setselectClass(data.classes);
     } catch (error) {
       console.error("Error fetching classes:", error);
     }
   };
   const selectedClass = (e) => {
-
     const id = e.target.value
-    setTeacherinclass(id)
+    setClassofteachers(id)
     const selectclassSection = selectClass.find(cls => cls._id === id)
     setgetSection(selectclassSection?.sections)
     console.log(selectclassSection.sections)
@@ -37,17 +36,16 @@ function AddTimeTable() {
 
   }
   const submitsectiontimetable = async () => {
-
     try {
       const playload = {
         sectionId: selectedsectionid,
         days: []
       }
       const res = await axios.post(`${baseURL}timetable/create`, playload);
-      console.log("TimeTime ", res.data.timetable.days);
+      // console.log("TimeTime ", res.data.timetable.days);
       setShow(true)
-      setData(res.data.timetable.days)
-      console.log(res)
+      setClassday(res.data.timetable.days)
+      // console.log(res)
       alert(res.data.message)
 
     } catch (error) {
@@ -104,7 +102,7 @@ function AddTimeTable() {
           </button>
 
         </div>
-        {show && <StartcreateTimet data={data} teacherinclass={teacherinclass} />}
+        {show && <StartcreateTimet classday={classday} classofteachers={classofteachers} selectedsectionid={selectedsectionid} />}
       </div>
 
     </>

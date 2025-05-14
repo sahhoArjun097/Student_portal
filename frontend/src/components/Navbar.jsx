@@ -38,7 +38,7 @@ function Navbar() {
       fetchnotification();
     }
     
-    console.log("hello admin")
+    // console.log("hello admin")
   }, []);
   useEffect(() => {
     setIsNotificationOpen(false);

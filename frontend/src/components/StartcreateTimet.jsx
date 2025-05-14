@@ -1,36 +1,51 @@
 import axios from 'axios'
+import { use } from 'react'
 import { useEffect, useState } from 'react'
 
-function StartcreateTimet({ data }) {
+function StartcreateTimet({ classday , classofteachers,selectedsectionid}) {
   const [days, setDays] = useState([])
   const [classtime, setTime] = useState([])
   const [classsubject, setClassSubject] = useState([])
   const [teacher, setTeachers] = useState([])
-  const baseURL = import.meta.env.VITE_API_BASE_URL;
+  const [day,setDay] = useState("")
+  const [timetable,setTimetable] = useState("")
+  const baseURL = import.meta.env.VITE_API_BASE_URL
+  
   const fetchteacher = async () => {
-    const { data } = await axios.get(`${baseURL}user/getallteacher`, {
+    const { data } = await axios.get(`${baseURL}class/class/${classofteachers}`, {
       withCredentials: true
     })
-    console.log(data)
-    const teachername = data.map(nameobj => nameobj.name)
+    const teachername = data.class.teachers.map(nameobj => nameobj.name)
     setTeachers(teachername)
-    // console.log(teachername)
+  }
+  const fetchsection = async () =>{
+    const {data} = await axios.get(`${baseURL}section/getsectionbyid/${selectedsectionid}`,{
+      withCredentials:true
+    })
+    // console.log(data)
+    setTimetable(data.section.timetable)
 
   }
+
+  
   useEffect(() => {
-    if (data) {
-      setDays(data);
+    if (classday) {
+      setDays(classday);
       fetchteacher()
     }
+    fetchsection()
     setTime(time)
     setClassSubject(subjects)
-  }, [data]);
+  }, [classday]);
 
   const time = ["9-10", "10-11", "11-12", "12-1", "1-2"]
+
+
   const handledaystosend = (e) => {
     const selectedday = e.target.value
-    console.log(selectedday)
+    setDay(selectedday)
   }
+  // const 
   const subjects = ["English", "Hindi", "Math", "Science", "GK", "Game"]
 
   return (
@@ -45,7 +60,6 @@ function StartcreateTimet({ data }) {
               <option key={index} value={dayobj._id}>{dayobj.day}</option>
             ))
           }
-
         </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
@@ -56,7 +70,6 @@ function StartcreateTimet({ data }) {
               <option key={index}>{timeobj}</option>
             ))
           }
-
         </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
@@ -67,7 +80,6 @@ function StartcreateTimet({ data }) {
               <option key={index}>{subobj}</option>
             ))
           }
-
         </select>
         <select className='border rounded-xl p-2'>
           <option className='p-2'>
@@ -78,9 +90,10 @@ function StartcreateTimet({ data }) {
               <option key={index}>{teacherobj}</option>
             ))
           }
-
         </select>
       </div>
+
+
       {/* <table className="min-w-full backdrop-blur-md table-fixed border-collapse border border-gray-300 bg-white/10 shadow-md rounded-lg">
         <thead>
           <tr className="bg-white/30">
