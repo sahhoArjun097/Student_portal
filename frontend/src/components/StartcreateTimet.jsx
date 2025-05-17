@@ -2,7 +2,7 @@ import axios from 'axios'
 import { use } from 'react'
 import { useEffect, useState } from 'react'
 
-function StartcreateTimet({ classday, classofteachers, selectedsectionid }) {
+function StartcreateTimet({ classday, classofteachers, selectedsectionid ,timetableId}) {
   const [selectedtime, setSelectedtime] = useState("")
   const [selectedsubject, setSelectedsubject] = useState("")
   const [selectedteacher, setSelectedteacher] = useState("")
@@ -13,6 +13,9 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid }) {
   const [subjectteacher, setSubjectteacher] = useState([])
   const [day, setDay] = useState("")
   const [timetable, setTimetable] = useState("")
+  const [showtime,setShowtime] = useState([])
+  const [subject,setSubject] = useState([])
+  const [sublist, setSublist] = useState([])
   const baseURL = import.meta.env.VITE_API_BASE_URL
 
   const fetchteacher = async () => {
@@ -23,13 +26,13 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid }) {
     setTeachers(teachername)
     console.log(data)
   }
+
   const fetchsection = async () => {
     const { data } = await axios.get(`${baseURL}section/getsectionbyid/${selectedsectionid}`, {
       withCredentials: true
     })
     // console.log(data)
     setTimetable(data.section.timetable)
-
   }
   const submittimetabledata = async () => {
     try {
@@ -49,10 +52,21 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid }) {
     
   }
   const fetchtimetable = async () =>{
-    const {data} = await axios.get(`${baseURL}timetable/allttbyid/${timetable}`,{
+    // console.log(timetableId)
+    const {data} = await axios.get(`${baseURL}timetable/allttbyid/${timetableId}`,{
+
       withCredentials:true
     })
     console.log(data)
+    const res = data.TimeTable.days[0].periods
+    setShowtime(res)
+    const periodsubjects = data.TimeTable.days.map(periodsobj => periodsobj.periods.map(subjectobj => subjectobj.subject))
+      const flattenedSubjects = periodsubjects.flat();
+      const sortedsub = [...new Set(flattenedSubjects.map(s => s.toUpperCase()))].sort();      
+      setSublist(sortedsub)
+      console.log(sortedsub);
+      setSubject(periodsubjects)
+
   }
   
   useEffect(() => {
@@ -60,8 +74,8 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid }) {
       setDays(classday);
       fetchteacher()
     }
-    fetchtimetable
     fetchsection()
+    fetchtimetable()
     setTime(time)
     setClassSubject(subjects)
   }, [classday]);
@@ -76,7 +90,7 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid }) {
     const seesubject = e.target.value;
     setSelectedsubject(seesubject)
     const selectedsubjectteacher = teacher.filter(t => t.department === seesubject)
-    console.log(selectedsubjectteacher)
+    // console.log(selectedsubjectteacher)
     setSubjectteacher(selectedsubjectteacher)
   
 
@@ -146,22 +160,21 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid }) {
             }
           </tr>
         </thead>
-        <tbody>
-          {Array.from({ length: 5 }).map((_, idx) => (
-            <tr key={idx} className="hover:bg-white/20 transition">
-              <td className="border border-gray-400 px-4 py-2 bg-white/20 backdrop-blur-md text-black font-medium">
-                
-              </td>
-              {Array.from({ length: 6 }).map((__, i) => (
-                <td key={i} className="border border-gray-400 px-4 py-2 text-black text-center">
-                 
-                    
-                    
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
+        <tbody className="">
+              {
+                showtime.map((timeobj, idx) => (
+                  <tr key={idx} className="border-b  border-gray-700 bg-gray-600 hover:bg-gray-800 transition-all">
+                    <td className="p-4  flex justify-center items-center border text-teal-300">{timeobj.time}</td>
+                    {
+                      subject.map((subobj, index) => (
+                        <td className="p-4 border uppercase text-teal-300" key={index}>{subobj[idx]}</td>
+                      ))
+                    }
+                    <td></td>
+                  </tr>
+                ))
+              }
+            </tbody>
       </table>
     </div>
 

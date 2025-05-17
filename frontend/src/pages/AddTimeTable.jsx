@@ -9,6 +9,8 @@ function AddTimeTable() {
   const [selectedsectionid, setSelectedsectionid] = useState("")
   const [show, setShow] = useState(false)
   const [classday, setClassday] = useState([])
+  const [timetableId,settimetableId] = useState("")
+  
   const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const fetchclass = async () => {
@@ -42,11 +44,12 @@ function AddTimeTable() {
         days: []
       }
       const res = await axios.post(`${baseURL}timetable/create`, playload);
-      // console.log("TimeTime ", res.data.timetable.days);
+      console.log("TimeTime ", res.data);
       setShow(true)
       setClassday(res.data.timetable.days)
       // console.log(res)
       alert(res.data.message)
+      settimetableId(res.data.timetableId)
 
     } catch (error) {
       alert(error?.response?.data?.message)
@@ -102,7 +105,7 @@ function AddTimeTable() {
           </button>
 
         </div>
-        {show && <StartcreateTimet classday={classday} classofteachers={classofteachers} selectedsectionid={selectedsectionid} />}
+        {show && <StartcreateTimet classday={classday} classofteachers={classofteachers} timetableId ={timetableId} selectedsectionid={selectedsectionid} />}
       </div>
 
     </>
