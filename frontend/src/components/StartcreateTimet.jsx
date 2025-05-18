@@ -117,10 +117,7 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid ,timeta
             ))}
           </select>
         </div>
-        <div>
-          <h1>h</h1>
-        </div>
-
+      
         <div className="flex flex-col w-full md:w-1/5">
           <label className="text-sm font-semibold text-gray-600 mb-1">Subject</label>
           <select
