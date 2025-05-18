@@ -66,7 +66,6 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid ,timeta
       setSublist(sortedsub)
       console.log(sortedsub);
       setSubject(periodsubjects)
-
   }
   
   useEffect(() => {
@@ -95,7 +94,6 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid ,timeta
   
 
   }
-  // const 
   const subjects = ["English", "Hindi", "Math", "Science", "GK", "Game"]
 
   return (
@@ -119,11 +117,14 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid ,timeta
             ))}
           </select>
         </div>
+        <div>
+          <h1>h</h1>
+        </div>
 
         <div className="flex flex-col w-full md:w-1/5">
           <label className="text-sm font-semibold text-gray-600 mb-1">Subject</label>
           <select
-            //  onChange={(e) => setSelectedsubject(e.target.value)}
+            //  onChange={(e) => setSelectedsubject(e.target.value)} chnage done 
             onClick={handlesubject} className="border border-black rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option>Select the subject</option>
             {classsubject.map((subobj, index) => (
