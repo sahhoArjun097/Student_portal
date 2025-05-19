@@ -35,8 +35,6 @@ export const createTimeTable = catchAsyncError(async (req, res, next) => {
             {new: true}
         ).populate("timetable")
         console.log(updateId)
-
-        
             res.status(200).json({
                 success: true,
                 message: "Timetable created",

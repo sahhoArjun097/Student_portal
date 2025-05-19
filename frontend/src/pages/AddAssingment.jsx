@@ -2,7 +2,7 @@ import React from 'react'
 
 function AddAssingment() {
   return (
-    <div className=''>AddAssingment</div>
+    <div className='w-full h-full'>AddAssingment</div>
   )
 }
 
