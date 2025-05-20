@@ -89,7 +89,7 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid ,timeta
     const seesubject = e.target.value;
     setSelectedsubject(seesubject)
     const selectedsubjectteacher = teacher.filter(t => t.department === seesubject)
-    // console.log(selectedsubjectteacher)
+    console.log(selectedsubjectteacher)
     setSubjectteacher(selectedsubjectteacher)
   
 
