@@ -26,18 +26,19 @@ const Timetable = () => {
       const flattenedSubjects = periodsubjects.flat();
       const sortedsub = [...new Set(flattenedSubjects.map(s => s.toUpperCase()))].sort();      
       setSublist(sortedsub)
-      console.log(sortedsub);
+   
       setSubject(periodsubjects)
-      // const teacherwithdepartment = data.TimeTable.days.map(periodsobj => periodsobj.periods.map(teacherobj => teacherobj.teacher))
-  //     const teacherEntries = data.TimeTable.days
-  // .flatMap(day => day.periods.map(p => p.teacher))
-  // .filter(Boolean) // remove null or undefined
-  // .map(teacher => ({
-  //   department: teacher.department,
-  //   name: teacher.name
-  // }));
+      const teacherwithdepartment = data.TimeTable.days.map(periodsobj => periodsobj.periods.map(teacherobj => teacherobj.teacher))
+      const teacherEntries = data.TimeTable.days
+      console.log(teacherwithdepartment)
+  .flatMap(day => day.periods.map(p => p.teacher))
+  .filter(Boolean) // remove null or undefined
+  .map(teacher => ({
+    department: teacher.department,
+    name: teacher.name
+  }));
 
-// console.log(teacherEntries);
+console.log(teacherEntries);
     } catch (error) {
       console.error("Error fetching section or timetable:", error);
     }
@@ -78,7 +79,7 @@ const Timetable = () => {
                     <td className="p-4  flex justify-center items-center border text-teal-300">{timeobj.time}</td>
                     {
                       subject.map((subobj, index) => (
-                        <td className="p-4 border uppercase text-teal-300" key={index}>{subobj[idx]}({subobj[idx]})</td>
+                        <td className="p-4 border uppercase text-teal-300" key={index}>{subobj[idx]}</td>
                       ))
                     }
                     <td></td>
