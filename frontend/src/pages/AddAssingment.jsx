@@ -2,7 +2,7 @@ import React from 'react'
 
 function AddAssingment() {
   return (
-    <div className='w-full h-full flex '>AddAsgment</div>
+    <div className='w-full h-full flex '>Add Asgment</div>
   )
 }
 
