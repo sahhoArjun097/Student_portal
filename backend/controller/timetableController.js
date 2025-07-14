@@ -107,6 +107,9 @@ export const addPeriodToDay = catchAsyncError(async (req, res, next) => {
     if (existingTime) {
         return next(new ErrorHandler("time already aloted", 404));
     }
+    if (!time || !subject || !teacher) {
+    return next(new ErrorHandler("Please provide all the details"));
+}
     else {
     
         day.periods.push({ time, subject, teacher });

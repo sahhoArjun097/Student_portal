@@ -18,6 +18,10 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid ,timeta
   const [sublist, setSublist] = useState([])
   const baseURL = import.meta.env.VITE_API_BASE_URL
 
+
+ 
+  
+
   const fetchteacher = async () => {
     const { data } = await axios.get(`${baseURL}class/class/${classofteachers}`, {
       withCredentials: true
@@ -47,7 +51,7 @@ function StartcreateTimet({ classday, classofteachers, selectedsectionid ,timeta
       fetchtimetable()
       
     } catch (error) {
-      alert(error.response.data.message)
+      alert("refresh")
     }
     
   }
